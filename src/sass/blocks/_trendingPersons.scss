@@ -1,0 +1,18 @@
+.trendingPersons {
+    h3 {
+        margin-top: 50px;
+        margin-bottom: 40px;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $pink;
+        text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+
+    .trendingPersons__grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 50px;
+    }
+}

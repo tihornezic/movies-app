@@ -1,0 +1,50 @@
+.header {
+    padding: 50px 0;
+    font-size: 1.1rem;
+
+    .header__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 70px;
+
+        .header__brand {
+            text-decoration: none;
+            color: $white;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+
+            .header__icon {
+                font-size: 3rem;
+            }
+
+            h1 {
+                margin-left: 10px;
+            }
+        }
+
+        .header__brand:hover {
+            color: $pink;
+        }
+
+        .header__links {
+            display: flex;
+
+            li {
+                list-style: none;
+
+                a {
+                    text-decoration: none;
+                    color: $white;
+                    margin-left: 45px;
+                    transition: all 0.3s ease;
+                }
+
+                a:hover {
+                    color: $pink;
+                }
+            }
+        }
+    }
+}

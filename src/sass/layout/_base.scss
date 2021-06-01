@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: rgba(19, 25, 34, 1);
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
+    font-family: $quicksand;
+    height: 100vh;
+    color: $white;
+    // background: rgba(19,25,34,1)
+    // background: linear-gradient(180deg, rgba(56, 74, 99, 1) 0%, rgba(28, 33, 42, 1) 44%, rgba(19, 25, 34, 1) 100%);
+    background: linear-gradient(180deg, rgb(46, 61, 82) 0%, rgba(28, 33, 42, 1) 50%, rgba(19, 25, 34, 1) 100%);
+}
+
+.container {
+    max-width: 1360px;
+    // max-width: 1220px;
+    margin: 0 auto;
+}
