@@ -1,5 +1,6 @@
 import Home from './components/pages/Home'
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 import Watchlist from './components/pages/Watchlist'
 import Watched from './components/pages/Watched'
 import Movie from './components/pages/Movie'
@@ -29,6 +30,7 @@ function App() {
 
       </Switch>
 
+      <Footer />
     </Router>
   );
 }

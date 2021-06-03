@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 const url = 'https://api.themoviedb.org/3'
 const movieUrl = `${url}/movie`;
 const nowPlayingMovies = `${url}/movie/now_playing`
@@ -15,38 +16,6 @@ const posterUrl = 'https://image.tmdb.org/t/p/w200/'
 const genreUrl = `${url}/genre/movie/list`
 const video = `https://api.themoviedb.org/3/movie/578701/videos`
 const youtubeUrl = "https://www.youtube.com/watch?v=";
-
-
-
-export const fetchNowPlayingMovies = async () => {
-    try {
-        const {data} = await axios.get(nowPlayingMovies, {
-            params: {
-                api_key: process.env.REACT_APP_API_KEY,
-                language: 'en_US',
-                page: 1
-            }
-        })
-
-        const modifiedData = data.results.map((movie) => ({
-            id: movie.id,
-            title: movie.title,
-            backdropPoster: backdropUrl + movie.backdrop_path,
-            poster: posterUrl + movie.poster_path,
-            overview: movie.overview,
-            popularity: movie.popularity,
-            rating: movie.vote_average,
-            // youtubeVideo: getVideoData(movie.id),
-            releaseDate: movie.release_date,
-            genres: movie.genre_ids,
-            videoPath: `${movieUrl}/${movie.id}/videos`,
-        }))
-
-        console.log(modifiedData)
-        return modifiedData
-
-    } catch (e) { }
-}
 
 
 export const fetchTrendingPerson = async () => {
@@ -66,37 +35,6 @@ export const fetchTrendingPerson = async () => {
             profileImg: posterUrl + person.profile_path,
             profilePath: person.profile_path,
             popularity: person.popularity,
-        }))
-
-        return modifiedData
-
-    } catch (e) { }
-}
-
-export const fetchTopRatedMovies = async () => {
-    try {
-        const {data} = await axios.get(topRatedMovies, {
-            params: {
-                api_key: process.env.REACT_APP_API_KEY,
-                language: 'en_US',
-                page: 1
-            }
-        })
-
-        console.log(data.results)
-
-        const modifiedData = data.results.map((movie) => ({
-            id: movie.id,
-            title: movie.title,
-            backdropPoster: backdropUrl + movie.backdrop_path,
-            poster: posterUrl + movie.poster_path,
-            overview: movie.overview,
-            popularity: movie.popularity,
-            rating: movie.vote_average,
-            // youtubeVideo: getVideoData(movie.id),
-            releaseDate: movie.release_date,
-            genres: movie.genre_ids,
-            videoPath: `${movieUrl}/${movie.id}/videos`,
         }))
 
         return modifiedData
@@ -180,18 +118,4 @@ export const fetchAllGenres = async () => {
 
     }
 
-}
-
-export const fetchMovieDetail = async (id) => {
-    try {
-        const {data} = await axios.get(`${movieUrl}/${id}`, {
-            params: {
-                api_key: process.env.REACT_APP_API_KEY,
-                language: 'en_US'
-            }
-        })
-
-        return data
-
-    } catch (error) { }
 }

@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {
     fetchNowPlayingMovies,
-} from '../../service/index'
+} from '../../service/movies'
 
 const NowPlayingMovies = () => {
     const [nowPlayingMovies, setNowPlayingMovies] = useState([])

@@ -17,9 +17,9 @@ const PopularTvShows = () => {
         fetchApi()
     }, [])
 
-    popularTvShows.map((item) => {
-        console.log(item)
-    })
+    // popularTvShows.map((item) => {
+    //     console.log(item)
+    // })
 
     return (
         <div className='popularTvShows'>

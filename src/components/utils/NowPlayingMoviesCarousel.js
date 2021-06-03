@@ -3,7 +3,7 @@ import {Carousel} from 'react-responsive-carousel';
 import {Link} from 'react-router-dom'
 import {
     fetchNowPlayingMovies,
-} from '../../service/index'
+} from '../../service/movies'
 
 import {useEffect, useState} from 'react'
 
