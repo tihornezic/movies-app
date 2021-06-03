@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import {
     fetchMovieDetail
-} from '../service/index'
+} from '../../service/index'
 
 const Movie = () => {
     const [random, setRandom] = useState([])

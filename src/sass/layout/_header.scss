@@ -2,20 +2,20 @@
     padding: 50px 0;
     font-size: 1.1rem;
 
-    .header__container {
+    .headerContainer {
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 70px;
 
-        .header__brand {
+        .brand {
             text-decoration: none;
             color: $white;
             display: flex;
             align-items: center;
             transition: all 0.3s ease;
 
-            .header__icon {
+            .icon {
                 font-size: 3rem;
             }
 
@@ -24,11 +24,11 @@
             }
         }
 
-        .header__brand:hover {
+        .brand:hover {
             color: $pink;
         }
 
-        .header__links {
+        .links {
             display: flex;
 
             li {

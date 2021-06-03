@@ -1,18 +1,51 @@
 .trendingPersons {
+    margin: 100px 0;
+
     h3 {
-        margin-top: 50px;
+        margin-top: 70px;
         margin-bottom: 40px;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: $pink;
-        text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
-        font-size: 1.2rem;
-        letter-spacing: 1px;
     }
 
-    .trendingPersons__grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-gap: 50px;
+    .personCardAlice {
+        width: 100%;
+
+        .image {
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                display: block;
+                border-radius: 5px;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transition: all 0.3s ease;
+                border: 2.5px solid transparent;
+            }
+        }
+
+        .image:hover {
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+            .overlay {
+                border: 2.5px solid rgba(180, 96, 168, 0.8);
+            }
+        }
+
+        p {
+            margin-top: 17px;
+            font-weight: 500;
+            // text-align: center;
+        }
+
+        small {
+            color: #b1acac;
+        }
     }
 }

@@ -6,12 +6,12 @@ import {Link} from 'react-router-dom'
 const Header = () => {
     return (
         <nav className='header'>
-            <div className='container header__container'>
-                <Link to='/' className='header__brand'>
-                    <MovieCreationOutlinedIcon className='header__icon' />
+            <div className='container headerContainer'>
+                <Link to='/' className='brand'>
+                    <MovieCreationOutlinedIcon className='icon' />
                     <h1>MoviesApp</h1>
                 </Link>
-                <ul className='header__links'>
+                <ul className='links'>
                     <li>
                         <Link to='/'>Home</Link>
                     </li>

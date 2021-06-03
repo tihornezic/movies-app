@@ -24,45 +24,54 @@ body {
   margin: 0 auto;
 }
 
+.heading {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #b460a8;
+  text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+}
+
 .header {
   padding: 50px 0;
   font-size: 1.1rem;
 }
-.header .header__container {
+.header .headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70px;
 }
-.header .header__container .header__brand {
+.header .headerContainer .brand {
   text-decoration: none;
   color: #fff;
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
 }
-.header .header__container .header__brand .header__icon {
+.header .headerContainer .brand .icon {
   font-size: 3rem;
 }
-.header .header__container .header__brand h1 {
+.header .headerContainer .brand h1 {
   margin-left: 10px;
 }
-.header .header__container .header__brand:hover {
+.header .headerContainer .brand:hover {
   color: #b460a8;
 }
-.header .header__container .header__links {
+.header .headerContainer .links {
   display: flex;
 }
-.header .header__container .header__links li {
+.header .headerContainer .links li {
   list-style: none;
 }
-.header .header__container .header__links li a {
+.header .headerContainer .links li a {
   text-decoration: none;
   color: #fff;
   margin-left: 45px;
   transition: all 0.3s ease;
 }
-.header .header__container .header__links li a:hover {
+.header .headerContainer .links li a:hover {
   color: #b460a8;
 }
 
@@ -100,40 +109,44 @@ body {
   z-index: 10;
   letter-spacing: 3px;
 }
+.carousel .control-arrow {
+  padding: 20px !important;
+  color: #b460a8 !important;
+}
+.carousel .control-prev.control-arrow:before {
+  border-right: 8px solid #b460a8 !important;
+}
+.carousel .control-next.control-arrow:before {
+  border-left: 8px solid #b460a8 !important;
+}
 
-.trendingMovies h3 {
+.nowPlayingMovies h3 {
   margin-top: 120px;
   margin-bottom: 40px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #b460a8;
-  text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
-  font-size: 1.2rem;
-  letter-spacing: 1px;
 }
-.trendingMovies .trendingMovies__grid {
+.nowPlayingMovies .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
 }
-.trendingMovies a {
+.nowPlayingMovies a {
   text-decoration: none;
 }
 
 .movieCard {
   width: 100%;
 }
-.movieCard .movieCard__image {
+.movieCard .image {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.movieCard .movieCard__image img {
+.movieCard .image img {
   width: 100%;
   display: block;
   border-radius: 5px;
 }
-.movieCard .movieCard__image .movieCard_overlay {
+.movieCard .image .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -142,66 +155,59 @@ body {
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
 }
-.movieCard .movieCard__image:hover {
+.movieCard .image:hover {
   box-shadow: 0 5px 25px black;
   transform: scale(1.05);
 }
-.movieCard .movieCard__image:hover .movieCard_overlay {
+.movieCard .image:hover .overlay {
   border: 2.5px solid rgba(180, 96, 168, 0.8);
 }
-.movieCard .movieCard__info small {
+.movieCard .info small {
   color: #b1acac;
 }
-.movieCard .movieCard__info p {
+.movieCard .info p {
   margin-top: 17px;
   font-weight: 500;
 }
-.movieCard .movieCard__info .movieCard__rating {
+.movieCard .info .rating {
   display: flex;
   align-items: center;
   color: #b1acac;
   margin-top: 5px;
 }
-.movieCard .movieCard__info .movieCard__rating .movieCard__line {
+.movieCard .info .rating .line {
   font-weight: 500;
+  margin-right: 3px;
 }
-.movieCard .movieCard__info .movieCard__rating span {
+.movieCard .info .rating span {
+  margin-right: 3px;
   font-weight: 600;
 }
-.movieCard .movieCard__info .movieCard__releaseDate small {
+.movieCard .info .releaseDate small {
   font-size: 0.95rem;
 }
 
+.trendingPersons {
+  margin: 100px 0;
+}
 .trendingPersons h3 {
-  margin-top: 50px;
+  margin-top: 70px;
   margin-bottom: 40px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #b460a8;
-  text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
-  font-size: 1.2rem;
-  letter-spacing: 1px;
 }
-.trendingPersons .trendingPersons__grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
-
-.personCard {
+.trendingPersons .personCardAlice {
   width: 100%;
 }
-.personCard .personCard__image {
+.trendingPersons .personCardAlice .image {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.personCard .personCard__image img {
+.trendingPersons .personCardAlice .image img {
   width: 100%;
   display: block;
   border-radius: 5px;
 }
-.personCard .personCard__image .personCard_overlay {
+.trendingPersons .personCardAlice .image .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -209,6 +215,79 @@ body {
   height: 100%;
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
+}
+.trendingPersons .personCardAlice .image:hover {
+  box-shadow: 0 5px 25px black;
+}
+.trendingPersons .personCardAlice .image:hover .overlay {
+  border: 2.5px solid rgba(180, 96, 168, 0.8);
+}
+.trendingPersons .personCardAlice p {
+  margin-top: 17px;
+  font-weight: 500;
+}
+.trendingPersons .personCardAlice small {
+  color: #b1acac;
+}
+
+.alice-carousel .alice-carousel__stage-item {
+  padding-right: 30px;
+}
+.alice-carousel .alice-carousel__dots {
+  margin: 10px 3px 5px;
+}
+.alice-carousel .alice-carousel__dots .alice-carousel__dots-item.__active {
+  background-color: #b460a8;
+}
+
+.topRatedMovies h3 {
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+.topRatedMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+
+.popularTvShows h3 {
+  margin-top: -20px;
+  margin-bottom: 30px;
+}
+.popularTvShows .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+
+.tvCard {
+  width: 100%;
+}
+.tvCard .image {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.tvCard .image img {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+.tvCard .image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 2.5px solid transparent;
+}
+.tvCard .image:hover {
+  box-shadow: 0 5px 25px black;
+  transform: scale(1.05);
+}
+.tvCard .image:hover .overlay {
+  border: 2.5px solid rgba(180, 96, 168, 0.8);
 }
 
 .watchlist {

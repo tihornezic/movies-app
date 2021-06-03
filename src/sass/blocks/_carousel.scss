@@ -34,4 +34,17 @@
         z-index: 10;
         letter-spacing: 3px;
     }
+
+    .control-arrow {
+        padding: 20px !important;
+        color: $pink !important;
+    }
+
+    .control-prev.control-arrow:before {
+        border-right: 8px solid $pink !important;
+    }
+
+    .control-next.control-arrow:before {
+        border-left: 8px solid $pink !important;
+    }
 }

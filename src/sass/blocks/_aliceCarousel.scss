@@ -1,0 +1,13 @@
+.alice-carousel {
+    .alice-carousel__stage-item {
+        padding-right: 30px;
+    }
+
+    .alice-carousel__dots {
+        margin: 10px 3px 5px;
+
+        .alice-carousel__dots-item.__active {
+            background-color: $pink;
+        }
+    }
+}

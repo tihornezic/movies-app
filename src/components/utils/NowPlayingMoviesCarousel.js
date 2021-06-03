@@ -1,9 +1,9 @@
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import 'react-responsive-carousel/lib/styles/carousel.css';
 import {Carousel} from 'react-responsive-carousel';
 import {Link} from 'react-router-dom'
 import {
-    fetchNowPlaying,
-} from '../service/index'
+    fetchNowPlayingMovies,
+} from '../../service/index'
 
 import {useEffect, useState} from 'react'
 
@@ -12,7 +12,7 @@ const NowPlayingMoviesCarousel = () => {
  
     useEffect(() => {
         const fetchApi = async () => {
-            setNowPlayingMovies(await fetchNowPlaying())
+            setNowPlayingMovies(await fetchNowPlayingMovies())
         }
 
         fetchApi()
@@ -49,6 +49,9 @@ const NowPlayingMoviesCarousel = () => {
                     showIndicators={false}
                     stopOnHover={false}
                     swipeable={true}
+                    emulateTouch={true}
+                    thumbWidth={120}
+                    // renderArrowPrev={}
                 >
                     {nowPlayingMoviesTen}
                 </Carousel>

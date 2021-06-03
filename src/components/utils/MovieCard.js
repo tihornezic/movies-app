@@ -6,16 +6,16 @@ const MovieCard = ({movie}) => {
 
     return (
         <div className='movieCard'>
-            <div className='movieCard__image'>
+            <div className='image'>
                 <Link to={`/movie/${movie.id}`}>
-                    <div className='movieCard_overlay'></div>
+                    <div className='overlay'></div>
                 </Link>
                 <img src={movie.poster} alt={movie.title} />
             </div>
-            <div className='movieCard__info'>
+            <div className='info'>
                 <p>{movie.title}</p>
-                <div className='movieCard__rating'>
-                    <span>{movie.rating} <span className='movieCard__line'>|</span></span>
+                <div className='rating'>
+                    <span>{movie.rating} <span className='line'>|</span></span>
                     <ReactStars
                         size={18}
                         count={5}
@@ -26,7 +26,7 @@ const MovieCard = ({movie}) => {
                         color="fff"
                     />
                 </div>
-                <div className='movieCard__releaseDate'>
+                <div className='releaseDate'>
                     <small>{moment(movie.releaseDate).format("MMM Do, YYYY")}</small>
                 </div>
 
@@ -60,6 +60,10 @@ const MovieCard = ({movie}) => {
                             return <small key={item}>{(index ? ', ' : '') + 'Horror'}</small>
                         case 10402:
                             return <small key={item}>{(index ? ', ' : '') + 'Music'}</small>
+                        case 9648:
+                            return <small key={item}>{(index ? ', ' : '') + 'Mystery'}</small>
+                        case 10749:
+                            return <small key={item}>{(index ? ', ' : '') + 'Romance'}</small>
                         case 878:
                             return <small key={item}>{(index ? ', ' : '') + 'Science Fiction'}</small>
                         case 10770:

@@ -1,7 +1,7 @@
 .movieCard {
     width: 100%;
 
-    .movieCard__image {
+    .image {
         position: relative;
         transition: all 0.3s ease;
         cursor: pointer;
@@ -12,7 +12,7 @@
             border-radius: 5px;
         }
 
-        .movieCard_overlay {
+        .overlay {
             position: absolute;
             top: 0;
             left: 0;
@@ -27,15 +27,15 @@
         // }
     }
 
-    .movieCard__image:hover {
+    .image:hover {
         box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
         transform: scale(1.05);
-        .movieCard_overlay {
+        .overlay {
             border: 2.5px solid rgba(180, 96, 168, 0.8);
         }
     }
 
-    .movieCard__info {
+    .info {
         small {
             color: #b1acac;
         }
@@ -45,24 +45,26 @@
             font-weight: 500;
         }
 
-        .movieCard__rating {
+        .rating {
             display: flex;
             align-items: center;
             color: #b1acac;
             margin-top: 5px;
 
-            .movieCard__line {
+            .line {
                 font-weight: 500;
+                margin-right: 3px;
             }
 
             span {
+                margin-right: 3px;
                 font-weight: 600;
             }
         }
 
-        .movieCard__releaseDate {
+        .releaseDate {
             small {
-                font-size: .95rem;
+                font-size: 0.95rem;
             }
         }
 

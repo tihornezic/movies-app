@@ -1,8 +1,8 @@
-import Home from './components/Home'
-import Header from './components/Header'
-import Watchlist from './components/Watchlist'
-import Watched from './components/Watched'
-import Movie from './components/Movie'
+import Home from './components/pages/Home'
+import Header from './components/layout/Header'
+import Watchlist from './components/pages/Watchlist'
+import Watched from './components/pages/Watched'
+import Movie from './components/pages/Movie'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
