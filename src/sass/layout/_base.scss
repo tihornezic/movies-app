@@ -5,7 +5,7 @@
 }
 
 html {
-    background: rgba(19, 25, 34, 1);
+    background: $backgroundGrey;
     margin: 0;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -17,7 +17,7 @@ body {
     color: $white;
     // background: rgba(19,25,34,1)
     // background: linear-gradient(180deg, rgba(56, 74, 99, 1) 0%, rgba(28, 33, 42, 1) 44%, rgba(19, 25, 34, 1) 100%);
-    background: linear-gradient(180deg, rgb(46, 61, 82) 0%, rgba(28, 33, 42, 1) 50%, rgba(19, 25, 34, 1) 100%);
+    background: linear-gradient(180deg, $grey 0%, $strongGrey 50%, $backgroundGrey 100%);
 }
 
 .container {

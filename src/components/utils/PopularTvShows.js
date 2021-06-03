@@ -1,5 +1,5 @@
 import Heading from '../utils/Heading'
-import TvCard from '../utils/TvCard'
+import MediaCard from './MediaCard'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {
@@ -17,16 +17,16 @@ const PopularTvShows = () => {
         fetchApi()
     }, [])
 
-    // popularTvShows.map((item) => {
-    //     console.log(item)
-    // })
+    popularTvShows.map((item) => {
+        console.log(item)
+    })
 
     return (
         <div className='popularTvShows'>
             <Heading text={'Popular Tv Shows'} />
             <div className='grid'>
                 {popularTvShows.slice(0, 18).map((tv) => (
-                    <TvCard key={tv.id} tv={tv} />
+                    <MediaCard key={tv.id} media={tv} type='tv' />
                 ))}
             </div>
         </div>

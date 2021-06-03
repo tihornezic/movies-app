@@ -115,7 +115,7 @@ export const fetchPopularTv = async () => {
             }
         })
 
-        console.log(data.results)
+        // console.log(data.results)
 
         const modifiedData = data.results.map((tv) => ({
             id: tv.id,
@@ -125,7 +125,7 @@ export const fetchPopularTv = async () => {
             rating: tv.vote_average,
             overview: tv.overview,
             originCountry: tv.origin_country,
-            firstAirDate: tv.first_air_date,
+            releaseDate: tv.first_air_date,
             genres: tv.genre_ids,
         }))
 

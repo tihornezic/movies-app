@@ -37,12 +37,14 @@ body {
   padding: 50px 0;
   font-size: 1.1rem;
 }
+
 .header .headerContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 70px;
 }
+
 .header .headerContainer .brand {
   text-decoration: none;
   color: #fff;
@@ -50,27 +52,34 @@ body {
   align-items: center;
   transition: all 0.3s ease;
 }
+
 .header .headerContainer .brand .icon {
   font-size: 3rem;
 }
+
 .header .headerContainer .brand h1 {
   margin-left: 10px;
 }
+
 .header .headerContainer .brand:hover {
   color: #b460a8;
 }
+
 .header .headerContainer .links {
   display: flex;
 }
+
 .header .headerContainer .links li {
   list-style: none;
 }
+
 .header .headerContainer .links li a {
   text-decoration: none;
   color: #fff;
   margin-left: 45px;
   transition: all 0.3s ease;
 }
+
 .header .headerContainer .links li a:hover {
   color: #b460a8;
 }
@@ -84,6 +93,7 @@ body {
   filter: brightness(85%);
   height: 580px;
 }
+
 .carousel .play {
   position: absolute;
   top: 40%;
@@ -94,9 +104,11 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .carousel .play:hover {
   color: rgba(244, 193, 15, 0.85);
 }
+
 .carousel .title {
   position: absolute;
   left: 50%;
@@ -109,13 +121,16 @@ body {
   z-index: 10;
   letter-spacing: 3px;
 }
+
 .carousel .control-arrow {
   padding: 20px !important;
   color: #b460a8 !important;
 }
+
 .carousel .control-prev.control-arrow:before {
   border-right: 8px solid #b460a8 !important;
 }
+
 .carousel .control-next.control-arrow:before {
   border-left: 8px solid #b460a8 !important;
 }
@@ -124,11 +139,13 @@ body {
   margin-top: 120px;
   margin-bottom: 40px;
 }
+
 .nowPlayingMovies .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
 }
+
 .nowPlayingMovies a {
   text-decoration: none;
 }
@@ -136,16 +153,19 @@ body {
 .mediaCard {
   width: 100%;
 }
+
 .mediaCard .image {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .mediaCard .image img {
   width: 100%;
   display: block;
   border-radius: 5px;
 }
+
 .mediaCard .image .overlay {
   position: absolute;
   top: 0;
@@ -155,37 +175,42 @@ body {
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
 }
+
 .mediaCard .image:hover {
   box-shadow: 0 5px 25px black;
   transform: scale(1.05);
 }
+
 .mediaCard .image:hover .overlay {
   border: 2.5px solid rgba(180, 96, 168, 0.8);
 }
+
 .mediaCard .info small {
   color: #b1acac;
 }
-.mediaCard .info .title {
+
+.mediaCard .info p {
   margin-top: 17px;
   font-weight: 500;
 }
-.mediaCard .info .originCountry {
-  color: #b1acac;
-}
+
 .mediaCard .info .rating {
   display: flex;
   align-items: center;
   color: #b1acac;
   margin-top: 5px;
 }
+
 .mediaCard .info .rating .line {
   font-weight: 500;
   margin-right: 3px;
 }
+
 .mediaCard .info .rating span {
   margin-right: 3px;
   font-weight: 600;
 }
+
 .mediaCard .info .releaseDate small {
   font-size: 0.95rem;
 }
@@ -193,23 +218,28 @@ body {
 .trendingPersons {
   margin: 100px 0;
 }
+
 .trendingPersons h3 {
   margin-top: 70px;
   margin-bottom: 40px;
 }
+
 .trendingPersons .personCardAlice {
   width: 100%;
 }
+
 .trendingPersons .personCardAlice .image {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .trendingPersons .personCardAlice .image img {
   width: 100%;
   display: block;
   border-radius: 5px;
 }
+
 .trendingPersons .personCardAlice .image .overlay {
   position: absolute;
   top: 0;
@@ -219,16 +249,20 @@ body {
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
 }
+
 .trendingPersons .personCardAlice .image:hover {
   box-shadow: 0 5px 25px black;
 }
+
 .trendingPersons .personCardAlice .image:hover .overlay {
   border: 2.5px solid rgba(180, 96, 168, 0.8);
 }
+
 .trendingPersons .personCardAlice p {
   margin-top: 17px;
   font-weight: 500;
 }
+
 .trendingPersons .personCardAlice small {
   color: #b1acac;
 }
@@ -236,9 +270,11 @@ body {
 .alice-carousel .alice-carousel__stage-item {
   padding-right: 30px;
 }
+
 .alice-carousel .alice-carousel__dots {
   margin: 10px 3px 5px;
 }
+
 .alice-carousel .alice-carousel__dots .alice-carousel__dots-item.__active {
   background-color: #b460a8;
 }
@@ -247,6 +283,7 @@ body {
   margin-top: -20px;
   margin-bottom: 30px;
 }
+
 .topRatedMovies .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -257,6 +294,7 @@ body {
   margin-top: -20px;
   margin-bottom: 30px;
 }
+
 .popularTvShows .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -266,16 +304,19 @@ body {
 .tvCard {
   width: 100%;
 }
+
 .tvCard .image {
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
 }
+
 .tvCard .image img {
   width: 100%;
   display: block;
   border-radius: 5px;
 }
+
 .tvCard .image .overlay {
   position: absolute;
   top: 0;
@@ -285,17 +326,18 @@ body {
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
 }
+
 .tvCard .image:hover {
   box-shadow: 0 5px 25px black;
   transform: scale(1.05);
 }
+
 .tvCard .image:hover .overlay {
   border: 2.5px solid rgba(180, 96, 168, 0.8);
 }
 
 .watchlist {
   /* z-index: 10;
-  margin-top: -400px; */
+    margin-top: -400px; */
 }
-
 /*# sourceMappingURL=style.css.map */

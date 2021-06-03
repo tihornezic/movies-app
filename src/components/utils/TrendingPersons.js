@@ -1,4 +1,3 @@
-// import PersonCard from './PersonCard'
 import Heading from '../utils//Heading'
 import AliceCarousel from 'react-alice-carousel'
 import "react-alice-carousel/lib/scss/alice-carousel.scss"

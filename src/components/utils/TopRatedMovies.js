@@ -1,4 +1,4 @@
-import MovieCard from '../utils/MovieCard'
+import MovieCard from './MediaCard'
 import Heading from '../utils/Heading'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'

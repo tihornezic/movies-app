@@ -1,4 +1,4 @@
-.movieCard {
+.mediaCard {
     width: 100%;
 
     .image {
@@ -21,10 +21,6 @@
             transition: all 0.3s ease;
             border: 2.5px solid transparent;
         }
-
-        // .movieCard_overlay:hover {
-        //     border: 2.5px solid $pink;
-        // }
     }
 
     .image:hover {
@@ -37,18 +33,22 @@
 
     .info {
         small {
-            color: #b1acac;
+            color: $mildGrey;
         }
 
-        p {
+        .title {
             margin-top: 17px;
             font-weight: 500;
+        }
+
+        .originCountry {
+            color: $mildGrey;
         }
 
         .rating {
             display: flex;
             align-items: center;
-            color: #b1acac;
+            color: $mildGrey;
             margin-top: 5px;
 
             .line {
@@ -67,20 +67,5 @@
                 font-size: 0.95rem;
             }
         }
-
-        // span {
-        //     // margin-top: 5px;
-
-        //     small {
-        //         font-size: 0.95rem;
-        //     }
-        // }
-
-        // small {
-        //     // color: $pink;
-        //     // color: #4F5D75;
-        //     // color: #8793a8;
-        //     color: #b1acac;
-        // }
     }
 }

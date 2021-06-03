@@ -1,4 +1,4 @@
-import MovieCard from '../utils/MovieCard'
+import MediaCard from './MediaCard'
 import Heading from '../utils/Heading'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
@@ -26,7 +26,7 @@ const NowPlayingMovies = () => {
             <Heading text={'Playing In Theaters'} />
             <div className='grid'>
                 {nowPlayingMovies.slice(0, 18).map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
+                    <MediaCard key={movie.id} media={movie} type='movie' />
                 ))}
             </div>
         </div>
