@@ -419,6 +419,34 @@ body {
   color: #b1acac;
   font-size: 0.9rem;
 }
+.movie .main .recommendedMovies {
+  border: none;
+  border-top: 1px solid #2e3d52;
+  margin-top: 80px;
+}
+.movie .main .recommendedMovies h3 {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+.movie .main .recommendedMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+.movie .main .similarMovies {
+  border: none;
+  border-top: 1px solid #2e3d52;
+  margin-top: 50px;
+}
+.movie .main .similarMovies h3 {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+.movie .main .similarMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
 
 footer {
   margin-top: 120px;

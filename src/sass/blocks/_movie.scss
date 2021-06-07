@@ -86,7 +86,7 @@
 
                     .job {
                         color: $mildGrey;
-                        font-size: .9rem;
+                        font-size: 0.9rem;
                     }
                 }
             }
@@ -168,9 +168,43 @@
 
                     .character {
                         color: $mildGrey;
-                        font-size: .9rem;
+                        font-size: 0.9rem;
                     }
                 }
+            }
+        }
+
+        .recommendedMovies {
+            border: none;
+            border-top: 1px solid $grey;
+            margin-top: 80px;
+
+            h3 {
+                margin-top: 35px;
+                margin-bottom: 25px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                grid-gap: 50px;
+            }
+        }
+
+        .similarMovies {
+            border: none;
+            border-top: 1px solid $grey;
+            margin-top: 50px;
+
+            h3 {
+                margin-top: 35px;
+                margin-bottom: 25px;
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                grid-gap: 50px;
             }
         }
     }

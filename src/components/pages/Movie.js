@@ -3,7 +3,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactStars from 'react-rating-stars-component';
 import moment from 'moment'
 import VideoPlayerModal from '../utils/VideoPlayerModal'
-import {Animated} from 'react-animated-css'
+import MediaCard from '../utils/MediaCard'
 import unknown from '../../img/unknown3.png'
 import {useState, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
@@ -12,6 +12,8 @@ import {
     fetchMovieVideo,
     fetchMovieCrew,
     fetchMovieCast,
+    fetchSimilarMovies,
+    fetchRecommendedMovies,
 } from '../../service/movies'
 
 const Movie = () => {
@@ -19,6 +21,9 @@ const Movie = () => {
     const [youtubeVideo, setYoutubeVideo] = useState([])
     const [crews, setCrews] = useState([])
     const [casts, setCasts] = useState([])
+    const [similarMovies, setSimilarMovies] = useState([])
+    const [recommendedMovies, setRecommendedMovies] = useState([])
+
 
     const [showModal, setShowModal] = useState(false)
     const [seeAll, setSeeAll] = useState(false)
@@ -31,6 +36,8 @@ const Movie = () => {
             setYoutubeVideo(await fetchMovieVideo(id))
             setCrews(await fetchMovieCrew(id))
             setCasts(await fetchMovieCast(id))
+            setSimilarMovies(await fetchSimilarMovies(id))
+            setRecommendedMovies(await fetchRecommendedMovies(id))
         }
 
         fetchApi()
@@ -39,6 +46,8 @@ const Movie = () => {
     // console.log(movie)
     // console.log(youtubeVideo)
     // console.log(crews)
+    // console.log(similarMovies)
+    // console.log(recommendedMovies)
 
     const openModal = () => {
         setShowModal(prev => !prev)
@@ -66,7 +75,7 @@ const Movie = () => {
         }
     })
 
-    
+
 
     return (
         <div className='container movie'>
@@ -168,6 +177,24 @@ const Movie = () => {
                                     <p className='character'>{cast.character}</p>
                                 </div>
                             ))}
+                    </div>
+                </div>
+
+                <div className='recommendedMovies'>
+                    <h3>Recommended Movies</h3>
+                    <div className='grid'>
+                        {recommendedMovies.slice(0, 6).map((movie) => (
+                            <MediaCard key={movie.id} media={movie} type='movie' />
+                        ))}
+                    </div>
+                </div>
+
+                <div className='similarMovies'>
+                    <h3>Similar Movies</h3>
+                    <div className='grid'>
+                        {similarMovies.slice(0, 6).map((movie) => (
+                            <MediaCard key={movie.id} media={movie} type='movie' />
+                        ))}
                     </div>
                 </div>
             </div>

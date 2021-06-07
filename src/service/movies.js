@@ -29,7 +29,6 @@ export const fetchNowPlayingMovies = async () => {
             rating: movie.vote_average,
             releaseDate: movie.release_date,
             genres: movie.genre_ids,
-            videoPath: `${movieUrl}/${movie.id}/videos`,
         }))
 
         console.log(modifiedData)
@@ -159,4 +158,60 @@ export const fetchMovieCast = async (id) => {
 
 
     } catch (e) {}
+}
+
+export const fetchSimilarMovies = async (id) => {
+    try {
+        const {data} = await axios.get(`${url}/movie/${id}/similar`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                page: 1
+            }
+        })
+
+        const modifiedData = data.results.map((movie) => ({
+            id: movie.id,
+            title: movie.title,
+            backdropPoster: backdropUrl + movie.backdrop_path,
+            poster: posterUrl + movie.poster_path,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            rating: movie.vote_average,
+            releaseDate: movie.release_date,
+            genres: movie.genre_ids,
+        }))
+
+        console.log(modifiedData)
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchRecommendedMovies = async (id) => {
+    try {
+        const {data} = await axios.get(`${url}/movie/${id}/recommendations`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                page: 1
+            }
+        })
+
+        const modifiedData = data.results.map((movie) => ({
+            id: movie.id,
+            title: movie.title,
+            backdropPoster: backdropUrl + movie.backdrop_path,
+            poster: posterUrl + movie.poster_path,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            rating: movie.vote_average,
+            releaseDate: movie.release_date,
+            genres: movie.genre_ids,
+        }))
+
+        console.log(modifiedData)
+        return modifiedData
+
+    } catch (e) { }
 }
