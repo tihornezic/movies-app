@@ -113,3 +113,50 @@ export const fetchTopRatedMovies = async () => {
 
     } catch (e) { }
 }
+
+export const fetchMovieCrew = async (id) => {
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}/credits`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+            }
+        })
+
+        const modifiedData = data.crew.map((crew) => ({
+            id: crew.id,
+            name: crew.name,
+            poster: posterUrl + crew.profile_path,
+            department: crew.department,
+            job: crew.job,
+            creditId: crew.credit_id,
+            profilePath: crew.profile_path,
+        }))
+
+        return modifiedData
+
+
+    } catch (e) {}
+}
+
+export const fetchMovieCast = async (id) => {
+    try {
+        const {data} = await axios.get(`${movieUrl}/${id}/credits`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+            }
+        })
+
+        const modifiedData = data.cast.map((cast) => ({
+            id: cast.id,
+            name: cast.name,
+            poster: posterUrl + cast.profile_path,
+            character: cast.character,
+            creditId: cast.credit_id,
+            profilePath: cast.profile_path,
+        }))
+
+        return modifiedData
+
+
+    } catch (e) {}
+}

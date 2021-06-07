@@ -27,12 +27,12 @@ const NowPlayingMoviesCarousel = () => {
 
     const nowPlayingMoviesTen = nowPlayingMovies.slice(0, 10).map((movie, index) => {
         return (
-            <Link to={`/movie/${movie.id}`} key={movie.id}>
+            <a href={`/movie/${movie.id}`} key={movie.id}>
                 <div>
                     <img src={movie.backdropPoster} alt={movie.title} />
                     <p className='title'>{movie.title}</p>
                 </div>
-            </Link>
+            </a>
         )
     })
 

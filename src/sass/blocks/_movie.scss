@@ -11,20 +11,6 @@
             width: 100%;
         }
 
-        .title {
-            position: absolute;
-            left: 50%;
-            top: 90%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 1.9rem;
-            font-weight: 500;
-            text-shadow: 0px 5px 5px rgba(0, 0, 0, 1);
-            z-index: 10;
-            letter-spacing: 3px;
-            text-align: center;
-        }
-
         .playButton {
             position: absolute;
             top: 50%;
@@ -46,10 +32,146 @@
 
     .main {
         .headingTitle {
-            margin-top: 60px;
-            color: $pink;
+            margin-top: 25px;
+            margin-bottom: 5px;
+            color: $white;
             letter-spacing: 2px;
-            text-shadow: 0px 1px 5px rgba(0, 0, 0, 1);
+            // text-shadow: 0px 1px 5px rgba(0, 0, 0, 1);
+        }
+
+        .details {
+            .detailRow {
+                display: flex;
+                align-items: center;
+                color: $mildGrey;
+
+                .rating {
+                    margin-right: 7px;
+                    font-weight: 500;
+                    // font-size: 1.1rem;
+                }
+
+                .verticalLine {
+                    padding: 0 12px;
+                    font-weight: 600;
+                }
+
+                a {
+                    color: $pink;
+                }
+            }
+
+            .description {
+                // max-width: 900px;
+                margin: 40px 0;
+            }
+        }
+
+        .crew {
+            h3 {
+                margin: 10px 0;
+            }
+
+            .crewRow {
+                display: flex;
+                // justify-content: space-around;
+
+                .crewRowItem {
+                    margin-right: 40px;
+
+                    .name {
+                        margin: 3px 0;
+                        color: $pink;
+                    }
+
+                    .job {
+                        color: $mildGrey;
+                        font-size: .9rem;
+                    }
+                }
+            }
+        }
+
+        .cast {
+            .headingRow {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 40px;
+                margin-bottom: 10px;
+
+                .controlContent {
+                    display: flex;
+                    align-items: center;
+                    color: $pink;
+                    cursor: pointer;
+
+                    p {
+                        font-weight: 600;
+                        text-decoration: underline;
+                    }
+
+                    svg {
+                        font-size: 2.3rem;
+                    }
+
+                    svg.shrink {
+                        transform: rotateX(180deg);
+                        transition: all 0.3s ease;
+                    }
+
+                    svg.expand {
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                grid-gap: 50px;
+
+                .castItem {
+                    .image {
+                        position: relative;
+                        transition: all 0.3s ease;
+                        cursor: pointer;
+
+                        img {
+                            width: 100%;
+                            display: block;
+                            border-radius: 5px;
+                        }
+
+                        .overlay {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            transition: all 0.3s ease;
+                            border: 2.5px solid transparent;
+                        }
+                    }
+
+                    .image:hover {
+                        box-shadow: 0 5px 25px rgba(0, 0, 0, 1);
+                        // transform: scale(1.05);
+                        .overlay {
+                            border: 2.5px solid rgba(180, 96, 168, 0.8);
+                        }
+                    }
+
+                    .name {
+                        margin-top: 13px;
+                    }
+
+                    .character {
+                        color: $mildGrey;
+                        font-size: .9rem;
+                    }
+                }
+            }
         }
     }
 }

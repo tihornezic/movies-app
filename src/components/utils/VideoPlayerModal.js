@@ -58,7 +58,7 @@ const CloseModalButton = styled.div`
     svg:hover {
         color: #343a46;
         opacity: 1;
-	    transform: rotate(90deg);
+	    transform: scale(1.1) rotate(90deg);
     }
 `
 

@@ -7,9 +7,9 @@ const MediaCard = ({media, type}) => {
     return (
         <div className='mediaCard'>
             <div className='image'>
-                <Link to={`/movie/${media.id}`}>
+                <a href={`/movie/${media.id}`}>
                     <div className='overlay'></div>
-                </Link>
+                </a>
                 <img src={media.poster} alt={media.title} />
             </div>
             <div className='info'>
