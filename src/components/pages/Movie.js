@@ -79,7 +79,7 @@ const Movie = () => {
 
     return (
         <div className='container movie'>
-            <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} movie={movie} youtubeVideo={youtubeVideo} />
+            <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} media={movie} youtubeVideo={youtubeVideo} />
             <div className='videoContainer'>
                 <img src={movie.backdropPoster} alt={movie.title} />
                 <PlayCircleFilledOutlinedIcon className='playButton' onClick={openModal} />
@@ -102,7 +102,9 @@ const Movie = () => {
                                 color="#b1acac"
                             />
                         )}
-                        <p><span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}</p>
+                        <p>
+                            <span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}
+                        </p>
                         <span className='verticalLine'>|</span>
                         {movie.genres?.map((genre, index) => (
                             <p key={index}>{(index ? ', ' : '') + genre.name}</p>
@@ -112,6 +114,7 @@ const Movie = () => {
                         <span className='verticalLine'>|</span>
                         <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
                     </div>
+                    
                     <div className='description'>
                         {movie.overview}
                     </div>

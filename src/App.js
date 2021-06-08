@@ -4,6 +4,7 @@ import Footer from './components/layout/Footer'
 import Watchlist from './components/pages/Watchlist'
 import Watched from './components/pages/Watched'
 import Movie from './components/pages/Movie'
+import Tv from './components/pages/Tv'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
 
         <Route path='/movie/:id'>
           <Movie />
+        </Route>
+
+        <Route path='/tv/:id'>
+          <Tv />
         </Route>
 
         <Route path='/watchlist'>

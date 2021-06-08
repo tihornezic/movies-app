@@ -62,7 +62,13 @@ const CloseModalButton = styled.div`
     }
 `
 
-const VideoPlayerModal = ({showModal, setShowModal, movie, youtubeVideo}) => {
+const VideoMissing = styled.div`
+    padding: 25px 25px;
+    text-align: center;
+
+`
+
+const VideoPlayerModal = ({showModal, setShowModal, media, youtubeVideo}) => {
     const youtubeUrl = "https://www.youtube.com/watch?v=";
 
     // to close modal by clicking outside of it
@@ -82,14 +88,20 @@ const VideoPlayerModal = ({showModal, setShowModal, movie, youtubeVideo}) => {
                 <Background ref={modalRef} onClick={closeModal}>
                     <Animated animationIn='fadeInDown' animationInDuration={500}>
                         <ModalContent>
-                            <h1>{movie.title}</h1>
-                            <ReactPlayer
-                                // url={youtubeUrl + video.key}
-                                url={youtubeUrl + youtubeVideo.key}
-                                playing
-                                width="100%"
-                                height='420px'
-                            ></ReactPlayer>
+                            <h1>{media.title}</h1>
+                            {youtubeVideo ?
+                                <ReactPlayer
+                                    // url={youtubeUrl + video.key}
+                                    url={youtubeUrl + youtubeVideo.key}
+                                    playing
+                                    width="100%"
+                                    height='420px'
+                                ></ReactPlayer>
+                                :
+                                <VideoMissing>
+                                    Video missing! Sorry for the inconvenience.
+                                </VideoMissing>
+                            }
                             <CloseModalButton>
                                 <CloseOutlinedIcon onClick={() => setShowModal(prev => !prev)} />
                             </CloseModalButton>

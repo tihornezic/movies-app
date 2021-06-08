@@ -42,37 +42,6 @@ export const fetchTrendingPerson = async () => {
     } catch (e) { }
 }
 
-
-export const fetchPopularTv = async () => {
-    try {
-        const {data} = await axios.get(popularTv, {
-            params: {
-                api_key: process.env.REACT_APP_API_KEY,
-                language: 'en_US',
-                page: 1
-            }
-        })
-
-        // console.log(data.results)
-
-        const modifiedData = data.results.map((tv) => ({
-            id: tv.id,
-            title: tv.name,
-            backdropPoster: backdropUrl + tv.backdrop_path,
-            poster: posterUrl + tv.poster_path,
-            rating: tv.vote_average,
-            overview: tv.overview,
-            originCountry: tv.origin_country,
-            releaseDate: tv.first_air_date,
-            genres: tv.genre_ids,
-        }))
-
-        return modifiedData
-
-    } catch (e) { }
-}
-
-
 export const fetchPopularPerson = async () => {
     try {
         const {data} = await axios.get(`${popularPerson}`, {

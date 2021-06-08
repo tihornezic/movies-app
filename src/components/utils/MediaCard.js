@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom'
+import unknown from '../../img/unknown3.png'
 import moment from 'moment'
 import ReactStars from "react-rating-stars-component";
 
@@ -7,10 +8,20 @@ const MediaCard = ({media, type}) => {
     return (
         <div className='mediaCard'>
             <div className='image'>
-                <a href={`/movie/${media.id}`}>
-                    <div className='overlay'></div>
-                </a>
-                <img src={media.poster} alt={media.title} />
+                {type === 'movie' ?
+                    <a href={`/movie/${media.id}`}>
+                        <div className='overlay'></div>
+                    </a>
+                    :
+                    <a href={`/tv/${media.id}`}>
+                        <div className='overlay'></div>
+                    </a>
+                }
+                {media.poster == null ?
+                    <img src={unknown} alt='unknown' />
+                    :
+                    <img src={media.poster} alt={media.title} />
+                }
             </div>
             <div className='info'>
                 <p className='title'>{media.title}

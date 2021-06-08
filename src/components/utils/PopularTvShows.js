@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {
     fetchPopularTv,
-} from '../../service/index'
+} from '../../service/tv'
 
 const PopularTvShows = () => {
     const [popularTvShows, setPopularTvShows] = useState([])

@@ -315,7 +315,6 @@ body {
 }
 .movie .main .headingTitle {
   margin-top: 25px;
-  margin-bottom: 5px;
   color: #fff;
   letter-spacing: 2px;
 }
@@ -336,7 +335,7 @@ body {
   color: #b460a8;
 }
 .movie .main .details .description {
-  margin: 40px 0;
+  margin: 60px 0;
 }
 .movie .main .crew h3 {
   margin: 10px 0;
@@ -422,7 +421,7 @@ body {
 .movie .main .recommendedMovies {
   border: none;
   border-top: 1px solid #2e3d52;
-  margin-top: 80px;
+  margin-top: 100px;
 }
 .movie .main .recommendedMovies h3 {
   margin-top: 35px;
@@ -443,6 +442,203 @@ body {
   margin-bottom: 25px;
 }
 .movie .main .similarMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+
+.tv .videoContainer {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 580px;
+  filter: brightness(85%);
+  border-radius: 5px;
+}
+.tv .videoContainer img {
+  width: 100%;
+}
+.tv .videoContainer .playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 7.5rem;
+  color: #b460a8;
+  opacity: 0.7;
+  filter: blur(0.9px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.tv .videoContainer .playButton:hover {
+  opacity: 0.9;
+  filter: blur(0.65px);
+}
+.tv .main .headingRow {
+  margin-top: 25px;
+  display: flex;
+  align-items: baseline;
+}
+.tv .main .headingRow .headingTitle {
+  color: #fff;
+  letter-spacing: 2px;
+}
+.tv .main .headingRow .tvSeries {
+  margin-left: 10px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.tv .main .details .detailRow {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2px;
+  color: #b1acac;
+}
+.tv .main .details .detailRow .rating {
+  margin-right: 7px;
+  font-weight: 500;
+}
+.tv .main .details .detailRow .verticalLine {
+  padding: 0 12px;
+  font-weight: 600;
+}
+.tv .main .details .detailRow a {
+  color: #b460a8;
+}
+.tv .main .details .detailRow .whiteLabel {
+  color: #fff;
+}
+.tv .main .details .detailRow .boldSpan {
+  font-weight: 700;
+}
+.tv .main .details .description {
+  margin: 70px 0;
+}
+.tv .main .createdBy {
+  margin: 50px 0;
+}
+.tv .main .createdBy h3 {
+  margin: 10px 0;
+}
+.tv .main .createdBy .createdByRow {
+  display: flex;
+}
+.tv .main .createdBy .createdByRow .crewRowItem {
+  margin-right: 40px;
+}
+.tv .main .createdBy .createdByRow .crewRowItem .name {
+  margin: 3px 0;
+  color: #b460a8;
+}
+.tv .main .createdBy .createdByRow .crewRowItem .job {
+  color: #b1acac;
+  font-size: 0.9rem;
+}
+.tv .main .crew h3 {
+  margin: 10px 0;
+}
+.tv .main .crew .crewRow {
+  display: flex;
+}
+.tv .main .crew .crewRow .crewRowItem {
+  margin-right: 40px;
+}
+.tv .main .crew .crewRow .crewRowItem .name {
+  margin: 3px 0;
+  color: #b460a8;
+}
+.tv .main .crew .crewRow .crewRowItem .job {
+  color: #b1acac;
+  font-size: 0.9rem;
+}
+.tv .main .cast .headingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.tv .main .cast .headingRow .controlContent {
+  display: flex;
+  align-items: center;
+  color: #b460a8;
+  cursor: pointer;
+}
+.tv .main .cast .headingRow .controlContent p {
+  font-weight: 600;
+  text-decoration: underline;
+}
+.tv .main .cast .headingRow .controlContent svg {
+  font-size: 2.3rem;
+}
+.tv .main .cast .headingRow .controlContent svg.shrink {
+  transform: rotateX(180deg);
+  transition: all 0.3s ease;
+}
+.tv .main .cast .headingRow .controlContent svg.expand {
+  transition: all 0.3s ease;
+}
+.tv .main .cast .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+.tv .main .cast .grid .castItem .image {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.tv .main .cast .grid .castItem .image img {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+.tv .main .cast .grid .castItem .image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 2.5px solid transparent;
+}
+.tv .main .cast .grid .castItem .image:hover {
+  box-shadow: 0 5px 25px black;
+}
+.tv .main .cast .grid .castItem .image:hover .overlay {
+  border: 2.5px solid rgba(180, 96, 168, 0.8);
+}
+.tv .main .cast .grid .castItem .name {
+  margin-top: 13px;
+}
+.tv .main .cast .grid .castItem .character {
+  color: #b1acac;
+  font-size: 0.9rem;
+}
+.tv .main .recommendedTvs {
+  border: none;
+  border-top: 1px solid #2e3d52;
+  margin-top: 100px;
+}
+.tv .main .recommendedTvs h3 {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+.tv .main .recommendedTvs .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+.tv .main .similarTvs {
+  border: none;
+  border-top: 1px solid #2e3d52;
+  margin-top: 50px;
+}
+.tv .main .similarTvs h3 {
+  margin-top: 35px;
+  margin-bottom: 25px;
+}
+.tv .main .similarTvs .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
