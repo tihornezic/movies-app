@@ -221,6 +221,9 @@ body {
   color: #b1acac;
 }
 
+.alice-carousel {
+  position: relative;
+}
 .alice-carousel .alice-carousel__stage-item {
   padding-right: 30px;
 }
@@ -229,6 +232,32 @@ body {
 }
 .alice-carousel .alice-carousel__dots .alice-carousel__dots-item.__active {
   background-color: #b460a8;
+}
+.alice-carousel .alice-carousel__prev-btn .alice-carousel__prev-btn-wrapper {
+  position: absolute;
+  top: 27%;
+  left: -50px;
+}
+.alice-carousel .alice-carousel__prev-btn .alice-carousel__prev-btn-wrapper .alice-carousel__prev-btn-item {
+  transition: all 0.3s ease;
+  color: #b460a8;
+  font-size: 2rem;
+}
+.alice-carousel .alice-carousel__prev-btn .alice-carousel__prev-btn-wrapper .alice-carousel__prev-btn-item:hover {
+  color: #dda6d5;
+}
+.alice-carousel .alice-carousel__next-btn .alice-carousel__next-btn-wrapper {
+  position: absolute;
+  top: 27%;
+  right: -50px;
+}
+.alice-carousel .alice-carousel__next-btn .alice-carousel__next-btn-item {
+  transition: all 0.3s ease;
+  color: #b460a8;
+  font-size: 2rem;
+}
+.alice-carousel .alice-carousel__next-btn .alice-carousel__next-btn-item:hover {
+  color: #dda6d5;
 }
 
 .topRatedMovies h3 {
@@ -642,6 +671,39 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
+}
+
+.personCard .image {
+  position: relative;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.personCard .image img {
+  width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+.personCard .image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  border: 2.5px solid transparent;
+}
+.personCard .image:hover {
+  box-shadow: 0 5px 25px black;
+}
+.personCard .image:hover .overlay {
+  border: 2.5px solid rgba(180, 96, 168, 0.8);
+}
+.personCard .name {
+  margin-top: 13px;
+}
+.personCard .character {
+  color: #b1acac;
+  font-size: 0.9rem;
 }
 
 footer {

@@ -4,7 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import moment from 'moment'
 import VideoPlayerModal from '../utils/VideoPlayerModal'
 import MediaCard from '../utils/MediaCard'
-import unknown from '../../img/unknown3.png'
+import PersonCard from '../utils/PersonCard'
 import {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {
@@ -145,91 +145,65 @@ const Tv = () => {
                         <h3>Creators</h3>
                     }
                     <div className='createdByRow'>
-                    {creators}
-                </div>
-            </div>
-
-            <div className='crew'>
-                <h3>Crew</h3>
-                <div className='crewRow'>
-                    {executiveProducer}
-                </div>
-            </div>
-
-            <div className='cast'>
-                <div className='headingRow'>
-                    <h3>Cast</h3>
-                    {seeAll ?
-                        <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
-                            {/* <ExpandLessIcon /> */}
-                            <ExpandMoreIcon className='shrink' />
-                            <p>Shrink</p>
-                        </div>
-                        :
-                        <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
-                            <ExpandMoreIcon className='expand' />
-                            <p>Expand</p>
-                        </div>
-                    }
+                        {creators}
+                    </div>
                 </div>
 
-                <div className='grid'>
-                    {seeAll ?
-                        casts.slice(0, 18).map((cast, index) => (
-                            <div key={index} className='castItem'>
-                                <div className='image'>
-                                    <a href={`#`}>
-                                        <div className='overlay'></div>
-                                    </a>
-                                    {cast.profilePath === null ?
-                                        <img src={unknown} alt='unknown' />
-                                        :
-                                        <img src={cast.poster} alt={cast.name} />
-                                    }
-                                </div>
-                                <p className='name'>{cast.name}</p>
-                                <p className='character'>{cast.character}</p>
+                <div className='crew'>
+                    <h3>Crew</h3>
+                    <div className='crewRow'>
+                        {executiveProducer}
+                    </div>
+                </div>
+
+                <div className='cast'>
+                    <div className='headingRow'>
+                        <h3>Cast</h3>
+                        {seeAll ?
+                            <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
+                                {/* <ExpandLessIcon /> */}
+                                <ExpandMoreIcon className='shrink' />
+                                <p>Shrink</p>
                             </div>
-                        ))
-                        :
-                        casts.slice(0, 6).map((cast, index) => (
-                            <div key={index} className='castItem'>
-                                <div className='image'>
-                                    <a href={`#`}>
-                                        <div className='overlay'></div>
-                                    </a>
-                                    {cast.profilePath === null ?
-                                        <img src={unknown} alt='unknown' />
-                                        :
-                                        <img src={cast.poster} alt={cast.name} />
-                                    }
-                                </div>
-                                <p className='name'>{cast.name}</p>
-                                <p className='character'>{cast.character}</p>
+                            :
+                            <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
+                                <ExpandMoreIcon className='expand' />
+                                <p>Expand</p>
                             </div>
+                        }
+                    </div>
+
+                    <div className='grid'>
+                        {seeAll ?
+                            casts.slice(0, 18).map((cast, index) => (
+                                <PersonCard key={index} person={cast} type='tv' />
+                            ))
+                            :
+                            casts.slice(0, 6).map((cast, index) => (
+                                <PersonCard key={index} person={cast} type='tv' />
+                            ))}
+                    </div>
+                </div>
+
+                <div className='recommendedTvs'>
+                    <h3>Recommended Tv Series</h3>
+                    <div className='grid'>
+                        {recommendedTvs.slice(0, 6).map((tv) => (
+                            <MediaCard key={tv.id} media={tv} type='tv' />
                         ))}
+                    </div>
                 </div>
-            </div>
 
-            <div className='recommendedTvs'>
-                <h3>Recommended Tv Series</h3>
-                <div className='grid'>
-                    {recommendedTvs.slice(0, 6).map((tv) => (
-                        <MediaCard key={tv.id} media={tv} type='tv' />
-                    ))}
+                <div className='similarTvs'>
+                    <h3>Similar Tv Series</h3>
+                    <div className='grid'>
+                        {similarTvs.slice(0, 6).map((tv) => (
+                            <MediaCard key={tv.id} media={tv} type='tv' />
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            <div className='similarTvs'>
-                <h3>Similar Tv Series</h3>
-                <div className='grid'>
-                    {similarTvs.slice(0, 6).map((tv) => (
-                        <MediaCard key={tv.id} media={tv} type='tv' />
-                    ))}
-                </div>
             </div>
-
-        </div>
         </div >
     )
 }

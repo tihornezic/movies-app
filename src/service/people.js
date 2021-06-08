@@ -1,21 +1,12 @@
 import axios from 'axios'
 
 const url = 'https://api.themoviedb.org/3'
-const movieUrl = `${url}/movie`;
-const nowPlayingMovies = `${url}/movie/now_playing`
-const topRatedMovies = `${url}/movie/top_rated`
+const personUrl = `${url}/person`
 const trendingPerson = `${url}/trending/person`
 const popularPerson = `${url}/person/popular`
-const popularTv = `${url}/tv/popular`
-
 
 const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200/'
-
-
-const genreUrl = `${url}/genre/movie/list`
-const video = `https://api.themoviedb.org/3/movie/578701/videos`
-const youtubeUrl = "https://www.youtube.com/watch?v=";
 
 
 export const fetchTrendingPerson = async () => {
@@ -32,7 +23,7 @@ export const fetchTrendingPerson = async () => {
             id: person.id,
             name: person.name,
             knownFor: person.known_for_department,
-            profileImg: posterUrl + person.profile_path,
+            poster: posterUrl + person.profile_path,
             profilePath: person.profile_path,
             popularity: person.popularity,
         }))
@@ -42,6 +33,7 @@ export const fetchTrendingPerson = async () => {
     } catch (e) { }
 }
 
+// not used
 export const fetchPopularPerson = async () => {
     try {
         const {data} = await axios.get(`${popularPerson}`, {
@@ -56,7 +48,7 @@ export const fetchPopularPerson = async () => {
             id: person.id,
             name: person.name,
             knownFor: person.known_for_department,
-            profileImg: posterUrl + person.profile_path,
+            poster: posterUrl + person.profile_path,
             popularity: person.popularity,
         }))
 
@@ -65,26 +57,28 @@ export const fetchPopularPerson = async () => {
     } catch (e) { }
 }
 
-export const fetchAllGenres = async () => {
+export const fetchPersonDetail = async (id) => {
     try {
-        const {data} = await axios.get(genreUrl, {
+        const {data} = await axios.get(`${personUrl}/${id}`, {
             params: {
                 api_key: process.env.REACT_APP_API_KEY,
-                language: 'en_US',
-                page: 1
+                language: 'en_US'
             }
         })
 
-        console.log(data.genres)
+        // console.log(data)
 
-        // const modifiedData = data.genres.map((item) => ({
-        //     [item['id']]: item['name']
-        // }))
+        const modifiedData = {
+            id: data.id,
+            name: data.name,
+            placeOfBirth: data.place_of_birth,
+            biography: data.biography,
+            deathday: data.deathday,
+            poster: posterUrl + data.profile_path,
+            homepage: data.homepage
+        }
 
-        return data.genres
+        return modifiedData
 
-    } catch {
-
-    }
-
+    } catch (error) { }
 }

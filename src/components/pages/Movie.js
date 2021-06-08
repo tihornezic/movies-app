@@ -4,7 +4,7 @@ import ReactStars from 'react-rating-stars-component';
 import moment from 'moment'
 import VideoPlayerModal from '../utils/VideoPlayerModal'
 import MediaCard from '../utils/MediaCard'
-import unknown from '../../img/unknown3.png'
+import PersonCard from '../utils/PersonCard'
 import {useState, useEffect} from 'react'
 import {useParams, Link} from 'react-router-dom'
 import {
@@ -114,7 +114,7 @@ const Movie = () => {
                         <span className='verticalLine'>|</span>
                         <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
                     </div>
-                    
+
                     <div className='description'>
                         {movie.overview}
                     </div>
@@ -148,37 +148,11 @@ const Movie = () => {
                     <div className='grid'>
                         {seeAll ?
                             casts.slice(0, 18).map((cast, index) => (
-                                <div key={index} className='castItem'>
-                                    <div className='image'>
-                                        <a href={`#`}>
-                                            <div className='overlay'></div>
-                                        </a>
-                                        {cast.profilePath === null ?
-                                            <img src={unknown} alt='unknown' />
-                                            :
-                                            <img src={cast.poster} alt={cast.name} />
-                                        }
-                                    </div>
-                                    <p className='name'>{cast.name}</p>
-                                    <p className='character'>{cast.character}</p>
-                                </div>
+                                <PersonCard key={index} person={cast} type='movie' />
                             ))
                             :
                             casts.slice(0, 6).map((cast, index) => (
-                                <div key={index} className='castItem'>
-                                    <div className='image'>
-                                        <a href={`#`}>
-                                            <div className='overlay'></div>
-                                        </a>
-                                        {cast.profilePath === null ?
-                                            <img src={unknown} alt='unknown' />
-                                            :
-                                            <img src={cast.poster} alt={cast.name} />
-                                        }
-                                    </div>
-                                    <p className='name'>{cast.name}</p>
-                                    <p className='character'>{cast.character}</p>
-                                </div>
+                                <PersonCard key={index} person={cast} type='movie' />
                             ))}
                     </div>
                 </div>

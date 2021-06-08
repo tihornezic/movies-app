@@ -2,12 +2,13 @@ import Heading from '../utils//Heading'
 import AliceCarousel from 'react-alice-carousel'
 import "react-alice-carousel/lib/scss/alice-carousel.scss"
 import unknown from '../../img/unknown3.png'
+import PersonCard from '../utils/PersonCard'
 import {Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {
     fetchTrendingPerson,
     fetchPopularPerson
-} from '../../service/index'
+} from '../../service/people'
 
 const TrendingPersons = () => {
     const [trendingPersons, setTrendingPersons] = useState([])
@@ -30,19 +31,9 @@ const TrendingPersons = () => {
         1024: {items: 6},
     };
 
-    const trendingPersonsAlice = trendingPersons.sort(() => 0.5 - Math.random()).map((person) => (
+    const trendingPersonsAlice = trendingPersons.sort(() => 0.5 - Math.random()).map((person, index) => (
         <div className='personCardAlice'>
-            <div className='image'>
-                {person.profilePath === null ?
-                    <img src={unknown} alt='unknown' /> :
-                    <img src={person.profileImg} alt={person.name} />
-                }
-                <Link to='#'>
-                    <div className='overlay'></div>
-                </Link>
-            </div>
-            <p>{person.name}</p>
-            <small>Category: {person.knownFor}</small>
+            <PersonCard key={index} person={person} type='trending' knownFor={person.knownFor} />
         </div>
     ))
 
@@ -56,7 +47,7 @@ const TrendingPersons = () => {
                 items={trendingPersonsAlice}
                 animationType='fadeout'
                 touchMoveDefaultEvents={false}
-                disableButtonsControls={true}
+                disableButtonsControls={false}
             />
         </div>
     )
