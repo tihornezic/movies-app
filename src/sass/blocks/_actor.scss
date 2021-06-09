@@ -1,0 +1,58 @@
+.actor {
+    margin-top: 50px;
+
+    .mainRow {
+        display: flex;
+
+        img {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .info {
+            margin-left: 6rem;
+            width: 100%;
+
+            h1 {
+                font-weight: 500;
+            }
+
+            .bioInfo {
+                display: flex;
+                align-items: center;
+                padding: 10px 0;
+
+                svg {
+                    color: $pink;
+                    margin-right: 5px;
+                }
+
+                p {
+                    color: $creamWhite;
+                }
+            }
+
+            .biography {
+                margin: 30px 0;
+                line-height: 1.45rem;
+            }
+        }
+    }
+
+    .knownForRow {
+        border: none;
+        border-top: 1px solid #2e3d52;
+        margin-top: 100px;
+
+        h3 {
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-gap: 50px;
+        }
+    }
+}

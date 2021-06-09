@@ -3,7 +3,7 @@ import unknown from '../../img/unknown3.png'
 import moment from 'moment'
 import ReactStars from "react-rating-stars-component";
 
-const MediaCard = ({media, type}) => {
+const MediaCard = ({media, type, page}) => {
 
     return (
         <div className='mediaCard'>
@@ -17,16 +17,20 @@ const MediaCard = ({media, type}) => {
                         <div className='overlay'></div>
                     </a>
                 }
-                {media.poster == null ?
+                {media.posterPath == null ?
                     <img src={unknown} alt='unknown' />
                     :
                     <img src={media.poster} alt={media.title} />
                 }
             </div>
             <div className='info'>
-                <p className='title'>{media.title}
+                <p className='title'>{media.title}{media.name}
                     {type === 'tv' ?
                         <span className='originCountry'> ({media.originCountry})</span>
+                        : null
+                    }
+                    {page === 'actor' ?
+                        <span className='character'> (as {media.character})</span>
                         : null
                     }
                 </p>

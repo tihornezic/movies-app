@@ -13,7 +13,7 @@ import {
     fetchTvCrew,
     fetchTvCast,
     fetchRecommendedTvs,
-    fetchSimilarMovies,
+    fetchSimilarTvs,
 } from '../../service/tv'
 
 const Tv = () => {
@@ -36,7 +36,7 @@ const Tv = () => {
             setCrews(await fetchTvCrew(id))
             setCasts(await fetchTvCast(id))
             setRecommendedTvs(await fetchRecommendedTvs(id))
-            setSimilarTvs(await fetchSimilarMovies(id))
+            setSimilarTvs(await fetchSimilarTvs(id))
         }
 
         fetchApi()

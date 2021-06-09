@@ -24,6 +24,7 @@ export const fetchPopularTv = async () => {
             title: tv.name,
             backdropPoster: backdropUrl + tv.backdrop_path,
             poster: posterUrl + tv.poster_path,
+            posterPath: tv.poster_path,
             rating: tv.vote_average,
             overview: tv.overview,
             originCountry: tv.origin_country,
@@ -53,6 +54,7 @@ export const fetchTvDetail = async (id) => {
             title: data.name,
             backdropPoster: backdropUrl + data.backdrop_path,
             poster: posterUrl + data.poster_path,
+            posterPath: data.poster_path,
             episodeRunTime: data.episode_run_time,
             firstAirDate: data.first_air_date,
             lastAirDate: data.last_air_date,
@@ -137,7 +139,7 @@ export const fetchTvCast = async (id) => {
 }
 
 
-export const fetchSimilarMovies = async (id) => {
+export const fetchSimilarTvs = async (id) => {
     try {
         const {data} = await axios.get(`${url}/tv/${id}//similar`, {
             params: {
@@ -152,6 +154,7 @@ export const fetchSimilarMovies = async (id) => {
             title: tv.name,
             backdropPoster: backdropUrl + tv.backdrop_path,
             poster: posterUrl + tv.poster_path,
+            posterPath: tv.poster_path,
             overview: tv.overview,
             popularity: tv.popularity,
             rating: tv.vote_average,
@@ -180,6 +183,7 @@ export const fetchRecommendedTvs = async (id) => {
             title: tv.name,
             backdropPoster: backdropUrl + tv.backdrop_path,
             poster: posterUrl + tv.poster_path,
+            posterPath: tv.poster_path,
             overview: tv.overview,
             popularity: tv.popularity,
             rating: tv.vote_average,
