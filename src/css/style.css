@@ -626,9 +626,26 @@ body {
 .actor .mainRow {
   display: flex;
 }
-.actor .mainRow img {
+.actor .mainRow .imageAndSocials img {
   height: 100%;
   border-radius: 5px;
+  max-width: 300px;
+  max-height: 450px;
+}
+.actor .mainRow .imageAndSocials .links svg {
+  color: #fff;
+  margin-top: 15px;
+  margin-right: 15px;
+  transition: all 0.2s ease;
+}
+.actor .mainRow .imageAndSocials .links svg:hover {
+  color: #b460a8;
+}
+.actor .mainRow .imageAndSocials .links svg.disabled {
+  color: #2e3d52;
+}
+.actor .mainRow .imageAndSocials .links .disabled:hover {
+  color: #2e3d52;
 }
 .actor .mainRow .info {
   margin-left: 6rem;
@@ -670,6 +687,9 @@ body {
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
 }
+.actor .adjustedMargins {
+  margin-top: 60px;
+}
 
 .controlContent {
   display: flex;
@@ -690,6 +710,74 @@ body {
 }
 .controlContent svg.expand {
   transition: all 0.3s ease;
+}
+
+.crew {
+  margin-top: 50px;
+}
+.crew .mainRow {
+  display: flex;
+}
+.crew .mainRow .imageAndSocials img {
+  height: 100%;
+  border-radius: 5px;
+  max-width: 300px;
+  max-height: 450px;
+}
+.crew .mainRow .imageAndSocials .links svg {
+  color: #fff;
+  margin-top: 15px;
+  margin-right: 15px;
+  transition: all 0.2s ease;
+}
+.crew .mainRow .imageAndSocials .links svg:hover {
+  color: #b460a8;
+}
+.crew .mainRow .imageAndSocials .links svg.disabled {
+  color: #2e3d52;
+}
+.crew .mainRow .imageAndSocials .links .disabled:hover {
+  color: #2e3d52;
+}
+.crew .mainRow .info {
+  margin-left: 6rem;
+  width: 100%;
+}
+.crew .mainRow .info h1 {
+  font-weight: 500;
+}
+.crew .mainRow .info .bioInfo {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+.crew .mainRow .info .bioInfo svg {
+  color: #b460a8;
+  margin-right: 5px;
+}
+.crew .mainRow .info .bioInfo p {
+  color: #e2e8f0;
+}
+.crew .mainRow .info .biography {
+  margin: 30px 0;
+  line-height: 1.45rem;
+}
+.crew .knownForRow {
+  border: none;
+  border-top: 1px solid #2e3d52;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.crew .knownForRow h3 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.crew .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
 }
 
 footer {

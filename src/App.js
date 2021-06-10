@@ -6,6 +6,7 @@ import Watched from './components/pages/Watched'
 import Movie from './components/pages/Movie'
 import Tv from './components/pages/Tv'
 import Actor from './components/pages/Actor'
+import Crew from './components/pages/Crew'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
 
         <Route path='/actor/:id'>
           <Actor />
+        </Route>
+
+        <Route path='/crew/:id'>
+          <Crew />
         </Route>
 
         <Route path='/watchlist'>

@@ -1,4 +1,4 @@
-.actor {
+.crew {
     margin-top: 50px;
 
     .mainRow {
@@ -72,16 +72,6 @@
         align-items: center;
         justify-content: space-between;
 
-        // .moviesHeader {
-        //     margin-top: 40px;
-        //     margin-bottom: 20px;
-        // }
-
-        // .tvsHeader {
-        //     margin-top: 40px;
-        //     margin-bottom: 20px;
-        // }
-
         h3 {
             margin-top: 40px;
             margin-bottom: 20px;
@@ -92,9 +82,5 @@
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 50px;
-    }
-
-    .adjustedMargins {
-        margin-top: 60px;
     }
 }

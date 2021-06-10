@@ -57,7 +57,7 @@ const Movie = () => {
         if (crew.job === 'Director') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href='' className='name'>{crew.name}</a>
+                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
                     <p className='job'>{crew.job}</p>
                 </div>
             )
@@ -68,7 +68,7 @@ const Movie = () => {
         if (crew.job === 'Screenplay') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href='' className='name'>{crew.name}</a>
+                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
                     <p className='job'>{crew.job}</p>
                 </div>
             )

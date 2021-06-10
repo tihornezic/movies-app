@@ -102,11 +102,90 @@ export const fetchPersonMovieCreditsCast = async (id) => {
             genres: media.genre_ids,
             rating: media.vote_average,
             releaseDate: media.release_date,
-            mediaType: media.media_type,
+            // mediaType: media.media_type,
             popularity: media.popularity,
             posterPath: media.poster_path,
             character: media.character,
             originCountry: media.origin_country,
+        }))
+
+        return modifiedData
+
+    } catch (error) { }
+}
+
+export const fetchPersonTvCreditsCast = async (id) => {
+    try {
+        const {data} = await axios.get(`${personUrl}/${id}/tv_credits`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US'
+            }
+        })
+
+        const modifiedData = data.cast.map((media) => ({
+            id: media.id,
+            title: media.title,
+            name: media.name,
+            poster: posterUrl + media.poster_path,
+            genres: media.genre_ids,
+            rating: media.vote_average,
+            releaseDate: media.first_air_date,
+            // mediaType: media.media_type,
+            popularity: media.popularity,
+            posterPath: media.poster_path,
+            character: media.character,
+            originCountry: media.origin_country,
+        }))
+
+        return modifiedData
+
+    } catch (error) { }
+}
+
+export const fetchPersonExternalIds = async (id) => {
+    try {
+        const {data} = await axios.get(`${personUrl}/${id}/external_ids`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US'
+            }
+        })
+
+        // console.log(data)
+
+        const modifiedData = {
+            id: data.id,
+            facebookId: data.facebook_id,
+            instagramId: data.instagram_id,
+            twitterId: data.twitter_id
+        }
+
+        return modifiedData
+
+    } catch (error) { }
+}
+
+export const fetchPersonMovieCreditsCrew = async (id) => {
+    try {
+        const {data} = await axios.get(`${personUrl}/${id}/movie_credits`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US'
+            }
+        })
+
+        const modifiedData = data.crew.map((media) => ({
+            id: media.id,
+            title: media.title,
+            // name: media.name,
+            releaseDate: media.release_date,
+            poster: posterUrl + media.poster_path,
+            genres: media.genre_ids,
+            rating: media.vote_average,
+            popularity: media.popularity,
+            posterPath: media.poster_path,
+            job: media.job
         }))
 
         return modifiedData
