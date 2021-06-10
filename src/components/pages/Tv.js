@@ -1,10 +1,10 @@
 import PlayCircleFilledOutlinedIcon from '@material-ui/icons/PlayCircleFilledOutlined';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ReactStars from 'react-rating-stars-component';
 import moment from 'moment'
 import VideoPlayerModal from '../utils/VideoPlayerModal'
 import MediaCard from '../utils/MediaCard'
 import PersonCard from '../utils/PersonCard'
+import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import {
@@ -159,18 +159,7 @@ const Tv = () => {
                 <div className='cast'>
                     <div className='headingRow'>
                         <h3>Cast</h3>
-                        {seeAll ?
-                            <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
-                                {/* <ExpandLessIcon /> */}
-                                <ExpandMoreIcon className='shrink' />
-                                <p>Shrink</p>
-                            </div>
-                            :
-                            <div className='controlContent' onClick={() => setSeeAll(prev => !prev)}>
-                                <ExpandMoreIcon className='expand' />
-                                <p>Expand</p>
-                            </div>
-                        }
+                        <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
                     </div>
 
                     <div className='grid'>

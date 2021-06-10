@@ -394,26 +394,6 @@ body {
   margin-top: 40px;
   margin-bottom: 10px;
 }
-.movie .main .cast .headingRow .controlContent {
-  display: flex;
-  align-items: center;
-  color: #b460a8;
-  cursor: pointer;
-}
-.movie .main .cast .headingRow .controlContent p {
-  font-weight: 600;
-  text-decoration: underline;
-}
-.movie .main .cast .headingRow .controlContent svg {
-  font-size: 2.3rem;
-}
-.movie .main .cast .headingRow .controlContent svg.shrink {
-  transform: rotateX(180deg);
-  transition: all 0.3s ease;
-}
-.movie .main .cast .headingRow .controlContent svg.expand {
-  transition: all 0.3s ease;
-}
 .movie .main .cast .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -566,26 +546,6 @@ body {
   margin-top: 40px;
   margin-bottom: 10px;
 }
-.tv .main .cast .headingRow .controlContent {
-  display: flex;
-  align-items: center;
-  color: #b460a8;
-  cursor: pointer;
-}
-.tv .main .cast .headingRow .controlContent p {
-  font-weight: 600;
-  text-decoration: underline;
-}
-.tv .main .cast .headingRow .controlContent svg {
-  font-size: 2.3rem;
-}
-.tv .main .cast .headingRow .controlContent svg.shrink {
-  transform: rotateX(180deg);
-  transition: all 0.3s ease;
-}
-.tv .main .cast .headingRow .controlContent svg.expand {
-  transition: all 0.3s ease;
-}
 .tv .main .cast .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -697,15 +657,39 @@ body {
   border: none;
   border-top: 1px solid #2e3d52;
   margin-top: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .actor .knownForRow h3 {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-.actor .knownForRow .grid {
+.actor .grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
+}
+
+.controlContent {
+  display: flex;
+  align-items: center;
+  color: #b460a8;
+  cursor: pointer;
+}
+.controlContent p {
+  font-weight: 600;
+  text-decoration: underline;
+}
+.controlContent svg {
+  font-size: 2.3rem;
+}
+.controlContent svg.shrink {
+  transform: rotateX(180deg);
+  transition: all 0.3s ease;
+}
+.controlContent svg.expand {
+  transition: all 0.3s ease;
 }
 
 footer {

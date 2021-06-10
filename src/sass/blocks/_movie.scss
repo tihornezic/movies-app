@@ -98,31 +98,6 @@
                 justify-content: space-between;
                 margin-top: 40px;
                 margin-bottom: 10px;
-
-                .controlContent {
-                    display: flex;
-                    align-items: center;
-                    color: $pink;
-                    cursor: pointer;
-
-                    p {
-                        font-weight: 600;
-                        text-decoration: underline;
-                    }
-
-                    svg {
-                        font-size: 2.3rem;
-                    }
-
-                    svg.shrink {
-                        transform: rotateX(180deg);
-                        transition: all 0.3s ease;
-                    }
-
-                    svg.expand {
-                        transition: all 0.3s ease;
-                    }
-                }
             }
 
             .grid {

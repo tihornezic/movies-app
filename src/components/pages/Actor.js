@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import CakeIcon from '@material-ui/icons/Cake';
 import moment from 'moment'
 import MediaCard from '../utils/MediaCard'
+import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {
     fetchPersonDetail,
     fetchPersonMovieCreditsCast,
@@ -12,6 +13,7 @@ const Actor = () => {
     const [actor, setActor] = useState([])
     const [movieCreditsCast, setMovieCreditsCast] = useState([])
 
+    const [seeAll, setSeeAll] = useState(false)
 
     let {id} = useParams()
 
@@ -36,10 +38,8 @@ const Actor = () => {
         return 0
     }
 
-    // console.log(combinedCreditsCast.sort(sortByPopularity))
 
     const movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
-    // console.log(movieCreditsCastSortedByPopularity)
 
 
     return (
@@ -65,11 +65,19 @@ const Actor = () => {
 
             <div className='knownForRow'>
                 <h3>Known For (Movies)</h3>
-                <div className='grid'>
-                    {movieCreditsCastSortedByPopularity.slice(0, 12)?.map((movie, index) => (
+                <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
+            </div>
+
+            <div className='grid'>
+                {seeAll ?
+                    movieCreditsCastSortedByPopularity.slice(0, 18)?.map((movie, index) => (
                         <MediaCard key={index} media={movie} type={'movie'} page='actor' />
-                    ))}
-                </div>
+                    ))
+                    :
+                    movieCreditsCastSortedByPopularity.slice(0, 6)?.map((movie, index) => (
+                        <MediaCard key={index} media={movie} type={'movie'} page='actor' />
+                    ))
+                }
             </div>
         </div>
     )
