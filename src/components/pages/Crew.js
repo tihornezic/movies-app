@@ -48,7 +48,7 @@ const Crew = () => {
 
     // console.log(crew)
     // console.log(tvCreditsCrew)
-    console.log(movieCreditsCast)
+    // console.log(tvCreditsCrew)
 
     const sortByPopularity = (a, b) => {
         if (a.popularity < b.popularity) {
@@ -61,10 +61,11 @@ const Crew = () => {
     }
 
 
-    const filterByDirector = movieCreditsCrew.filter(crew => crew.job === 'Director')
-    const movieCreditsCrewSortedByPopularity = [...filterByDirector].sort(sortByPopularity)
+    const filterByDirectorMovie = movieCreditsCrew.filter(crew => crew.job === 'Director')
+    const movieCreditsCrewSortedByPopularity = [...filterByDirectorMovie].sort(sortByPopularity)
 
-    const tvCreditsCrewSortedByPopularity = [...tvCreditsCrew].sort(sortByPopularity)
+    const filterByDirectorTv = tvCreditsCrew.filter(crew => crew.job === 'Director')
+    const tvCreditsCrewSortedByPopularity = [...filterByDirectorTv].sort(sortByPopularity)
 
     const movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
 

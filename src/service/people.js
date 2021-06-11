@@ -217,6 +217,7 @@ export const fetchPersonTvCreditsCrew = async (id) => {
             posterPath: media.poster_path,
             character: media.character,
             originCountry: media.origin_country,
+            job: media.job
         }))
 
         return modifiedData
