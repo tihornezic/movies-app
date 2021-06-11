@@ -78,6 +78,8 @@ export const fetchPersonDetail = async (id) => {
             poster: profileImage + data.profile_path,
             homepage: data.homepage,
             knownFor: data.known_for_department,
+            profilePath: data.profile_path,
+            gender: data.gender,
         }
 
         return modifiedData
@@ -97,7 +99,7 @@ export const fetchPersonMovieCreditsCast = async (id) => {
         const modifiedData = data.cast.map((media) => ({
             id: media.id,
             title: media.title,
-            name: media.name,
+            // name: media.name,
             poster: posterUrl + media.poster_path,
             genres: media.genre_ids,
             rating: media.vote_average,
@@ -106,7 +108,7 @@ export const fetchPersonMovieCreditsCast = async (id) => {
             popularity: media.popularity,
             posterPath: media.poster_path,
             character: media.character,
-            originCountry: media.origin_country,
+            // originCountry: media.origin_country,
         }))
 
         return modifiedData
@@ -186,6 +188,35 @@ export const fetchPersonMovieCreditsCrew = async (id) => {
             popularity: media.popularity,
             posterPath: media.poster_path,
             job: media.job
+        }))
+
+        return modifiedData
+
+    } catch (error) { }
+}
+
+export const fetchPersonTvCreditsCrew = async (id) => {
+    try {
+        const {data} = await axios.get(`${personUrl}/${id}/tv_credits`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US'
+            }
+        })
+
+        const modifiedData = data.crew.map((media) => ({
+            id: media.id,
+            title: media.title,
+            name: media.name,
+            poster: posterUrl + media.poster_path,
+            genres: media.genre_ids,
+            rating: media.vote_average,
+            releaseDate: media.first_air_date,
+            // mediaType: media.media_type,
+            popularity: media.popularity,
+            posterPath: media.poster_path,
+            character: media.character,
+            originCountry: media.origin_country,
         }))
 
         return modifiedData

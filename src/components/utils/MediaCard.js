@@ -35,7 +35,7 @@ const MediaCard = ({media, type, page}) => {
                     }
                 </p>
                 <div className='rating'>
-                    <span>{media.rating} <span className='line'>|</span></span>
+                    <span>{media.rating.toFixed(1)} <span className='line'>|</span></span>
                     <ReactStars
                         size={18}
                         count={5}

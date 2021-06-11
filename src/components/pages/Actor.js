@@ -8,11 +8,14 @@ import CakeIcon from '@material-ui/icons/Cake';
 import moment from 'moment'
 import MediaCard from '../utils/MediaCard'
 import ExpandAndShrink from '../utils/ExpandAndShrink'
+import unknown from '../../img/unknown3.png'
+import PersonPinIcon from '@material-ui/icons/PersonPin';
 import {
     fetchPersonDetail,
     fetchPersonMovieCreditsCast,
     fetchPersonTvCreditsCast,
     fetchPersonExternalIds,
+    fetchPersonMovieCreditsCrew,
 } from '../../service/people'
 
 const Actor = () => {
@@ -20,6 +23,8 @@ const Actor = () => {
     const [movieCreditsCast, setMovieCreditsCast] = useState([])
     const [tvCreditsCast, setTvCreditsCast] = useState([])
     const [externalIds, setExternalIds] = useState([])
+
+    const [movieCreditsCrew, setMovieCreditsCrew] = useState([])
 
     const [seeAllMovies, setSeeAllMovies] = useState(false)
     const [seeAllTvs, setSeeAllTvs] = useState(false)
@@ -36,6 +41,8 @@ const Actor = () => {
             setMovieCreditsCast(await fetchPersonMovieCreditsCast(id))
             setTvCreditsCast(await fetchPersonTvCreditsCast(id))
             setExternalIds(await fetchPersonExternalIds(id))
+
+            setMovieCreditsCrew(await fetchPersonMovieCreditsCrew(id))
         }
 
         fetchApi()
@@ -59,11 +66,18 @@ const Actor = () => {
     const movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
     const tvCreditsCastSortedByPopularity = [...tvCreditsCast].sort(sortByPopularity)
 
+    // check if actor is also a director; if yes, link to that actor crew link
+    const isDirector = movieCreditsCrew.filter(crew => crew.job === 'Director')
+
     return (
         <div className='container actor'>
             <div className='mainRow'>
                 <div className='imageAndSocials'>
-                    <img src={actor.poster} alt={actor.name} />
+                    {actor.profilePath === '' || actor.profilePath === null ?
+                        <img src={unknown} alt={actor.name} />
+                        :
+                        <img src={actor.poster} alt={actor.name} />
+                    }
                     <div className='links'>
                         {actor.homepage === '' || actor.homepage === null ?
                             <PublicIcon className='disabled' />
@@ -93,11 +107,31 @@ const Actor = () => {
                                 <TwitterIcon />
                             </a>
                         }
+                        {Array.isArray(isDirector) && isDirector.length ?
+                            <a href={`/crew/${id}`}>
+                                <PersonPinIcon />
+                            </a>
+                            :
+                            null
+                        }
                     </div>
                 </div>
 
                 <div className='info'>
-                    <h1>{actor.name}</h1>
+                    <div className='headingRow'>
+                        <h1>{actor.name}</h1>
+                        {Array.isArray(isDirector) && isDirector.length ?
+                            <>
+                                {actor.gender === 1 ?
+                                    <h2>(As Actress)</h2>
+                                    :
+                                    <h2>(As Actor)</h2>
+                                }
+                            </>
+                            :
+                            null
+                        }
+                    </div>
                     <div className='bioInfo'>
                         <CakeIcon />
                         <p>

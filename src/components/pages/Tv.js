@@ -55,7 +55,7 @@ const Tv = () => {
         if (crew.job === 'Executive Producer') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href='' className='name'>{crew.name}</a>
+                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
                     <p className='job'>{crew.job}</p>
                 </div>
             )
@@ -65,7 +65,7 @@ const Tv = () => {
     const creators = tv.createdBy?.map((creator, index) => {
         return (
             <div key={index} className='crewRowItem'>
-                <a href='' className='name'>{creator.name}</a>
+                <a href={`/crew/${creator.id}`} className='name'>{creator.name}</a>
             </div>
         )
     })

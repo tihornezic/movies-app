@@ -6,7 +6,7 @@ const PersonCard = ({person, type, knownFor}) => {
         <div className='personCard'>
             <div className='image'>
                 {knownFor === 'Directing' ?
-                    <a href={`/director/${person.id}`}>
+                    <a href={`/crew/${person.id}`}>
                         <div className='overlay'></div>
                     </a>
                     :

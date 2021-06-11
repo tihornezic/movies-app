@@ -8,18 +8,25 @@ import CakeIcon from '@material-ui/icons/Cake';
 import moment from 'moment'
 import MediaCard from '../utils/MediaCard'
 import ExpandAndShrink from '../utils/ExpandAndShrink'
+import unknown from '../../img/unknown3.png'
 import {
     fetchPersonDetail,
     fetchPersonMovieCreditsCrew,
+    fetchPersonTvCreditsCrew,
+    fetchPersonMovieCreditsCast,
     fetchPersonExternalIds,
 } from '../../service/people'
 
 const Crew = () => {
     const [crew, setCrew] = useState([])
     const [movieCreditsCrew, setMovieCreditsCrew] = useState([])
+    const [tvCreditsCrew, setTvCreditsCrew] = useState([])
+    const [movieCreditsCast, setMovieCreditsCast] = useState([])
     const [externalIds, setExternalIds] = useState([])
 
     const [seeAllMovies, setSeeAllMovies] = useState(false)
+    const [seeAllTvs, setSeeAllTvs] = useState(false)
+    const [seeAllAppearances, setSeeAllAppearances] = useState(false)
 
     let {id} = useParams()
 
@@ -31,6 +38,8 @@ const Crew = () => {
         const fetchApi = async () => {
             setCrew(await fetchPersonDetail(id))
             setMovieCreditsCrew(await fetchPersonMovieCreditsCrew(id))
+            setTvCreditsCrew(await fetchPersonTvCreditsCrew(id))
+            setMovieCreditsCast(await fetchPersonMovieCreditsCast(id))
             setExternalIds(await fetchPersonExternalIds(id))
         }
 
@@ -38,6 +47,8 @@ const Crew = () => {
     }, [])
 
     // console.log(crew)
+    // console.log(tvCreditsCrew)
+    console.log(movieCreditsCast)
 
     const sortByPopularity = (a, b) => {
         if (a.popularity < b.popularity) {
@@ -49,18 +60,26 @@ const Crew = () => {
         return 0
     }
 
-    
+
     const filterByDirector = movieCreditsCrew.filter(crew => crew.job === 'Director')
     const movieCreditsCrewSortedByPopularity = [...filterByDirector].sort(sortByPopularity)
 
-    // console.log(movieCreditsCrewSortedByPopularity)
+    const tvCreditsCrewSortedByPopularity = [...tvCreditsCrew].sort(sortByPopularity)
+
+    const movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
+
+    console.log(movieCreditsCastSortedByPopularity)
 
 
     return (
         <div className='container crew'>
             <div className='mainRow'>
                 <div className='imageAndSocials'>
-                    <img src={crew.poster} alt={crew.name} />
+                    {crew.profilePath === '' || crew.profilePath === null ?
+                        <img src={unknown} alt={crew.name} />
+                        :
+                        <img src={crew.poster} alt={crew.name} />
+                    }
                     <div className='links'>
                         {crew.homepage === '' || crew.homepage === null ?
                             <PublicIcon className='disabled' />
@@ -135,6 +154,44 @@ const Crew = () => {
                     :
                     movieCreditsCrewSortedByPopularity.slice(0, 6)?.map((movie, index) => (
                         <MediaCard key={index} media={movie} type={'movie'} page='crew' />
+                    ))
+                }
+            </div>
+
+
+
+            <div className='knownForRow adjustedMargins'>
+                <h3>Known For Directing (Tv Series/Sitcoms)</h3>
+                <ExpandAndShrink seeAll={seeAllTvs} setSeeAll={setSeeAllTvs} />
+            </div>
+
+            <div className='grid'>
+                {seeAllTvs ?
+                    tvCreditsCrewSortedByPopularity.slice(0, 18)?.map((tv, index) => (
+                        <MediaCard key={index} media={tv} type={'tv'} page='crew' />
+                    ))
+                    :
+                    tvCreditsCrewSortedByPopularity.slice(0, 6)?.map((tv, index) => (
+                        <MediaCard key={index} media={tv} type={'tv'} page='crew' />
+                    ))
+                }
+            </div>
+
+
+
+            <div className='knownForRow adjustedMargins'>
+                <h3>Appearances in Movies</h3>
+                <ExpandAndShrink seeAll={seeAllAppearances} setSeeAll={setSeeAllAppearances} />
+            </div>
+
+            <div className='grid'>
+                {seeAllAppearances ?
+                    movieCreditsCastSortedByPopularity.slice(0, 18)?.map((tv, index) => (
+                        <MediaCard key={index} media={tv} type={'movie'} page='actor' />
+                    ))
+                    :
+                    movieCreditsCastSortedByPopularity.slice(0, 6)?.map((tv, index) => (
+                        <MediaCard key={index} media={tv} type={'movie'} page='actor' />
                     ))
                 }
             </div>

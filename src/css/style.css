@@ -33,6 +33,13 @@ body {
   letter-spacing: 1px;
 }
 
+.button {
+  background-color: #b460a8;
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: #e2e8f0;
+}
+
 .header {
   padding: 50px 0;
   font-size: 1.1rem;
@@ -651,8 +658,17 @@ body {
   margin-left: 6rem;
   width: 100%;
 }
-.actor .mainRow .info h1 {
+.actor .mainRow .info .headingRow {
+  display: flex;
+  align-items: baseline;
+}
+.actor .mainRow .info .headingRow h1 {
   font-weight: 500;
+}
+.actor .mainRow .info .headingRow h2 {
+  font-weight: 300;
+  font-size: 1rem;
+  margin-left: 10px;
 }
 .actor .mainRow .info .bioInfo {
   display: flex;
@@ -778,6 +794,9 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
+}
+.crew .adjustedMargins {
+  margin-top: 60px;
 }
 
 footer {
