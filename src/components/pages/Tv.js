@@ -42,7 +42,7 @@ const Tv = () => {
         fetchApi()
     }, [])
 
-    console.log(tv.createdBy)
+    // console.log(tv.createdBy)
     // console.log(youtubeVideo)
     // console.log(crews)
 

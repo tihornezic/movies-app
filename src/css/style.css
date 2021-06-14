@@ -42,7 +42,6 @@ body {
 
 .header {
   padding: 50px 0;
-  font-size: 1.1rem;
 }
 .header .headerContainer {
   display: flex;
@@ -56,6 +55,7 @@ body {
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 .header .headerContainer .brand .icon {
   font-size: 3rem;
@@ -68,6 +68,7 @@ body {
 }
 .header .headerContainer .links {
   display: flex;
+  align-items: center;
 }
 .header .headerContainer .links li {
   list-style: none;
@@ -81,6 +82,9 @@ body {
 .header .headerContainer .links li a:hover {
   color: #b460a8;
 }
+.header .headerContainer .links .search {
+  margin-left: 18px;
+}
 
 .home {
   z-index: 5;
@@ -88,7 +92,7 @@ body {
 
 .carousel {
   position: relative;
-  filter: brightness(80%);
+  filter: brightness(90%);
   height: 580px;
   border-radius: 5px;
 }
@@ -797,6 +801,83 @@ body {
 }
 .crew .adjustedMargins {
   margin-top: 60px;
+}
+
+.search {
+  position: relative;
+}
+.search input {
+  width: 240px;
+  padding: 7px;
+  border-radius: 25px;
+  background-color: #36455c;
+  outline: none;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  transition: all 0.2s ease;
+}
+.search input[type=text] {
+  padding-left: 35px;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+}
+.search input::placeholder {
+  color: #b1acac;
+}
+.search input:focus {
+  box-shadow: 0 0 2px 2px rgba(180, 96, 168, 0.7);
+}
+.search input:focus svg {
+  color: #e2e8f0;
+}
+.search svg {
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  color: #b1acac;
+  font-size: 1.4rem;
+  transition: all 0.2s ease;
+}
+.search svg.active {
+  color: #e2e8f0;
+}
+.search .spinner {
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  width: 17px;
+}
+.search .results {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: -2px;
+  background-color: #36455c;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.resultCard a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.95rem;
+}
+.resultCard .row {
+  display: flex;
+  align-items: center;
+  border-bottom: 0.5px solid #808080;
+  padding: 12px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+.resultCard .row img {
+  border-radius: 5px;
+}
+.resultCard .row p {
+  margin-left: 10px;
+}
+.resultCard .row:hover {
+  background-color: #2e3d52;
 }
 
 footer {

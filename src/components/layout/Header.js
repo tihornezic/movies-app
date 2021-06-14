@@ -1,9 +1,9 @@
+import Search from '../utils/Search'
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined';
-import MovieCreationSharpIcon from '@material-ui/icons/MovieCreationSharp';
-import TheatersIcon from '@material-ui/icons/Theaters';
 import {Link} from 'react-router-dom'
 
 const Header = () => {
+
     return (
         <nav className='header'>
             <div className='container headerContainer'>
@@ -11,10 +11,8 @@ const Header = () => {
                     <MovieCreationOutlinedIcon className='icon' />
                     <h1>MoviesApp</h1>
                 </Link>
+
                 <ul className='links'>
-                    <li>
-                        <Link to='/'>Home</Link>
-                    </li>
                     <li>
                         <Link to='/watchlist'>Movies</Link>
                     </li>
@@ -22,7 +20,7 @@ const Header = () => {
                         <Link to='/watchlist'>TV Shows</Link>
                     </li>
                     <li>
-                        <Link to='/watchlist'>Actors</Link>
+                        <Link to='/watchlist'>Cast & Crew</Link>
                     </li>
                     <li>
                         <Link to='/watchlist'>My Watchlist</Link>
@@ -30,10 +28,16 @@ const Header = () => {
                     <li>
                         <Link to='/watched'>My Watchedlist</Link>
                     </li>
+                </ul>
+
+                <div className='links'>
                     <li>
                         <Link to='/'>Account</Link>
                     </li>
-                </ul>
+                    <div className='search'>
+                        <Search />
+                    </div>
+                </div>
             </div>
         </nav>
     )

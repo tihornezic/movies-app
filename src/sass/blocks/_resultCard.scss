@@ -1,0 +1,29 @@
+.resultCard {
+
+    a {
+        text-decoration: none;
+        color: $white;
+        font-size: .95rem;
+    }
+
+    .row {
+        display: flex;
+        align-items: center;
+        border-bottom: 0.5px solid $lightGrey;
+        padding: 12px;
+        transition: all 0.2s ease;
+        font-size: 0.9rem;
+
+        img {
+            border-radius: 5px;
+        }
+
+        p {
+            margin-left: 10px;
+        }
+
+        &:hover {
+            background-color: $grey;
+        }
+    }
+}
