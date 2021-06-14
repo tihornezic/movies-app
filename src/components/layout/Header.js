@@ -14,7 +14,15 @@ const Header = () => {
 
                 <ul className='links'>
                     <li>
-                        <Link to='/watchlist'>Movies</Link>
+                        <div className='movies'>
+                            {/* <Link to='/watchlist'>Movies</Link> */}
+                            <p className='fakeLink'>Movies</p>
+                            <div className='categoriesList'>
+                                <a href='/movies/now-playing'>Now playing</a>
+                                <a href=''>Popular</a>
+                                <a href=''>Top Rated</a>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <Link to='/watchlist'>TV Shows</Link>

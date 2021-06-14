@@ -72,15 +72,58 @@ body {
 }
 .header .headerContainer .links li {
   list-style: none;
+  margin-left: 45px;
 }
 .header .headerContainer .links li a {
   text-decoration: none;
   color: #fff;
-  margin-left: 45px;
   transition: all 0.3s ease;
 }
 .header .headerContainer .links li a:hover {
   color: #b460a8;
+}
+.header .headerContainer .links li .movies {
+  position: relative;
+}
+.header .headerContainer .links li .movies .fakeLink {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 45px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.header .headerContainer .links li .movies .fakeLink:hover {
+  color: #b460a8;
+}
+.header .headerContainer .links li .movies .categoriesList {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s;
+  z-index: 10;
+  background-color: #1c212a;
+  top: 30px;
+  left: 45px;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid #b460a8;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 0.95rem;
+}
+.header .headerContainer .links li .movies .categoriesList a:first-child {
+  margin-top: 10px;
+}
+.header .headerContainer .links li .movies .categoriesList a {
+  padding: 10px 15px;
+}
+.header .headerContainer .links li .movies .categoriesList a:hover {
+  background-color: #2e3d52;
+}
+.header .headerContainer .links li .movies:hover .categoriesList {
+  opacity: 1;
+  visibility: visible;
 }
 .header .headerContainer .links .search {
   margin-left: 18px;
@@ -878,6 +921,10 @@ body {
 }
 .resultCard .row:hover {
   background-color: #2e3d52;
+}
+
+.nowPlayingMovies h3 {
+  margin: 0;
 }
 
 footer {
