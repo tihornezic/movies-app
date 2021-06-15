@@ -4,6 +4,7 @@ const url = 'https://api.themoviedb.org/3'
 const movieUrl = `${url}/movie`;
 const nowPlayingMovies = `${url}/movie/now_playing`
 const topRatedMovies = `${url}/movie/top_rated`
+const discoverMovies = `${url}/discover/movie`
 
 const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200/'
@@ -217,6 +218,56 @@ export const fetchRecommendedMovies = async (id) => {
 
         console.log(modifiedData)
         return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverMovies = async (page) => {
+    try {
+        const {data} = await axios.get(discoverMovies, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'popularity.desc',
+                page: page
+            }
+        })
+
+        const modifiedData = data.results.map((movie) => ({
+            id: movie.id,
+            title: movie.title,
+            backdropPoster: backdropUrl + movie.backdrop_path,
+            poster: posterUrl + movie.poster_path,
+            posterPath: movie.poster_path,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            rating: movie.vote_average,
+            releaseDate: movie.release_date,
+            genres: movie.genre_ids,
+        }))
+        
+        // console.log(modifiedData)
+
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverMoviesPagesNumber = async (page) => {
+    try {
+        const {data} = await axios.get(discoverMovies, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                page: page
+            }
+        })
+
+        const pagesNumber = data.total_pages
+
+        // console.log(pagesNumber)
+
+        return pagesNumber
 
     } catch (e) { }
 }

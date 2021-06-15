@@ -1,5 +1,5 @@
 import MediaCard from './MediaCard'
-import Heading from '../utils/Heading'
+import Heading from './Heading'
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import {

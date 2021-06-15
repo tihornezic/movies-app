@@ -18,7 +18,7 @@ const Header = () => {
                             {/* <Link to='/watchlist'>Movies</Link> */}
                             <p className='fakeLink'>Movies</p>
                             <div className='categoriesList'>
-                                <a href='/movies/now-playing'>Now playing</a>
+                                <a href='/movies/discover'>Discover Movies</a>
                                 <a href=''>Popular</a>
                                 <a href=''>Top Rated</a>
                             </div>

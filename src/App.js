@@ -7,7 +7,7 @@ import Movie from './components/pages/Movie'
 import Tv from './components/pages/Tv'
 import Actor from './components/pages/Actor'
 import Crew from './components/pages/Crew'
-import NowPlayingMovies from './components/pages/NowPlayingMovies'
+import NowPlayingMovies from './components/pages/DiscoverMovies'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -36,7 +36,7 @@ function App() {
           <Crew />
         </Route>
 
-        <Route path='/movies/now-playing'>
+        <Route path='/movies/discover'>
           <NowPlayingMovies />
         </Route>
 

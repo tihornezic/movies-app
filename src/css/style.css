@@ -923,8 +923,13 @@ body {
   background-color: #2e3d52;
 }
 
-.nowPlayingMovies h3 {
-  margin: 0;
+.discoverMovies h3 {
+  margin-bottom: 70px;
+}
+.discoverMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
 }
 
 footer {
