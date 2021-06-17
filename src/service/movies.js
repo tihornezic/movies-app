@@ -10,13 +10,14 @@ const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200/'
 
 
-export const fetchNowPlayingMovies = async () => {
+export const fetchNowPlayingMovies = async (page) => {
     try {
         const {data} = await axios.get(nowPlayingMovies, {
             params: {
                 api_key: process.env.REACT_APP_API_KEY,
                 language: 'en_US',
-                page: 1
+                // page: 1
+                page: page
             }
         })
 
@@ -35,6 +36,24 @@ export const fetchNowPlayingMovies = async () => {
 
         console.log(modifiedData)
         return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchNowPlayingMoviesPagesNumber = async (genres) => {
+    try {
+        const {data} = await axios.get(nowPlayingMovies, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'popularity.desc',
+                with_genres: genres,
+            }
+        })
+
+        const pagesNumber = data.total_pages
+
+        return pagesNumber
 
     } catch (e) { }
 }

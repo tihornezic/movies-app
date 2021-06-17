@@ -1,7 +1,16 @@
 .nowPlayingMovies {
-    h3 {
+
+    .headingRow {
         margin-top: 120px;
         margin-bottom: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        a {
+            text-decoration: underline;
+            color: $pink;
+        }
     }
 
     .grid {

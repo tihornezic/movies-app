@@ -19,7 +19,7 @@ const Header = () => {
                             <p className='fakeLink'>Movies</p>
                             <div className='categoriesList'>
                                 <a href='/movies/discover'>Discover Movies</a>
-                                <a href=''>Popular</a>
+                                <a href='/movies/now_playing'>Now Playing</a>
                                 <a href=''>Top Rated</a>
                             </div>
                         </div>

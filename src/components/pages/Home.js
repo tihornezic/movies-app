@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div className='container home'>
             <NowPlayingMoviesCarousel />
-            <NowPlayingMovies />
+            <NowPlayingMovies page={'home'} />
             <TrendingPersons />
             {/* <TopRatedMovies /> */}
             <PopularTvShows />

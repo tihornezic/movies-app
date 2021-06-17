@@ -10,7 +10,7 @@ import {
     fetchMovieGenres,
 } from '../../service/movies'
 
-const NowPlayingMovies = () => {
+const DiscoverMovies = () => {
     const [firstTwentyMovies, setFirstTwentyMovies] = useState([])
     const [secondTwentyMovies, setSecondTwentyMovies] = useState([])
     const [thirdTwentyMovies, setThirdTwentyMovies] = useState([])
@@ -22,10 +22,10 @@ const NowPlayingMovies = () => {
     const [selectedGenres, setSelectedGenres] = useState([])
     const selectedGenresApi = useGenre(selectedGenres)
 
-    console.log('Current page:', currentPage)
-    console.log(totalPagesNumber)
-    console.log(selectedGenres)
-    console.log(selectedGenresApi)
+    // console.log('Current page:', currentPage)
+    // console.log(totalPagesNumber)
+    // console.log(selectedGenres)
+    // console.log(selectedGenresApi)
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -127,4 +127,4 @@ const NowPlayingMovies = () => {
     )
 }
 
-export default NowPlayingMovies
+export default DiscoverMovies
