@@ -222,13 +222,14 @@ export const fetchRecommendedMovies = async (id) => {
     } catch (e) { }
 }
 
-export const fetchDiscoverMovies = async (page) => {
+export const fetchDiscoverMovies = async (page, genres) => {
     try {
         const {data} = await axios.get(discoverMovies, {
             params: {
                 api_key: process.env.REACT_APP_API_KEY,
                 language: 'en_US',
                 sort_by: 'popularity.desc',
+                with_genres: genres,
                 page: page
             }
         })
@@ -246,28 +247,44 @@ export const fetchDiscoverMovies = async (page) => {
             genres: movie.genre_ids,
         }))
         
-        // console.log(modifiedData)
+        console.log(modifiedData)
 
         return modifiedData
 
     } catch (e) { }
 }
 
-export const fetchDiscoverMoviesPagesNumber = async (page) => {
+export const fetchDiscoverMoviesPagesNumber = async (genres) => {
     try {
         const {data} = await axios.get(discoverMovies, {
             params: {
                 api_key: process.env.REACT_APP_API_KEY,
                 language: 'en_US',
-                page: page
+                sort_by: 'popularity.desc',
+                with_genres: genres,
             }
         })
 
         const pagesNumber = data.total_pages
 
-        // console.log(pagesNumber)
-
         return pagesNumber
+
+    } catch (e) { }
+}
+
+
+export const fetchMovieGenres = async () => {
+    try {
+        const {data} = await axios.get(`${url}/genre/movie/list`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+            }
+        })
+
+        // console.log(data.genres)
+
+        return data.genres
 
     } catch (e) { }
 }

@@ -9,10 +9,12 @@
     .row {
         display: flex;
         align-items: center;
+        // border-bottom: 0.5px solid $pink;
         border-bottom: 0.5px solid $lightGrey;
         padding: 12px;
         transition: all 0.2s ease;
         font-size: 0.9rem;
+        
 
         img {
             border-radius: 5px;
@@ -23,7 +25,8 @@
         }
 
         &:hover {
-            background-color: $grey;
+            // background-color: $grey;
+            background-color: #3b4b63;
         }
     }
 }

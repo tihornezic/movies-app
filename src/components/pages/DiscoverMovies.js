@@ -1,11 +1,13 @@
 import MediaCard from '../utils/MediaCard'
 import Heading from '../utils/Heading'
 import {useState, useEffect} from 'react'
-import Pagination from "@material-ui/lab/Pagination";
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles'
+import CustomPagination from '../utils/CustomPagination'
+import GenresList from '../utils/GenresList'
+import useGenre from '../../hooks/useGenre'
 import {
     fetchDiscoverMovies,
     fetchDiscoverMoviesPagesNumber,
+    fetchMovieGenres,
 } from '../../service/movies'
 
 const NowPlayingMovies = () => {
@@ -13,21 +15,37 @@ const NowPlayingMovies = () => {
     const [secondTwentyMovies, setSecondTwentyMovies] = useState([])
     const [thirdTwentyMovies, setThirdTwentyMovies] = useState([])
 
-    const [currentPage, setCurrentPage] = useState(1)
     const [totalPagesNumber, setTotalPagesNumber] = useState()
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const [allGenres, setAllGenres] = useState([])
+    const [selectedGenres, setSelectedGenres] = useState([])
+    const selectedGenresApi = useGenre(selectedGenres)
+
+    console.log('Current page:', currentPage)
+    console.log(totalPagesNumber)
+    console.log(selectedGenres)
+    console.log(selectedGenresApi)
 
     useEffect(() => {
         const fetchApi = async () => {
-            setFirstTwentyMovies(await fetchDiscoverMovies(calculatePageFirst(currentPage)))
-            setSecondTwentyMovies(await fetchDiscoverMovies(calculatePageSecond(currentPage)))
-            setThirdTwentyMovies(await fetchDiscoverMovies(calculatePageThird(currentPage)))
+            setFirstTwentyMovies(await fetchDiscoverMovies(calculatePageFirst(currentPage), selectedGenresApi))
+            setSecondTwentyMovies(await fetchDiscoverMovies(calculatePageSecond(currentPage), selectedGenresApi))
+            setThirdTwentyMovies(await fetchDiscoverMovies(calculatePageThird(currentPage), selectedGenresApi))
 
-            setTotalPagesNumber(await fetchDiscoverMoviesPagesNumber(currentPage))
+            setTotalPagesNumber(await fetchDiscoverMoviesPagesNumber(selectedGenresApi))
         }
 
         fetchApi()
-    }, [currentPage])
+    }, [currentPage, selectedGenresApi])
 
+    useEffect(() => {
+        const fetchApi = async () => {
+            setAllGenres(await fetchMovieGenres())
+        }
+
+        fetchApi()
+    }, [])
 
     // since I am using grid with 6 elements in a row, and there are 20 movies per page from the API,
     // that means that I get 3 full rows with 6 movies (18), and then in 4th row remaining 2 movies, so total 20 movies per page;
@@ -41,7 +59,7 @@ const NowPlayingMovies = () => {
     // currentPage = 1 -> firstTwentyMovies: page 1 from API
     //                 -> secondTwentyMovies: page 2 from API
     //                 -> thirdTwentyMovies: page 3 from API
- 
+
     // currentPage = 2 -> firstTwentyMovies: page 4 from API
     //                 -> secondTwentyMovies: page 5 from API
     //                 -> thirdTwentyMovies: page 6 from API
@@ -72,36 +90,18 @@ const NowPlayingMovies = () => {
         return parseInt(currentPage) * 3
     }
 
-    // console.log('Current page:', currentPage)
-
-    const changePage = (event, value) => {
-        setCurrentPage(value)
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-
-    const theme = createMuiTheme({
-        typography: {
-            fontFamily: 'Quicksand, sans-serif',
-        },
-        palette: {
-            primary: {
-                light: '#fff',
-                main: '#9e4991',
-                dark: '#b460a8',
-                contrastText: '#fff',
-                'MuiPaginationItem-currentPage:hover': {
-                    backgroundColor: '#fff',
-                },
-            },
-            text: {
-                primary: '#e2e8f0',
-            },
-        },
-    });
 
     return (
         <div className='container discoverMovies'>
             <Heading text={'Discover Movies'} />
+
+            <GenresList
+                allGenres={allGenres}
+                setAllGenres={setAllGenres}
+                selectedGenres={selectedGenres}
+                setSelectedGenres={setSelectedGenres}
+                setCurrentPage={setCurrentPage}
+            />
 
             <div className='grid'>
                 {firstTwentyMovies.map((movie) => (
@@ -119,19 +119,10 @@ const NowPlayingMovies = () => {
                 ))}
             </div>
 
-            <div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: '60px'}}>
-                <ThemeProvider theme={theme}>
-                    <Pagination
-                        onChange={changePage}
-                        // because I used 3 variables with each holding 20 movies, 
-                        // there are 3 times less total pages number;
-                        // so totalPagesNumber / 3 and rounded up
-                        count={Math.round(totalPagesNumber / 3)}
-                        color='primary'
-                        siblingCount={3} 
-                    />
-                </ThemeProvider>
-            </div>
+            {totalPagesNumber > 1 && (
+                <CustomPagination totalPagesNumber={totalPagesNumber} setCurrentPage={setCurrentPage} />
+            )}
+
         </div>
     )
 }
