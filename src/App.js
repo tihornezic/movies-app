@@ -9,6 +9,9 @@ import Actor from './components/pages/Actor'
 import Crew from './components/pages/Crew'
 import DiscoverMovies from './components/pages/DiscoverMovies'
 import NowPlayingMoviesPage from './components/pages/NowPlayingMoviesPage'
+import TopRatedMovies from './components/pages/TopRatedMovies'
+import Directors from './components/pages/Directors'
+import Actors from './components/pages/Actors'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -43,6 +46,18 @@ function App() {
 
         <Route path='/movies/now_playing'>
           <NowPlayingMoviesPage />
+        </Route>
+
+        <Route path='/movies/top_rated'>
+          <TopRatedMovies />
+        </Route>
+
+        <Route path='/directors'>
+          <Directors />
+        </Route>
+
+        <Route path='/actors'>
+          <Actors />
         </Route>
 
         <Route path='/watchlist'>

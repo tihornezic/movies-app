@@ -71,7 +71,7 @@ export const fetchMovieDetail = async (id) => {
 
         const modifiedData = {
             id: data.id,
-            title: data.title, 
+            title: data.title,
             tagline: data.tagline,
             backdropPoster: backdropUrl + data.backdrop_path,
             poster: posterUrl + data.poster_path,
@@ -101,7 +101,7 @@ export const fetchMovieVideo = async (id) => {
 
         return data.results[0]
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 // not used 
@@ -157,7 +157,7 @@ export const fetchMovieCrew = async (id) => {
         return modifiedData
 
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 export const fetchMovieCast = async (id) => {
@@ -180,7 +180,7 @@ export const fetchMovieCast = async (id) => {
         return modifiedData
 
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 export const fetchSimilarMovies = async (id) => {
@@ -265,8 +265,8 @@ export const fetchDiscoverMovies = async (page, genres) => {
             releaseDate: movie.release_date,
             genres: movie.genre_ids,
         }))
-        
-        console.log(modifiedData)
+
+        // console.log(modifiedData)
 
         return modifiedData
 
@@ -291,6 +291,59 @@ export const fetchDiscoverMoviesPagesNumber = async (genres) => {
     } catch (e) { }
 }
 
+export const fetchDiscoverTopRatedMovies = async (page) => {
+    try {
+        const {data} = await axios.get(`${discoverMovies}?vote_count.gte=7000`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                // line below won't work, so I used template literals in the .get() above
+                // vote_count.gte: 7000, 
+                sort_by: 'vote_average.desc',
+                with_original_language: 'en',
+                page: page
+            }
+        })
+
+        // console.log(data.total_pages)
+        // console.log(data.total_results)
+
+        const modifiedData = data.results.map((movie) => ({
+            id: movie.id,
+            title: movie.title,
+            backdropPoster: backdropUrl + movie.backdrop_path,
+            poster: posterUrl + movie.poster_path,
+            posterPath: movie.poster_path,
+            overview: movie.overview,
+            popularity: movie.popularity,
+            rating: movie.vote_average,
+            releaseDate: movie.release_date,
+            genres: movie.genre_ids,
+        }))
+
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverTopRatedMoviesPagesNumber = async () => {
+    try {
+        const {data} = await axios.get(`${discoverMovies}?vote_count.gte=7000`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'vote_average.desc',
+                with_original_language: 'en',
+                // page: page
+            }
+        })
+
+        const pagesNumber = data.total_pages
+
+        return pagesNumber
+
+    } catch (e) { }
+}
 
 export const fetchMovieGenres = async () => {
     try {

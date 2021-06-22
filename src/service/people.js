@@ -33,8 +33,32 @@ export const fetchTrendingPerson = async () => {
     } catch (e) { }
 }
 
-// not used
-export const fetchPopularPerson = async () => {
+export const fetchPopularPerson = async (page) => {
+    try {
+        const {data} = await axios.get(`${popularPerson}`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                page: page
+            }
+        })
+
+        // console.log(data.results)
+
+        const modifiedData = data.results.map((person) => ({
+            id: person.id,
+            name: person.name,
+            knownFor: person.known_for_department,
+            poster: posterUrl + person.profile_path,
+            profilePath: person.profile_path,
+            popularity: person.popularity,
+        }))
+
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchPopularPersonTotalResults = async () => {
     try {
         const {data} = await axios.get(`${popularPerson}`, {
             params: {
@@ -42,17 +66,9 @@ export const fetchPopularPerson = async () => {
             }
         })
 
-        console.log(data.results)
+        const totalResults = data.total_results
 
-        const modifiedData = data.results.map((person) => ({
-            id: person.id,
-            name: person.name,
-            knownFor: person.known_for_department,
-            poster: posterUrl + person.profile_path,
-            popularity: person.popularity,
-        }))
-
-        return modifiedData
+        return totalResults
 
     } catch (e) { }
 }

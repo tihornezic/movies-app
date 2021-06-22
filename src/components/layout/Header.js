@@ -14,13 +14,12 @@ const Header = () => {
 
                 <ul className='links'>
                     <li>
-                        <div className='movies'>
-                            {/* <Link to='/watchlist'>Movies</Link> */}
+                        <div className='menuItem'>
                             <p className='fakeLink'>Movies</p>
-                            <div className='categoriesList'>
+                            <div className='dropdown'>
                                 <a href='/movies/discover'>Discover Movies</a>
                                 <a href='/movies/now_playing'>Now Playing</a>
-                                <a href=''>Top Rated</a>
+                                <a href='/movies/top_rated'>Top 100</a>
                             </div>
                         </div>
                     </li>
@@ -28,7 +27,13 @@ const Header = () => {
                         <Link to='/watchlist'>TV Shows</Link>
                     </li>
                     <li>
-                        <Link to='/watchlist'>Cast & Crew</Link>
+                        <div className='menuItem'>
+                            <p className='fakeLink'>Cast & Crew</p>
+                            <div className='dropdown castCrew'>
+                                <a href='/actors'>Actors</a>
+                                <a href='/directors'>Directors (Top 30)</a>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <Link to='/watchlist'>My Watchlist</Link>

@@ -30,6 +30,7 @@
                 
                 .disabled:hover {
                     color: $grey;
+                    cursor: not-allowed;
                 }
             }
         }

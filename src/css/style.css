@@ -82,20 +82,19 @@ body {
 .header .headerContainer .links li a:hover {
   color: #b460a8;
 }
-.header .headerContainer .links li .movies {
+.header .headerContainer .links li .menuItem {
   position: relative;
 }
-.header .headerContainer .links li .movies .fakeLink {
+.header .headerContainer .links li .menuItem .fakeLink {
   text-decoration: none;
   color: #fff;
-  margin-left: 45px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
-.header .headerContainer .links li .movies .fakeLink:hover {
+.header .headerContainer .links li .menuItem .fakeLink:hover {
   color: #b460a8;
 }
-.header .headerContainer .links li .movies .categoriesList {
+.header .headerContainer .links li .menuItem .dropdown {
   position: absolute;
   opacity: 0;
   visibility: hidden;
@@ -103,7 +102,6 @@ body {
   z-index: 10;
   background-color: #1c212a;
   top: 30px;
-  left: 45px;
   width: 180px;
   display: flex;
   flex-direction: column;
@@ -112,16 +110,19 @@ body {
   border-bottom-right-radius: 5px;
   font-size: 0.95rem;
 }
-.header .headerContainer .links li .movies .categoriesList a:first-child {
+.header .headerContainer .links li .menuItem .dropdown a:first-child {
   margin-top: 10px;
 }
-.header .headerContainer .links li .movies .categoriesList a {
+.header .headerContainer .links li .menuItem .dropdown a {
   padding: 10px 15px;
 }
-.header .headerContainer .links li .movies .categoriesList a:hover {
+.header .headerContainer .links li .menuItem .dropdown a:hover {
   background-color: #2e3d52;
 }
-.header .headerContainer .links li .movies:hover .categoriesList {
+.header .headerContainer .links li .menuItem .dropdown.castCrew {
+  width: 165px;
+}
+.header .headerContainer .links li .menuItem:hover .dropdown {
   opacity: 1;
   visibility: visible;
 }
@@ -676,6 +677,9 @@ body {
 .personCard .name {
   margin-top: 13px;
 }
+.personCard .name.bold {
+  font-weight: 600;
+}
 .personCard .character {
   color: #b1acac;
   font-size: 0.9rem;
@@ -707,6 +711,7 @@ body {
 }
 .actor .mainRow .imageAndSocials .links .disabled:hover {
   color: #2e3d52;
+  cursor: not-allowed;
 }
 .actor .mainRow .info {
   margin-left: 6rem;
@@ -808,6 +813,7 @@ body {
 }
 .crew .mainRow .imageAndSocials .links .disabled:hover {
   color: #2e3d52;
+  cursor: not-allowed;
 }
 .crew .mainRow .info {
   margin-left: 6rem;
@@ -950,6 +956,42 @@ body {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 50px;
+}
+
+.topRatedMovies h3 {
+  margin-bottom: 60px;
+  margin-top: 50px;
+  font-size: 1.25rem;
+}
+.topRatedMovies .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+  text-align: start;
+}
+
+.directors h3 {
+  margin-bottom: 60px;
+  margin-top: 50px;
+  font-size: 1.25rem;
+}
+.directors .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+  text-align: start;
+}
+
+.actors h3 {
+  margin-bottom: 60px;
+  margin-top: 50px;
+  font-size: 1.25rem;
+}
+.actors .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+  text-align: start;
 }
 
 footer {

@@ -47,13 +47,13 @@
                     color: $pink;
                 }
 
-                .movies {
+                .menuItem {
                     position: relative;
 
                     .fakeLink {
                         text-decoration: none;
                         color: $white;
-                        margin-left: 45px;
+                        // margin-left: 45px;
                         transition: all 0.3s ease;
                         cursor: pointer;
                     }
@@ -62,7 +62,7 @@
                         color: $pink;
                     }
 
-                    .categoriesList {
+                    .dropdown {
                         position: absolute;
                         opacity: 0;
                         visibility: hidden;
@@ -70,7 +70,7 @@
                         z-index: 10;
                         background-color: $strongGrey;
                         top: 30px;
-                        left: 45px;
+                        // left: 45px;
                         width: 180px;
                         display: flex;
                         flex-direction: column;
@@ -92,7 +92,11 @@
                         }
                     }
 
-                    &:hover .categoriesList {
+                    .dropdown.castCrew {
+                        width: 165px;
+                    }
+
+                    &:hover .dropdown {
                         opacity: 1;
                         visibility: visible;
                     }

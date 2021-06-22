@@ -10,7 +10,6 @@ const Home = () => {
             <NowPlayingMoviesCarousel />
             <NowPlayingMovies page={'home'} />
             <TrendingPersons />
-            {/* <TopRatedMovies /> */}
             <PopularTvShows />
         </div>
     )
