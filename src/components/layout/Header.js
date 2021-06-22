@@ -24,14 +24,21 @@ const Header = () => {
                         </div>
                     </li>
                     <li>
-                        <Link to='/watchlist'>TV Shows</Link>
+                        <div className='menuItem'>
+                            <p className='fakeLink'>TV Shows</p>
+                            <div className='dropdown'>
+                                <a href='/tvs/discover'>Discover TV Shows</a>
+                                <a href='/tvs/popular'>Popular</a>
+                                <a href='/tvs/top_rated'>Top 50</a>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <div className='menuItem'>
                             <p className='fakeLink'>Cast & Crew</p>
                             <div className='dropdown castCrew'>
                                 <a href='/actors'>Actors</a>
-                                <a href='/directors'>Directors (Top 30)</a>
+                                <a href='/directors'>Directors - Top 30</a>
                             </div>
                         </div>
                     </li>

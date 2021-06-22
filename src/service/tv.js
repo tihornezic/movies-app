@@ -3,6 +3,7 @@ import axios from 'axios'
 const url = 'https://api.themoviedb.org/3'
 const tvUrl = `${url}/tv`
 const popularTv = `${url}/tv/popular`
+const discoverTv = `${url}/discover/tv`
 
 const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200/'
@@ -33,6 +34,22 @@ export const fetchPopularTv = async () => {
         }))
 
         return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchPopularTvPagesNumber = async () => {
+    try {
+        const {data} = await axios.get(popularTv, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+            }
+        })
+
+        const pagesNumber = data.total_pages
+
+        return pagesNumber
 
     } catch (e) { }
 }
@@ -193,6 +210,101 @@ export const fetchRecommendedTvs = async (id) => {
         }))
 
         return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverTv = async (page, genres) => {
+    try {
+        const {data} = await axios.get(discoverTv, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'popularity.desc',
+                with_genres: genres,
+                page: page
+            }
+        })
+
+        const modifiedData = data.results.map((tv) => ({
+            id: tv.id,
+            title: tv.name,
+            backdropPoster: backdropUrl + tv.backdrop_path,
+            poster: posterUrl + tv.poster_path,
+            posterPath: tv.poster_path,
+            overview: tv.overview,
+            popularity: tv.popularity,
+            rating: tv.vote_average,
+            releaseDate: tv.first_air_date,
+            genres: tv.genre_ids,
+            originCountry: tv.origin_country,
+        }))
+
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverTvPagesNumber = async (genres) => {
+    try {
+        const {data} = await axios.get(discoverTv, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'popularity.desc',
+                with_genres: genres,
+            }
+        })
+
+        const pagesNumber = data.total_pages
+
+        return pagesNumber
+
+    } catch (e) { }
+}
+
+export const fetchDiscoverTopRatedTvs = async (page) => {
+    try {
+        const {data} = await axios.get(`${discoverTv}?vote_count.gte=2500`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+                sort_by: 'vote_average.desc',
+                with_original_language: 'en',
+                // without_genres: 
+                page: page
+            }
+        })
+
+        const modifiedData = data.results.map((tv) => ({
+            id: tv.id,
+            title: tv.name,
+            backdropPoster: backdropUrl + tv.backdrop_path,
+            poster: posterUrl + tv.poster_path,
+            posterPath: tv.poster_path,
+            overview: tv.overview,
+            popularity: tv.popularity,
+            rating: tv.vote_average,
+            releaseDate: tv.first_air_date,
+            genres: tv.genre_ids,
+            originCountry: tv.origin_country,
+        }))
+
+        return modifiedData
+
+    } catch (e) { }
+}
+
+export const fetchTvGenres = async () => {
+    try {
+        const {data} = await axios.get(`${url}/genre/tv/list`, {
+            params: {
+                api_key: process.env.REACT_APP_API_KEY,
+                language: 'en_US',
+            }
+        })
+
+        return data.genres
 
     } catch (e) { }
 }

@@ -1,13 +1,13 @@
+import MediaCard from '../utils/MediaCard'
 import Heading from '../utils/Heading'
 import {useState, useEffect} from 'react'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles'
-import PersonCard from '../utils/PersonCard'
 import {
-    fetchPopularPerson,
-} from '../../service/people'
+    fetchDiscoverTopRatedTvs,
+} from '../../service/tv'
 
-const Directors = () => {
+const TopRatedTvShows = () => {
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -19,48 +19,37 @@ const Directors = () => {
         }
     })
 
-    const [directors, setDirectors] = useState([])
+    const [tvShows, setTvShows] = useState([])
 
-    const fetchAllDirectorsFromAPI = async () => {
+    const fetchAllTvShowsFromAPI = async () => {
         let endOfList = false
         let items = []
         let currentPage = 1
 
         while (endOfList === false) {
-            const result = await fetchPopularPerson(currentPage)
+            const result = await fetchDiscoverTopRatedTvs(currentPage)
 
-            if (items.length === 2000) {
-                endOfList = true
-            }
+            endOfList = !result.length
             items = [...items, ...result]
             currentPage += 1
         }
-
-        console.log(items)
-        setDirectors(items)
+        
+        setTvShows(items)
     }
 
     useEffect(() => {
-        fetchAllDirectorsFromAPI()
+        fetchAllTvShowsFromAPI()
     }, [])
 
-
-    const director = directors.map((crew, index) => {
-        if (crew.knownFor === 'Directing') {
-            return (
-                <PersonCard key={index} person={crew} knownFor='Directing' page='directors' />
-            )
-        }
-    })
-
-
     return (
-        <div className='container directors'>
-            <Heading text={'Top Rated Directors'} />
+        <div className='container topRatedTvShows'>
+            <Heading text={'Top Rated Tv Shows'} />
 
-            {director.length > 1 ?
+            {tvShows.length > 1 ?
                 <div className='grid'>
-                    {director}
+                    {tvShows.slice(0, 50).map((tv, index) => (
+                        <MediaCard key={tv.id} media={tv} type='tv' topRated={true} index={index} />
+                    ))}
                 </div>
                 :
                 <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -73,4 +62,4 @@ const Directors = () => {
     )
 }
 
-export default Directors
+export default TopRatedTvShows

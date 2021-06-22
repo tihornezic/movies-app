@@ -1,0 +1,15 @@
+.topRatedTvShows {
+
+    h3 {
+        margin-bottom: 60px;
+        margin-top: 50px;
+        font-size: 1.25rem;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 50px;
+        text-align: start;
+    }
+}

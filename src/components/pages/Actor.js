@@ -166,7 +166,7 @@ const Actor = () => {
 
             <div className='grid'>
                 {seeAllMovies ?
-                    movieCreditsCastSortedByPopularity.slice(0, 18)?.map((movie, index) => (
+                    movieCreditsCastSortedByPopularity.slice(0, 60)?.map((movie, index) => (
                         <MediaCard key={index} media={movie} type={'movie'} page='actor' />
                     ))
                     :
@@ -185,7 +185,7 @@ const Actor = () => {
 
             <div className='grid'>
                 {seeAllTvs ?
-                    tvCreditsCastSortedByPopularity.slice(0, 18)?.map((tv, index) => (
+                    tvCreditsCastSortedByPopularity.slice(0, 60)?.map((tv, index) => (
                         <MediaCard key={index} media={tv} type={'tv'} page='actor' />
                     ))
                     :

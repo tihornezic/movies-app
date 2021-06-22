@@ -10,7 +10,7 @@ const Home = () => {
             <NowPlayingMoviesCarousel />
             <NowPlayingMovies page={'home'} />
             <TrendingPersons />
-            <PopularTvShows />
+            <PopularTvShows page={'home'} />
         </div>
     )
 }

@@ -12,6 +12,9 @@ import NowPlayingMoviesPage from './components/pages/NowPlayingMoviesPage'
 import TopRatedMovies from './components/pages/TopRatedMovies'
 import Directors from './components/pages/Directors'
 import Actors from './components/pages/Actors'
+import DiscoverTvShows from './components/pages/DiscoverTvShows'
+import PopularTvShowsPage from './components/pages/PopularTvShowsPage'
+import TopRatedTvShows from './components/pages/TopRatedTvShows'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -58,6 +61,18 @@ function App() {
 
         <Route path='/actors'>
           <Actors />
+        </Route>
+
+        <Route path='/tvs/discover'>
+          <DiscoverTvShows />
+        </Route>
+        
+        <Route path='/tvs/popular'>
+          <PopularTvShowsPage />
+        </Route>
+
+        <Route path='/tvs/top_rated'>
+          <TopRatedTvShows />
         </Route>
 
         <Route path='/watchlist'>
