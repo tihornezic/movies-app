@@ -29,7 +29,6 @@ body {
 .heading {
     font-weight: 600;
     text-transform: uppercase;
-    text-align: center;
     color: $pink;
     text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
     font-size: 1.2rem;
@@ -42,6 +41,7 @@ body {
     padding: 10px 20px;
     color: $creamWhite;
     text-decoration: none;
+    text-align: center;
     transition: all 0.3s ease;
 
     &:hover {

@@ -22,7 +22,7 @@ const Search = () => {
         fetchApi()
     }
 
-    console.log(results)
+    // console.log(results)
 
     return (
         <div className='search'>
