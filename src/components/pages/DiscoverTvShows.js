@@ -68,16 +68,16 @@ const DiscoverTvShows = () => {
 
             <div className='grid'>
                 {firstTwentyTvShows.map((movie) => (
-                    <MediaCard key={movie.id} media={movie} type='movie' />
+                    <MediaCard key={movie.id} media={movie} type='tv' />
                 ))}
 
                 {secondTwentyTvShows.map((movie) => (
-                    <MediaCard key={movie.id} media={movie} type='movie' />
+                    <MediaCard key={movie.id} media={movie} type='tv' />
                 ))}
 
             
                 {thirdTwentyTvShows?.map((movie) => (
-                    <MediaCard key={movie.id} media={movie} type='movie' />
+                    <MediaCard key={movie.id} media={movie} type='tv' />
                 ))}
             </div>
 

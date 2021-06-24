@@ -30,6 +30,9 @@ const PopularTvShows = ({page}) => {
         fetchApi()
     }, [currentPage])
 
+    console.log(totalPagesNumber)
+    console.log(currentPage)
+
     const calculatePageFirst = (currentPage) => {
         return parseInt(currentPage) * 3 - 2
     }

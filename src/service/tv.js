@@ -8,13 +8,13 @@ const discoverTv = `${url}/discover/tv`
 const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200/'
 
-export const fetchPopularTv = async () => {
+export const fetchPopularTv = async (page) => {
     try {
         const {data} = await axios.get(popularTv, {
             params: {
                 api_key: process.env.REACT_APP_API_KEY,
                 language: 'en_US',
-                page: 1
+                page: page
             }
         })
 
