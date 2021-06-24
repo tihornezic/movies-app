@@ -53,7 +53,7 @@ const Movie = () => {
         setShowModal(prev => !prev)
     }
 
-    const director = crews.map((crew, index) => {
+    const director = crews?.map((crew, index) => {
         if (crew.job === 'Director') {
             return (
                 <div key={index} className='crewRowItem'>
@@ -64,7 +64,7 @@ const Movie = () => {
         }
     })
 
-    const screenplays = crews.map((crew, index) => {
+    const screenplays = crews?.map((crew, index) => {
         if (crew.job === 'Screenplay') {
             return (
                 <div key={index} className='crewRowItem'>
@@ -78,93 +78,100 @@ const Movie = () => {
 
 
     return (
+
         <div className='container movie'>
-            <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} media={movie} youtubeVideo={youtubeVideo} />
-            <div className='videoContainer'>
-                <img src={movie.backdropPoster} alt={movie.title} />
-                <PlayCircleFilledOutlinedIcon className='playButton' onClick={openModal} />
-            </div>
-
-            <div className='main'>
-                <h1 className='headingTitle'>{movie.title}</h1>
-
-                <div className='details'>
-                    <div className='detailRow'>
-                        <p className='rating'>{movie.rating}</p>
-                        {movie.rating && (
-                            <ReactStars
-                                size={18}
-                                count={5}
-                                value={movie.rating / 1.8}
-                                edit={false}
-                                isHalf={true}
-                                activeColor="#b460a8"
-                                color="#b1acac"
-                            />
-                        )}
-                        <p>
-                            <span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}
-                        </p>
-                        <span className='verticalLine'>|</span>
-                        {movie.genres?.map((genre, index) => (
-                            <p key={index}>{(index ? ', ' : '') + genre.name}</p>
-                        ))}
-                        <span className='verticalLine'>|</span>
-                        <p>{movie.runtime}'</p>
-                        <span className='verticalLine'>|</span>
-                        <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
+            {movie === false ?
+                <p className='mediaNotFound'>Movie not found!</p>
+                :
+                <>
+                    <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} media={movie} youtubeVideo={youtubeVideo} />
+                    <div className='videoContainer'>
+                        <img src={movie.backdropPoster} alt={movie.title} />
+                        <PlayCircleFilledOutlinedIcon className='playButton' onClick={openModal} />
                     </div>
 
-                    <div className='description'>
-                        {movie.overview}
-                    </div>
-                </div>
+                    <div className='main'>
+                        <h1 className='headingTitle'>{movie.title}</h1>
 
-                <div className='crew'>
-                    <h3>Crew</h3>
-                    <div className='crewRow'>
-                        {director}
-                        {screenplays}
-                    </div>
-                </div>
+                        <div className='details'>
+                            <div className='detailRow'>
+                                <p className='rating'>{movie.rating}</p>
+                                {movie.rating && (
+                                    <ReactStars
+                                        size={18}
+                                        count={5}
+                                        value={movie.rating / 1.8}
+                                        edit={false}
+                                        isHalf={true}
+                                        activeColor="#b460a8"
+                                        color="#b1acac"
+                                    />
+                                )}
+                                <p>
+                                    <span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}
+                                </p>
+                                <span className='verticalLine'>|</span>
+                                {movie.genres?.map((genre, index) => (
+                                    <p key={index}>{(index ? ', ' : '') + genre.name}</p>
+                                ))}
+                                <span className='verticalLine'>|</span>
+                                <p>{movie.runtime}'</p>
+                                <span className='verticalLine'>|</span>
+                                <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
+                            </div>
 
-                <div className='cast'>
-                    <div className='headingRow'>
-                        <h3>Cast</h3>
-                        <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
-                    </div>
+                            <div className='description'>
+                                {movie.overview}
+                            </div>
+                        </div>
 
-                    <div className='grid'>
-                        {seeAll ?
-                            casts.slice(0, 18).map((cast, index) => (
-                                <PersonCard key={index} person={cast} type='movie' />
-                            ))
-                            :
-                            casts.slice(0, 6).map((cast, index) => (
-                                <PersonCard key={index} person={cast} type='movie' />
-                            ))}
-                    </div>
-                </div>
+                        <div className='crew'>
+                            <h3>Crew</h3>
+                            <div className='crewRow'>
+                                {director}
+                                {screenplays}
+                            </div>
+                        </div>
 
-                <div className='recommendedMovies'>
-                    <h3>Recommended Movies</h3>
-                    <div className='grid'>
-                        {recommendedMovies.slice(0, 6).map((movie) => (
-                            <MediaCard key={movie.id} media={movie} type='movie' />
-                        ))}
-                    </div>
-                </div>
+                        <div className='cast'>
+                            <div className='headingRow'>
+                                <h3>Cast</h3>
+                                <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
+                            </div>
 
-                <div className='similarMovies'>
-                    <h3>Similar Movies</h3>
-                    <div className='grid'>
-                        {similarMovies.slice(0, 6).map((movie) => (
-                            <MediaCard key={movie.id} media={movie} type='movie' />
-                        ))}
+                            <div className='grid'>
+                                {seeAll ?
+                                    casts.slice(0, 18).map((cast, index) => (
+                                        <PersonCard key={index} person={cast} type='movie' />
+                                    ))
+                                    :
+                                    casts.slice(0, 6).map((cast, index) => (
+                                        <PersonCard key={index} person={cast} type='movie' />
+                                    ))}
+                            </div>
+                        </div>
+
+                        <div className='recommendedMovies'>
+                            <h3>Recommended Movies</h3>
+                            <div className='grid'>
+                                {recommendedMovies.slice(0, 6).map((movie) => (
+                                    <MediaCard key={movie.id} media={movie} type='movie' />
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className='similarMovies'>
+                            <h3>Similar Movies</h3>
+                            <div className='grid'>
+                                {similarMovies.slice(0, 6).map((movie) => (
+                                    <MediaCard key={movie.id} media={movie} type='movie' />
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div >
+                </>
+            }
+        </div>
     )
 }
 

@@ -27,6 +27,7 @@ body {
 .heading {
   font-weight: 600;
   text-transform: uppercase;
+  text-align: center;
   color: #b460a8;
   text-shadow: 0px 2px 15px rgba(0, 0, 0, 0.5);
   font-size: 1.2rem;
@@ -38,6 +39,31 @@ body {
   border-radius: 5px;
   padding: 10px 20px;
   color: #e2e8f0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.button:hover {
+  background-color: #c97cbd;
+}
+
+.mediaNotFound {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 100px 0;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.fourOhFour {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fourOhFour img {
+  width: 700px;
 }
 
 .header {

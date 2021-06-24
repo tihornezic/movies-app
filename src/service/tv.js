@@ -89,7 +89,9 @@ export const fetchTvDetail = async (id) => {
         // console.log(modifiedData)
         return modifiedData
 
-    } catch (e) { }
+    } catch (e) {
+        return false
+    }
 }
 
 export const fetchTvVideo = async (id) => {
@@ -104,7 +106,7 @@ export const fetchTvVideo = async (id) => {
 
         return data.results[0]
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 
@@ -129,7 +131,7 @@ export const fetchTvCrew = async (id) => {
         return modifiedData
 
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 export const fetchTvCast = async (id) => {
@@ -152,7 +154,7 @@ export const fetchTvCast = async (id) => {
         return modifiedData
 
 
-    } catch (e) {}
+    } catch (e) { }
 }
 
 

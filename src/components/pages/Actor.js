@@ -63,137 +63,154 @@ const Actor = () => {
         return 0
     }
 
-    const movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
-    const tvCreditsCastSortedByPopularity = [...tvCreditsCast].sort(sortByPopularity)
+    let movieCreditsCastSortedByPopularity = ''
+    let tvCreditsCastSortedByPopularity = ''
+    let isDirector = ''
+
+    if (movieCreditsCast) {
+        movieCreditsCastSortedByPopularity = [...movieCreditsCast].sort(sortByPopularity)
+    }
+
+    if (tvCreditsCast) {
+        tvCreditsCastSortedByPopularity = [...tvCreditsCast].sort(sortByPopularity)
+    }
 
     // check if actor is also a director; if yes, link to that actor crew link
-    const isDirector = movieCreditsCrew.filter(crew => crew.job === 'Director')
+    if (movieCreditsCrew) {
+        isDirector = movieCreditsCrew?.filter(crew => crew.job === 'Director')
+    }
 
     return (
         <div className='container actor'>
-            <div className='mainRow'>
-                <div className='imageAndSocials'>
-                    {actor.profilePath === '' || actor.profilePath === null ?
-                        <img src={unknown} alt={actor.name} />
-                        :
-                        <img src={actor.poster} alt={actor.name} />
-                    }
-                    <div className='links'>
-                        {actor.homepage === '' || actor.homepage === null ?
-                            <PublicIcon className='disabled' />
-                            :
-                            <a href={actor.homepage} target='_blank'>
-                                <PublicIcon />
-                            </a>
-                        }
-                        {externalIds.facebookId === '' || externalIds.facebookId === null ?
-                            <FacebookIcon className='disabled' />
-                            :
-                            <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank'>
-                                <FacebookIcon />
-                            </a>
-                        }
-                        {externalIds.instagramId === '' || externalIds.instagramId === null ?
-                            <InstagramIcon className='disabled' />
-                            :
-                            <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank'>
-                                <InstagramIcon />
-                            </a>
-                        }
-                        {externalIds.twitterId === '' || externalIds.twitterId === null ?
-                            <TwitterIcon className='disabled' />
-                            :
-                            <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank'>
-                                <TwitterIcon />
-                            </a>
-                        }
-                        {Array.isArray(isDirector) && isDirector.length ?
-                            <a href={`/crew/${id}`}>
-                                <PersonPinIcon />
-                            </a>
-                            :
-                            null
-                        }
-                    </div>
-                </div>
-
-                <div className='info'>
-                    <div className='headingRow'>
-                        <h1>{actor.name}</h1>
-                        {Array.isArray(isDirector) && isDirector.length ?
-                            <>
-                                {actor.gender === 1 ?
-                                    <h2>(As Actress)</h2>
+            {actor === false ?
+                <p className='mediaNotFound'>Actor not found!</p>
+                :
+                <>
+                    <div className='mainRow'>
+                        <div className='imageAndSocials'>
+                            {actor.profilePath === '' || actor.profilePath === null ?
+                                <img src={unknown} alt={actor.name} />
+                                :
+                                <img src={actor.poster} alt={actor.name} />
+                            }
+                            <div className='links'>
+                                {actor.homepage === '' || actor.homepage === null ?
+                                    <PublicIcon className='disabled' />
                                     :
-                                    <h2>(As Actor)</h2>
+                                    <a href={actor.homepage} target='_blank'>
+                                        <PublicIcon />
+                                    </a>
                                 }
-                            </>
-                            :
-                            null
-                        }
-                    </div>
-                    <div className='bioInfo'>
-                        <CakeIcon />
-                        <p>
-                            {actor.deathday ?
-                                <>
-                                    {moment(actor.birthday).format("MMMM Do, YYYY")}
+                                {externalIds.facebookId === '' || externalIds.facebookId === null ?
+                                    <FacebookIcon className='disabled' />
+                                    :
+                                    <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank'>
+                                        <FacebookIcon />
+                                    </a>
+                                }
+                                {externalIds.instagramId === '' || externalIds.instagramId === null ?
+                                    <InstagramIcon className='disabled' />
+                                    :
+                                    <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank'>
+                                        <InstagramIcon />
+                                    </a>
+                                }
+                                {externalIds.twitterId === '' || externalIds.twitterId === null ?
+                                    <TwitterIcon className='disabled' />
+                                    :
+                                    <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank'>
+                                        <TwitterIcon />
+                                    </a>
+                                }
+                                {Array.isArray(isDirector) && isDirector.length ?
+                                    <a href={`/crew/${id}`}>
+                                        <PersonPinIcon />
+                                    </a>
+                                    :
+                                    null
+                                }
+                            </div>
+                        </div>
+
+                        <div className='info'>
+                            <div className='headingRow'>
+                                <h1>{actor.name}</h1>
+                                {Array.isArray(isDirector) && isDirector.length ?
+                                    <>
+                                        {actor.gender === 1 ?
+                                            <h2>(As Actress)</h2>
+                                            :
+                                            <h2>(As Actor)</h2>
+                                        }
+                                    </>
+                                    :
+                                    null
+                                }
+                            </div>
+                            <div className='bioInfo'>
+                                <CakeIcon />
+                                <p>
+                                    {actor.deathday ?
+                                        <>
+                                            {moment(actor.birthday).format("MMMM Do, YYYY")}
                                     &nbsp;in {actor.placeOfBirth}
                                     &nbsp;-&nbsp;
                                     {moment(actor.deathday).format("MMMM Do, YYYY")}
                                     &nbsp;at
                                     &nbsp;({moment(actor.deathday).diff(actor.birthday, 'years')} years old)
                                 </>
-                                :
-                                <>
-                                    {moment(actor.birthday).format("MMMM Do, YYYY")}
+                                        :
+                                        <>
+                                            {moment(actor.birthday).format("MMMM Do, YYYY")}
                                     &nbsp;({moment().diff(actor.birthday, 'years')} years old)
                                     in {actor.placeOfBirth}
-                                </>
-                            }
-                        </p>
+                                        </>
+                                    }
+                                </p>
+                            </div>
+                            <div className='biography'>
+                                {actor.biography}
+                            </div>
+                        </div>
                     </div>
-                    <div className='biography'>
-                        {actor.biography}
+
+                    <div className='knownForRow'>
+                        <h3>Known For (Movies)</h3>
+                        <ExpandAndShrink seeAll={seeAllMovies} setSeeAll={setSeeAllMovies} />
                     </div>
-                </div>
-            </div>
 
-            <div className='knownForRow'>
-                <h3>Known For (Movies)</h3>
-                <ExpandAndShrink seeAll={seeAllMovies} setSeeAll={setSeeAllMovies} />
-            </div>
-
-            <div className='grid'>
-                {seeAllMovies ?
-                    movieCreditsCastSortedByPopularity.slice(0, 60)?.map((movie, index) => (
-                        <MediaCard key={index} media={movie} type={'movie'} page='actor' />
-                    ))
-                    :
-                    movieCreditsCastSortedByPopularity.slice(0, 6)?.map((movie, index) => (
-                        <MediaCard key={index} media={movie} type={'movie'} page='actor' />
-                    ))
-                }
-            </div>
+                    <div className='grid'>
+                        {seeAllMovies ?
+                            movieCreditsCastSortedByPopularity.slice(0, 60)?.map((movie, index) => (
+                                <MediaCard key={index} media={movie} type={'movie'} page='actor' />
+                            ))
+                            :
+                            movieCreditsCastSortedByPopularity.slice(0, 6)?.map((movie, index) => (
+                                <MediaCard key={index} media={movie} type={'movie'} page='actor' />
+                            ))
+                        }
+                    </div>
 
 
 
-            <div className='knownForRow adjustedMargins'>
-                <h3>Known For (Tv Series/Sitcoms)</h3>
-                <ExpandAndShrink seeAll={seeAllTvs} setSeeAll={setSeeAllTvs} />
-            </div>
+                    <div className='knownForRow adjustedMargins'>
+                        <h3>Known For (Tv Series/Sitcoms)</h3>
+                        <ExpandAndShrink seeAll={seeAllTvs} setSeeAll={setSeeAllTvs} />
+                    </div>
 
-            <div className='grid'>
-                {seeAllTvs ?
-                    tvCreditsCastSortedByPopularity.slice(0, 60)?.map((tv, index) => (
-                        <MediaCard key={index} media={tv} type={'tv'} page='actor' />
-                    ))
-                    :
-                    tvCreditsCastSortedByPopularity.slice(0, 6)?.map((tv, index) => (
-                        <MediaCard key={index} media={tv} type={'tv'} page='actor' />
-                    ))
-                }
-            </div>
+                    <div className='grid'>
+                        {seeAllTvs ?
+                            tvCreditsCastSortedByPopularity.slice(0, 60)?.map((tv, index) => (
+                                <MediaCard key={index} media={tv} type={'tv'} page='actor' />
+                            ))
+                            :
+                            tvCreditsCastSortedByPopularity.slice(0, 6)?.map((tv, index) => (
+                                <MediaCard key={index} media={tv} type={'tv'} page='actor' />
+                            ))
+                        }
+                    </div>
+                </>
+            }
         </div>
     )
 }

@@ -55,7 +55,7 @@ const TopRatedMovies = () => {
                 :
                 <div style={{display: 'flex', justifyContent: 'center'}}>
                     <ThemeProvider theme={theme}>
-                        <CircularProgress thickness={4.5} size={35} />
+                        <CircularProgress thickness={4.5} size={30} />
                     </ThemeProvider>
                 </div>
             }

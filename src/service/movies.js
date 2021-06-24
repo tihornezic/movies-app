@@ -86,7 +86,9 @@ export const fetchMovieDetail = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) { 
+        return false
+    }
 }
 
 export const fetchMovieVideo = async (id) => {

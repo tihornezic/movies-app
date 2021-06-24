@@ -100,7 +100,9 @@ export const fetchPersonDetail = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) {
+        return false
+    }
 }
 
 export const fetchPersonMovieCreditsCast = async (id) => {
@@ -129,7 +131,9 @@ export const fetchPersonMovieCreditsCast = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) { 
+        return false
+    }
 }
 
 export const fetchPersonTvCreditsCast = async (id) => {
@@ -158,7 +162,9 @@ export const fetchPersonTvCreditsCast = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) { 
+        return false
+    }
 }
 
 export const fetchPersonExternalIds = async (id) => {
@@ -208,7 +214,9 @@ export const fetchPersonMovieCreditsCrew = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) {
+        return false
+    }
 }
 
 export const fetchPersonTvCreditsCrew = async (id) => {
@@ -238,5 +246,7 @@ export const fetchPersonTvCreditsCrew = async (id) => {
 
         return modifiedData
 
-    } catch (error) { }
+    } catch (error) {
+        return false
+    }
 }
