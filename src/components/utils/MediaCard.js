@@ -1,7 +1,10 @@
 import {Link} from 'react-router-dom'
 import unknown from '../../img/unknown3.png'
 import moment from 'moment'
-import ReactStars from "react-rating-stars-component";
+import ReactStars from "react-rating-stars-component"
+import Tooltip from '@material-ui/core/Tooltip'
+import VisibilityIcon from '@material-ui/icons/Visibility'
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
 
 const MediaCard = ({media, type, page, topRated, index}) => {
 
@@ -22,12 +25,20 @@ const MediaCard = ({media, type, page, topRated, index}) => {
                     :
                     <img src={media.poster} alt={media.title} />
                 }
+                <div className='controls'>
+                    <Tooltip title='Add to watchlist' arrow>
+                        <PlaylistAddIcon />
+                    </Tooltip>
+                    <Tooltip title='Add to watchedlist' arrow>
+                        <VisibilityIcon />
+                    </Tooltip>
+                </div>
             </div>
             <div className='info'>
                 <p className='title'>
-                    {topRated  ?
+                    {topRated ?
                         <span style={{color: '#b460a8', fontWeight: 700, fontSize: '1.1rem'}}>{index + 1}. </span>
-                        : 
+                        :
                         null
                     }
                     {media.title}{media.name}

@@ -34,10 +34,13 @@ body {
 }
 
 .button {
-  background-color: #b460a8;
+  background-color: #2e3d52;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 9px 20px;
   color: #e2e8f0;
+  font-weight: 600;
+  min-width: 190px;
+  font-size: 0.95rem;
   text-decoration: none;
   text-align: center;
   transition: all 0.3s ease;
@@ -215,7 +218,6 @@ body {
 .mediaCard .image {
   position: relative;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 .mediaCard .image img {
   width: 100%;
@@ -230,6 +232,31 @@ body {
   height: 100%;
   transition: all 0.3s ease;
   border: 2.5px solid transparent;
+  cursor: pointer;
+}
+.mediaCard .image .controls {
+  position: absolute;
+  display: flex;
+  background: rgba(0, 0, 0, 0.7);
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  padding: 5px 7px;
+  opacity: 0;
+}
+.mediaCard .image .controls svg {
+  color: #e2e8f0;
+  background-color: transparent;
+  border: none;
+  transition: all 0.3s ease;
+  font-size: 1.35rem;
+  margin: 0 5px;
+}
+.mediaCard .image .controls svg:hover {
+  color: #b460a8;
+  cursor: pointer;
 }
 .mediaCard .image:hover {
   box-shadow: 0 5px 25px black;
@@ -237,6 +264,9 @@ body {
 }
 .mediaCard .image:hover .overlay {
   border: 2.5px solid rgba(180, 96, 168, 0.8);
+}
+.mediaCard .image:hover .controls {
+  opacity: 1;
 }
 .mediaCard .info small {
   color: #b1acac;
@@ -418,6 +448,11 @@ body {
   margin-top: -400px; */
 }
 
+.movie .verticalLine {
+  padding: 0 12px;
+  font-weight: 600;
+  color: #b1acac;
+}
 .movie .videoContainer {
   position: relative;
   overflow: hidden;
@@ -445,10 +480,30 @@ body {
   opacity: 0.9;
   filter: blur(0.65px);
 }
-.movie .main .headingTitle {
+.movie .main .headingRow {
+  display: flex;
+  align-items: center;
   margin-top: 25px;
+  margin-bottom: 12px;
+}
+.movie .main .headingRow .headingTitle {
+  font-size: 2.3rem;
   color: #fff;
   letter-spacing: 2px;
+}
+.movie .main .headingRow .adjustedMargins {
+  margin-right: 20px;
+}
+.movie .main .headingRow .verticalLine {
+  padding: 0 25px;
+}
+.movie .main .headingRow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.movie .main .headingRow a svg {
+  margin-right: 5px;
 }
 .movie .main .details .detailRow {
   display: flex;
@@ -457,10 +512,6 @@ body {
 }
 .movie .main .details .detailRow .rating {
   margin-right: 7px;
-  font-weight: 500;
-}
-.movie .main .details .detailRow .verticalLine {
-  padding: 0 12px;
   font-weight: 600;
 }
 .movie .main .details .detailRow a {
@@ -534,6 +585,11 @@ body {
   grid-gap: 50px;
 }
 
+.tv .verticalLine {
+  padding: 0 12px;
+  font-weight: 600;
+  color: #b1acac;
+}
 .tv .videoContainer {
   position: relative;
   overflow: hidden;
@@ -567,6 +623,7 @@ body {
   align-items: baseline;
 }
 .tv .main .headingRow .headingTitle {
+  font-size: 2.3rem;
   color: #fff;
   letter-spacing: 2px;
 }
@@ -574,6 +631,29 @@ body {
   margin-left: 10px;
   font-weight: 500;
   font-size: 0.9rem;
+}
+.tv .main .headingRow .controlsRow {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+.tv .main .headingRow .controlsRow .adjustedMargins {
+  margin-right: 20px;
+}
+.tv .main .headingRow .controlsRow .verticalLine {
+  padding: 0 25px;
+}
+.tv .main .headingRow .controlsRow a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tv .main .headingRow .controlsRow a svg {
+  margin-right: 5px;
+}
+.tv .main .details {
+  margin-top: -5px;
 }
 .tv .main .details .detailRow {
   display: flex;
@@ -583,7 +663,7 @@ body {
 }
 .tv .main .details .detailRow .rating {
   margin-right: 7px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .tv .main .details .detailRow .verticalLine {
   padding: 0 12px;

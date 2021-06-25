@@ -91,7 +91,12 @@ const Movie = () => {
                     </div>
 
                     <div className='main'>
-                        <h1 className='headingTitle'>{movie.title}</h1>
+                        <div className='headingRow'>
+                            <h1 className='headingTitle'>{movie.title}</h1>
+                            <span className='verticalLine'>|</span>
+                            <a className='button adjustedMargins' href='/'>Add to Watchlist</a>
+                            <a className='button' href='/'>Add to Watchedlist</a>
+                        </div>
 
                         <div className='details'>
                             <div className='detailRow'>

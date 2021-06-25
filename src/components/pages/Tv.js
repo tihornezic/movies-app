@@ -87,9 +87,14 @@ const Tv = () => {
                             <h1 className='headingTitle'>{tv.title}</h1>
                             <p className='tvSeries'>
                                 TV Series ({moment(tv.firstAirDate).format("YYYY")} -&nbsp;
-                        {tv.status === 'Returning Series' ? null : moment(tv.lastAirDate).format("YYYY")}
-                        )
-                    </p>
+                                    {tv.status === 'Returning Series' ? null : moment(tv.lastAirDate).format("YYYY")}
+                                )
+                            </p>
+                            <div className='controlsRow'>
+                                <span className='verticalLine'>|</span>
+                                <a className='button adjustedMargins' href='/'>Add to Watchlist</a>
+                                <a className='button' href='/'>Add to Watchedlist</a>
+                            </div>
                         </div>
 
                         <div className='details'>

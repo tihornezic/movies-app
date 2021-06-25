@@ -1,4 +1,10 @@
 .movie {
+    .verticalLine {
+        padding: 0 12px;
+        font-weight: 600;
+        color: $mildGrey;
+    }
+
     .videoContainer {
         position: relative;
         overflow: hidden;
@@ -31,11 +37,35 @@
     }
 
     .main {
-        .headingTitle {
+        .headingRow {
+            display: flex;
+            align-items: center;
             margin-top: 25px;
-            // margin-bottom: 5px;
-            color: $white;
-            letter-spacing: 2px;
+            margin-bottom: 12px;
+
+            .headingTitle {
+                font-size: 2.3rem;
+                color: $white;
+                letter-spacing: 2px;
+            }
+
+            .adjustedMargins {
+                margin-right: 20px;
+            }
+
+            .verticalLine {
+                padding: 0 25px;
+            }
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    margin-right: 5px;
+                }
+            }
         }
 
         .details {
@@ -46,13 +76,8 @@
 
                 .rating {
                     margin-right: 7px;
-                    font-weight: 500;
-                    // font-size: 1.1rem;
-                }
-
-                .verticalLine {
-                    padding: 0 12px;
                     font-weight: 600;
+                    // font-size: 1.1rem;
                 }
 
                 a {
