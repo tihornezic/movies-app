@@ -1,0 +1,96 @@
+.loginSignup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    .card {
+        border: 2px solid $grey;
+        min-width: 420px;
+        min-height: 380px;
+        border-radius: 5px;
+        color: $creamWhite;
+        padding: 35px;
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin-top: 5px;
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .inputGroup {
+            margin-bottom: 20px;
+
+            label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            input {
+                width: 100%;
+                padding: 7px;
+                border-radius: 5px;
+                background-color: $grey;
+                outline: none;
+                border: none;
+                font-family: $quicksand;
+                transition: all 0.2s ease;
+
+                &[type="email"],
+                &[type="text"],
+                &[type="password"] {
+                    padding-left: 9px;
+                    color: $creamWhite;
+                    font-size: 1rem;
+                }
+
+                &::placeholder {
+                    color: $mildGrey;
+                }
+
+                &:focus {
+                    background-color: #36455c;
+                    box-shadow: 0 0 2px 2px rgb(180 96 168 / 70%);
+
+                    svg {
+                        color: $creamWhite;
+                    }
+                }
+            }
+        }
+
+        .loginButton {
+            width: 100%;
+            border: none;
+            background-color: $pink;
+            cursor: pointer;
+            font-weight: 400;
+            margin-top: 70px;
+
+            &:hover {
+                background-color: #c97cbd;
+            }
+        }
+
+        .forgotPassword {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+
+            a {
+                color: $pink;
+            }
+        }
+    }
+
+    .needAnAccount {
+        margin: 20px 0;
+
+        a {
+            color: $pink;
+        }
+    }
+}

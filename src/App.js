@@ -16,6 +16,8 @@ import DiscoverTvShows from './components/pages/DiscoverTvShows'
 import PopularTvShowsPage from './components/pages/PopularTvShowsPage'
 import TopRatedTvShows from './components/pages/TopRatedTvShows'
 import FourOhFour from './components/pages/FourOhFour'
+import Login from './components/pages/Login'
+import Signup from './components/pages/Signup'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 function App() {
@@ -111,6 +113,14 @@ function App() {
           <Header />
           <Watched />
           <Footer />
+        </Route>
+
+        <Route path='/login'>
+            <Login />
+        </Route>
+
+        <Route path='/signup'>
+            <Signup />
         </Route>
 
         <Route path='*'>

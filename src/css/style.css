@@ -1145,6 +1145,86 @@ body {
   text-align: start;
 }
 
+.loginSignup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.loginSignup .card {
+  border: 2px solid #2e3d52;
+  min-width: 420px;
+  min-height: 380px;
+  border-radius: 5px;
+  color: #e2e8f0;
+  padding: 35px;
+}
+.loginSignup .card h3 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-top: 5px;
+  margin-bottom: 35px;
+  text-align: center;
+}
+.loginSignup .card .inputGroup {
+  margin-bottom: 20px;
+}
+.loginSignup .card .inputGroup label {
+  display: block;
+  margin-bottom: 5px;
+}
+.loginSignup .card .inputGroup input {
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  background-color: #2e3d52;
+  outline: none;
+  border: none;
+  font-family: "Quicksand", sans-serif;
+  transition: all 0.2s ease;
+}
+.loginSignup .card .inputGroup input[type=email], .loginSignup .card .inputGroup input[type=text], .loginSignup .card .inputGroup input[type=password] {
+  padding-left: 9px;
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+.loginSignup .card .inputGroup input::placeholder {
+  color: #b1acac;
+}
+.loginSignup .card .inputGroup input:focus {
+  background-color: #36455c;
+  box-shadow: 0 0 2px 2px rgba(180, 96, 168, 0.7);
+}
+.loginSignup .card .inputGroup input:focus svg {
+  color: #e2e8f0;
+}
+.loginSignup .card .loginButton {
+  width: 100%;
+  border: none;
+  background-color: #b460a8;
+  cursor: pointer;
+  font-weight: 400;
+  margin-top: 70px;
+}
+.loginSignup .card .loginButton:hover {
+  background-color: #c97cbd;
+}
+.loginSignup .card .forgotPassword {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.loginSignup .card .forgotPassword a {
+  color: #b460a8;
+}
+.loginSignup .needAnAccount {
+  margin: 20px 0;
+}
+.loginSignup .needAnAccount a {
+  color: #b460a8;
+}
+
 footer {
   margin-top: 120px;
   padding: 60px;
