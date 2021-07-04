@@ -2,6 +2,7 @@ import MediaCard from './MediaCard'
 import Heading from './Heading'
 import {useState, useEffect} from 'react'
 import CustomPagination from '../utils/CustomPagination'
+import {Link} from 'react-router-dom'
 import {
     fetchNowPlayingMovies,
     fetchNowPlayingMoviesPagesNumber,
@@ -52,7 +53,7 @@ const NowPlayingMovies = ({page}) => {
                 <>
                     <div className='headingRow'>
                         <Heading text={'Playing In Theaters'} />
-                        <a href='/movies/now_playing'>See All</a>
+                        <Link to='/movies/now_playing'>See All</Link>
                     </div>
 
                     <div className='grid'>

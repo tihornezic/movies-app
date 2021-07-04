@@ -6,7 +6,7 @@ import MediaCard from '../utils/MediaCard'
 import PersonCard from '../utils/PersonCard'
 import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
 import {
     fetchTvDetail,
     fetchTvVideo,
@@ -40,6 +40,7 @@ const Tv = () => {
         }
 
         fetchApi()
+        window.scrollTo(0, 0)
     }, [])
 
     // console.log(tv.createdBy)
@@ -55,7 +56,7 @@ const Tv = () => {
         if (crew.job === 'Executive Producer') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
+                    <Link to={`/crew/${crew.id}`} className='name'>{crew.name}</Link>
                     <p className='job'>{crew.job}</p>
                 </div>
             )
@@ -65,7 +66,7 @@ const Tv = () => {
     const creators = tv.createdBy?.map((creator, index) => {
         return (
             <div key={index} className='crewRowItem'>
-                <a href={`/crew/${creator.id}`} className='name'>{creator.name}</a>
+                <Link to={`/crew/${creator.id}`} className='name'>{creator.name}</Link>
             </div>
         )
     })

@@ -21,6 +21,7 @@
 
             h1 {
                 margin-left: 10px;
+                // font-weight: 400;
             }
         }
 
@@ -36,7 +37,7 @@
             li {
                 list-style: none;
                 margin-left: 45px;
-                
+
                 a {
                     text-decoration: none;
                     color: $white;
@@ -66,7 +67,7 @@
                         position: absolute;
                         opacity: 0;
                         visibility: hidden;
-                        transition: all .2s;
+                        transition: all 0.2s;
                         z-index: 10;
                         background-color: $strongGrey;
                         top: 30px;
@@ -105,6 +106,120 @@
 
             .search {
                 margin-left: 18px;
+            }
+
+            .account {
+                position: relative;
+
+                .noSelect {
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -khtml-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+
+                .circle {
+                    position: relative;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    color: $grey;
+                    background-color: $creamWhite;
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: $pink;
+                        background-color: #c5cacf;
+                    }
+                }
+
+                .profileMenu {
+                    position: absolute;
+                    top: 55px;
+                    right: 2px;
+                    // border: 1px solid $grey;
+                    width: 240px;
+                    color: $creamWhite;
+                    background-color: $backgroundGrey;
+                    z-index: 10;
+
+                    .spike {
+                        position: absolute;
+                        right: 7px;
+                        top: -10px;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid $backgroundGrey;
+                    }
+
+                    .infoRow {
+                        display: flex;
+                        align-items: center;
+                        padding: 15px;
+                        border-bottom: 1px solid $grey;
+
+                        .circle {
+                            position: relative;
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 43px;
+                            height: 43px;
+                            border-radius: 50%;
+                            color: $creamWhite;
+                            background-color: $grey;
+                            font-weight: 500;
+                        }
+
+                        .info {
+                            margin-left: 15px;
+                            font-size: 0.85rem;
+
+                            .smallFont {
+                                font-size: 0.75rem;
+                            }
+                        }
+                    }
+
+                    .options {
+                        
+                        .option {
+                            padding: 10px 15px;
+                            cursor: pointer;
+                            font-size: 0.95rem;
+                            transition: all 0.3s ease;
+
+                            &:nth-child(1) {
+                                margin-top: 10px;
+                            }
+
+                            display: flex;
+                            align-items: center;
+                            width: 100%;
+
+                            svg {
+                                margin-right: 8px;
+                            }
+
+                            &:hover {
+                                color: $pink;
+                                background-color: $grey;
+                            }
+                        }
+                    }
+                }
+
+                .noDisplay {
+                    display: none;
+                }
             }
         }
     }

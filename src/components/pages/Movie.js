@@ -41,6 +41,7 @@ const Movie = () => {
         }
 
         fetchApi()
+        window.scrollTo(0, 0)
     }, [])
 
     // console.log(movie)
@@ -57,7 +58,7 @@ const Movie = () => {
         if (crew.job === 'Director') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
+                    <Link to={`/crew/${crew.id}`} className='name'>{crew.name}</Link>
                     <p className='job'>{crew.job}</p>
                 </div>
             )
@@ -68,7 +69,7 @@ const Movie = () => {
         if (crew.job === 'Screenplay') {
             return (
                 <div key={index} className='crewRowItem'>
-                    <a href={`/crew/${crew.id}`} className='name'>{crew.name}</a>
+                    <Link to={`/crew/${crew.id}`} className='name'>{crew.name}</Link>
                     <p className='job'>{crew.job}</p>
                 </div>
             )

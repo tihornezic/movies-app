@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import unknown from '../../img/unknown3.png'
 import moment from 'moment'
 import ReactStars from "react-rating-stars-component"
@@ -7,18 +7,19 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
 
 const MediaCard = ({media, type, page, topRated, index}) => {
+    const history = useHistory()
 
     return (
         <div className='mediaCard'>
             <div className='image'>
                 {type === 'movie' ?
-                    <a href={`/movie/${media.id}`}>
+                    <Link to={`/movie/${media.id}`}>
                         <div className='overlay'></div>
-                    </a>
+                    </Link>
                     :
-                    <a href={`/tv/${media.id}`}>
+                    <Link to={`/tv/${media.id}`}>
                         <div className='overlay'></div>
-                    </a>
+                    </Link>
                 }
                 {media.posterPath == null ?
                     <img src={unknown} alt='unknown' />

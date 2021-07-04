@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import unknown from '../../img/unknown3.png'
 
 const PersonCard = ({person, type, knownFor, page}) => {
@@ -6,13 +7,13 @@ const PersonCard = ({person, type, knownFor, page}) => {
         <div className='personCard'>
             <div className='image'>
                 {knownFor === 'Directing' ?
-                    <a href={`/crew/${person.id}`}>
+                    <Link to={`/crew/${person.id}`}>
                         <div className='overlay'></div>
-                    </a>
+                    </Link>
                     :
-                    <a href={`/actor/${person.id}`}>
+                    <Link to={`/actor/${person.id}`}>
                         <div className='overlay'></div>
-                    </a>
+                    </Link>
                 }
 
                 {person.profilePath === null ?

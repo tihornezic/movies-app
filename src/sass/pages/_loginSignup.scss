@@ -4,6 +4,29 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    
+    .brand {
+        text-decoration: none;
+        color: $creamWhite;
+        display: flex;
+        align-items: center;
+        transition: all 0.3s ease;
+        font-size: .85rem;
+        margin: 35px 0;
+        
+        .icon {
+            font-size: 2.5rem;
+        }
+        
+        h1 {
+            font-weight: 700;
+            margin-left: 5px;
+        }
+
+        &:hover {
+            color: $pink;
+        }
+    }
 
     .card {
         border: 2px solid $grey;
@@ -22,11 +45,11 @@
         }
 
         .inputGroup {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
 
             label {
                 display: block;
-                margin-bottom: 5px;
+                margin-bottom: 7px;
             }
 
             input {

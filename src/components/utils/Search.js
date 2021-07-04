@@ -33,7 +33,7 @@ const Search = () => {
             {results?.length > 0 && (
                 <div className='results'>
                     {results.slice(0, 10).map(result => (
-                        <ResultCard result={result} />
+                        <ResultCard result={result} setQuery={setQuery} setResults={setResults} />
                     ))}
                 </div>
             )}

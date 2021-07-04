@@ -2,6 +2,7 @@ import Heading from '../utils/Heading'
 import MediaCard from './MediaCard'
 import {useState, useEffect} from 'react'
 import CustomPagination from '../utils/CustomPagination'
+import {Link} from 'react-router-dom'
 import {
     fetchPopularTv,
     fetchPopularTvPagesNumber
@@ -58,7 +59,7 @@ const PopularTvShows = ({page}) => {
                 <>
                     <div className='headingRow'>
                         <Heading text={'Popular Tv Shows'} />
-                        <a href='/tvs/popular'>See All</a>
+                        <Link to='/tvs/popular'>See All</Link>
                     </div>
 
                     <div className='grid'>

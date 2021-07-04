@@ -123,9 +123,9 @@ const Actor = () => {
                                     </a>
                                 }
                                 {Array.isArray(isDirector) && isDirector.length ?
-                                    <a href={`/crew/${id}`}>
+                                    <Link to={`/crew/${id}`}>
                                         <PersonPinIcon />
-                                    </a>
+                                    </Link>
                                     :
                                     null
                                 }

@@ -18,6 +18,7 @@ body {
     // background: rgba(19,25,34,1)
     // background: linear-gradient(180deg, rgba(56, 74, 99, 1) 0%, rgba(28, 33, 42, 1) 44%, rgba(19, 25, 34, 1) 100%);
     background: linear-gradient(180deg, $grey 0%, $strongGrey 50%, $backgroundGrey 100%);
+    overflow-y: scroll;
 }
 
 .container {

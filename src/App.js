@@ -19,117 +19,131 @@ import FourOhFour from './components/pages/FourOhFour'
 import Login from './components/pages/Login'
 import Signup from './components/pages/Signup'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {AuthProvider} from './context/AuthContext'
 
 function App() {
   return (
-    <Router>
 
-      <Switch>
-        <Route exact path='/'>
-          <Header />
-          <Home />
-          <Footer />
-        </Route>
+    <AuthProvider>
+      <Router>
 
-        <Route path='/movie/:id'>
-          <Header />
-          <Movie />
-          <Footer />
-        </Route>
+        <Switch>
+          <Route exact path='/'>
+            <Header />
+            <Home />
+            <Footer />
+          </Route>
 
-        <Route path='/tv/:id'>
-          <Header />
-          <Tv />
-          <Footer />
-        </Route>
+          <Route
+            path='/movie/:id'
+            render={(props) =>
+              <>
+                <Header />
+                <Movie key={props.location.key} />
+                <Footer />
+              </>
+            }
+          />
 
-        <Route path='/actor/:id'>
-          <Header />
-          <Actor />
-          <Footer />
-        </Route>
+          <Route
+            path='/tv/:id'
+            render={(props) =>
+              <>
+                <Header />
+                <Tv key={props.location.key} />
+                <Footer />
+              </>
+            }
+          />
 
-        <Route path='/crew/:id'>
-          <Header />
-          <Crew />
-          <Footer />
-        </Route>
+          <Route path='/actor/:id'>
+            <Header />
+            <Actor />
+            <Footer />
+          </Route>
 
-        <Route path='/movies/discover'>
-          <Header />
-          <DiscoverMovies />
-          <Footer />
-        </Route>
+          <Route path='/crew/:id'>
+            <Header />
+            <Crew />
+            <Footer />
+          </Route>
 
-        <Route path='/movies/now_playing'>
-          <Header />
-          <NowPlayingMoviesPage />
-          <Footer />
-        </Route>
+          <Route path='/movies/discover'>
+            <Header />
+            <DiscoverMovies />
+            <Footer />
+          </Route>
 
-        <Route path='/movies/top_rated'>
-          <Header />
-          <TopRatedMovies />
-          <Footer />
-        </Route>
+          <Route path='/movies/now_playing'>
+            <Header />
+            <NowPlayingMoviesPage />
+            <Footer />
+          </Route>
 
-        <Route path='/directors'>
-          <Header />
-          <Directors />
-          <Footer />
-        </Route>
+          <Route path='/movies/top_rated'>
+            <Header />
+            <TopRatedMovies />
+            <Footer />
+          </Route>
 
-        <Route path='/actors'>
-          <Header />
-          <Actors />
-          <Footer />
-        </Route>
+          <Route path='/directors'>
+            <Header />
+            <Directors />
+            <Footer />
+          </Route>
 
-        <Route path='/tvs/discover'>
-          <Header />
-          <DiscoverTvShows />
-          <Footer />
-        </Route>
+          <Route path='/actors'>
+            <Header />
+            <Actors />
+            <Footer />
+          </Route>
 
-        <Route path='/tvs/popular'>
-          <Header />
-          <PopularTvShowsPage />
-          <Footer />
-        </Route>
+          <Route path='/tvs/discover'>
+            <Header />
+            <DiscoverTvShows />
+            <Footer />
+          </Route>
 
-        <Route path='/tvs/top_rated'>
-          <Header />
-          <TopRatedTvShows />
-          <Footer />
-        </Route>
+          <Route path='/tvs/popular'>
+            <Header />
+            <PopularTvShowsPage />
+            <Footer />
+          </Route>
 
-        <Route path='/watchlist'>
-          <Header />
-          <Watchlist />
-          <Footer />
-        </Route>
+          <Route path='/tvs/top_rated'>
+            <Header />
+            <TopRatedTvShows />
+            <Footer />
+          </Route>
 
-        <Route path='/watched'>
-          <Header />
-          <Watched />
-          <Footer />
-        </Route>
+          <Route path='/watchlist'>
+            <Header />
+            <Watchlist />
+            <Footer />
+          </Route>
 
-        <Route path='/login'>
+          <Route path='/watched'>
+            <Header />
+            <Watched />
+            <Footer />
+          </Route>
+
+          <Route path='/login'>
             <Login />
-        </Route>
+          </Route>
 
-        <Route path='/signup'>
+          <Route path='/signup'>
             <Signup />
-        </Route>
+          </Route>
 
-        <Route path='*'>
-          <FourOhFour />
-        </Route>
+          <Route path='*'>
+            <FourOhFour />
+          </Route>
 
-      </Switch>
+        </Switch>
 
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 
