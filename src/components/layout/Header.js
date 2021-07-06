@@ -1,5 +1,6 @@
 import Search from '../utils/Search'
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
+import MovieCreationTwoToneIcon from '@material-ui/icons/MovieCreationTwoTone'
 import {Link, useHistory} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {useAuth} from '../../context/AuthContext'
@@ -15,7 +16,6 @@ const Header = () => {
     const history = useHistory()
 
     const [profileMenu, setProfileMenu] = useState(false)
-    const [open, setOpen] = useState(false)
 
     async function handleLogout() {
         setError('')
@@ -31,7 +31,7 @@ const Header = () => {
     useEffect(() => {
         if (currentUser) {
             const getUserInfo = async () => {
-                const data = await db.collection('users').doc(currentUser.uid).get()
+                const data = await db.collection('users').doc(currentUser.uid).collection('userInfo').doc(currentUser.uid).get()
                 setUserInfo(data.data())
             }
 

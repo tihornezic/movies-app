@@ -6,7 +6,10 @@ import MediaCard from '../utils/MediaCard'
 import PersonCard from '../utils/PersonCard'
 import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {useState, useEffect} from 'react'
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, useHistory} from 'react-router-dom'
+import {useAuth} from '../../context/AuthContext'
+import {toast, toastify} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
     fetchMovieDetail,
     fetchMovieVideo,
@@ -18,6 +21,9 @@ import {
 
 const Movie = () => {
     const [movie, setMovie] = useState([])
+    // adjustedMovie is here to get only id's from the movie variable because only id's
+    // are needed and stored with the setWatchlistMovieToDatabase function
+    const [adjustedMovie, setAdjustedMovie] = useState([])
     const [youtubeVideo, setYoutubeVideo] = useState([])
     const [crews, setCrews] = useState([])
     const [casts, setCasts] = useState([])
@@ -29,6 +35,10 @@ const Movie = () => {
     const [seeAll, setSeeAll] = useState(false)
 
     let {id} = useParams()
+
+    const {currentUser, setWatchlistMovieToDatabase, getWatchlistMediaIdsFromDatabase, removeFromWatchlist} = useAuth()
+    const [watchlistMedia, setWatchlistMedia] = useState([])
+    const history = useHistory()
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -44,7 +54,64 @@ const Movie = () => {
         window.scrollTo(0, 0)
     }, [])
 
-    // console.log(movie)
+    // get all media ids in the watchlist to check whether movie/tv is already there when adding  
+    useEffect(() => {
+        getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+    }, [])
+
+    useEffect(() => {
+        setAdjustedMovie({
+            id: movie.id,
+            posterPath: movie.posterPath,
+            poster: movie.poster,
+            title: movie.title,
+            rating: movie.rating,
+            releaseDate: movie.releaseDate,
+            // the reason for adjustedMovie variable
+            genres: movie.genres?.map((genre) => (
+                genre.id
+            ))
+        })
+    }, [movie])
+
+    const handleAddToWatchlist = (id) => {
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchlist
+        if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError()
+        } else {
+            setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
+            notifyAdded()
+        }
+    }
+
+    // const handleRemoveFromWatchlist = (id) => {
+    //     removeFromWatchlist(id)
+    //     notifyRemoved()
+    // }
+
+    const notifyAdded = () => {
+        toast(`${movie.title} added to the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
+
+    const notifyError = () => {
+        toast.error(`${movie.title} is already on the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
+
+    const notifyRemoved = () => {
+        toast.error(`${movie.title} removed from the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
+
+    // console.log(adjustedMovie)
     // console.log(youtubeVideo)
     // console.log(crews)
     // console.log(similarMovies)
@@ -95,8 +162,8 @@ const Movie = () => {
                         <div className='headingRow'>
                             <h1 className='headingTitle'>{movie.title}</h1>
                             <span className='verticalLine'>|</span>
-                            <a className='button adjustedMargins' href='/'>Add to Watchlist</a>
-                            <a className='button' href='/'>Add to Watchedlist</a>
+                            <button className='button adjustedMargins' onClick={() => handleAddToWatchlist(movie.id)}>Add to Watchlist</button>
+                            <button className='button'>Add to Watchedlist</button>
                         </div>
 
                         <div className='details'>

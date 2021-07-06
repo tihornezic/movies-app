@@ -1,13 +1,77 @@
 import {Link, useHistory} from 'react-router-dom'
+import {useEffect, useState} from 'react'
 import unknown from '../../img/unknown3.png'
 import moment from 'moment'
 import ReactStars from "react-rating-stars-component"
 import Tooltip from '@material-ui/core/Tooltip'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
+import CloseIcon from '@material-ui/icons/Close'
+import {useAuth} from '../../context/AuthContext'
+import {toast, toastify} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-const MediaCard = ({media, type, page, topRated, index}) => {
+toast.configure()
+
+const MediaCard = ({media, type, page, topRated, index, listType}) => {
+    const {currentUser, setWatchlistMovieToDatabase, setWatchlistTvToDatabase, getWatchlistMediaIdsFromDatabase, removeFromWatchlist} = useAuth()
+    const [watchlistMedia, setWatchlistMedia] = useState([])
     const history = useHistory()
+
+    // first get all media ids in the watchlist to check whether movie/tv is already there when adding  
+    useEffect(() => {
+        getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+    }, [])
+
+
+    const handleAddToWatchlist = (id) => {
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchlist
+        if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError()
+        } else {
+            if (type === 'movie') {
+                setWatchlistMovieToDatabase(id, media, type)
+            } else {
+                setWatchlistTvToDatabase(id, media, type)
+            }
+
+            notifyAdded()
+        }
+    }
+
+    const handleRemoveFromWatchlist = (id) => {
+        removeFromWatchlist(id)
+        notifyRemoved()
+    }
+
+    const redirectToLogin = () => {
+        history.push({
+            pathname: '/login',
+            state: {message: 'Login to be able to add your Movies and Tv Series to watchlist/watchedlist.'}
+        })
+    }
+
+    const notifyAdded = () => {
+        toast(`${media.title} added to the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
+
+    const notifyError = () => {
+        toast.error(`${media.title} is already on the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
+
+    const notifyRemoved = () => {
+        toast.error(`${media.title} removed from the Watchlist!`, {
+            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+        })
+    }
 
     return (
         <div className='mediaCard'>
@@ -27,12 +91,29 @@ const MediaCard = ({media, type, page, topRated, index}) => {
                     <img src={media.poster} alt={media.title} />
                 }
                 <div className='controls'>
-                    <Tooltip title='Add to watchlist' arrow>
-                        <PlaylistAddIcon />
-                    </Tooltip>
-                    <Tooltip title='Add to watchedlist' arrow>
-                        <VisibilityIcon />
-                    </Tooltip>
+                    {listType === 'watchlist' ?
+                        <>
+                            <Tooltip title='Add to watchedlist' arrow>
+                                <VisibilityIcon />
+                            </Tooltip>
+                            <Tooltip title='Remove from watchlist' arrow>
+                                <CloseIcon onClick={() => handleRemoveFromWatchlist(media.id)} />
+                            </Tooltip>
+                        </>
+                        : listType === 'watchedList' ?
+                            <Tooltip title='Add to watchedlist' arrow>
+                                <VisibilityIcon />
+                            </Tooltip>
+                            :
+                            <>
+                                <Tooltip title='Add to watchlist' arrow>
+                                    <PlaylistAddIcon onClick={currentUser ? () => handleAddToWatchlist(media.id) : () => redirectToLogin()} />
+                                </Tooltip>
+                                <Tooltip title='Add to watchedlist' arrow>
+                                    <VisibilityIcon />
+                                </Tooltip>
+                            </>
+                    }
                 </div>
             </div>
             <div className='info'>

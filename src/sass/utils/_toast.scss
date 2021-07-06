@@ -1,0 +1,28 @@
+.Toastify__toast--default {
+    .Toastify__toast-body {
+        color: $strongGrey;
+        font-weight: 600;
+        font-family: $quicksand;
+
+    }
+
+    .Toastify__progress-bar--default{
+        background: $pink;
+    }
+}
+
+
+.Toastify__toast--error {
+    .Toastify__toast-body {
+        color: $creamWhite;
+        font-weight: 600;
+        font-family: $quicksand;
+
+    }
+
+    .Toastify__progress-bar--error{
+        background: $creamWhite;
+    }
+}
+
+

@@ -4,28 +4,54 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    
+
     .brand {
         text-decoration: none;
-        color: $creamWhite;
+        color: $white;
         display: flex;
         align-items: center;
-        transition: all 0.3s ease;
-        font-size: .85rem;
+        // transition: all 0.3s ease;
+        font-size: 0.85rem;
         margin: 35px 0;
-        
-        .icon {
-            font-size: 2.5rem;
-        }
-        
-        h1 {
-            font-weight: 700;
-            margin-left: 5px;
-        }
 
-        &:hover {
+        .icon {
+            font-size: 3rem;
             color: $pink;
         }
+
+        h1 {
+            margin-left: 5px;
+            font-weight: 600;
+        }
+
+        @mixin animationLogin($from, $to, $name) {
+            @keyframes #{$name} {
+                0% {
+                    transform: translateX($from);
+                }
+                50% {
+                    transform: translateX($to);
+                }
+                100% {
+                    transform: translateX($from);
+                }
+            }
+        }
+
+        @include animationLogin(0px, 6px, easeInOut);
+
+        &:hover {
+            .icon {
+                animation: easeInOut 0.6s;
+            }
+        }
+    }
+
+    .message {
+        margin-bottom: 30px;
+        width: 420px;
+        text-align: center;
+        font-weight: 500;
     }
 
     .card {
@@ -90,8 +116,9 @@
             border: none;
             background-color: $pink;
             cursor: pointer;
-            font-weight: 400;
+            font-weight: 600;
             margin-top: 70px;
+            font-family: $quicksand;
 
             &:hover {
                 background-color: #c97cbd;

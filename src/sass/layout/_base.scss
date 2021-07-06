@@ -47,6 +47,8 @@ body {
     text-decoration: none;
     text-align: center;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 
     &:hover {
         background-color: #c97cbd;

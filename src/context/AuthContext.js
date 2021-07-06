@@ -1,5 +1,6 @@
 import {createContext, useContext, useState, useEffect} from 'react'
 import {auth, db} from '../firebase'
+import firebase from 'firebase/app'
 
 export const AuthContext = createContext()
 
@@ -11,33 +12,123 @@ export function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
-    function signup(email, password) {
+    // auth functions
+    const signup = (email, password) => {
         return auth.createUserWithEmailAndPassword(email, password)
     }
 
-    function login(email, password) {
+    const login = (email, password) => {
         return auth.signInWithEmailAndPassword(email, password)
     }
 
-    function logout() {
+    const logout = () => {
         return auth.signOut()
     }
 
-    function resetPassword(email) {
+    const resetPassword = (email) => {
         return auth.sendPasswordResetEmail(email)
     }
 
-    function updateEmail(email) {
+    const updateEmail = (email) => {
         return currentUser.updateEmail(email)
     }
 
-    function updatePassword(password) {
+    const updatePassword = (password) => {
         return currentUser.updatePassword(password)
+    }
+
+    // 
+    // database functions
+    const setWatchlistMovieToDatabase = (id, media, type) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchlist')
+            .doc(JSON.stringify(id))
+            .set({
+                id: media.id,
+                posterPath: media.posterPath,
+                poster: media.poster,
+                title: media.title,
+                rating: media.rating,
+                releaseDate: media.releaseDate,
+                genres: media.genres,
+                type: type,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+    }
+
+
+    const setWatchlistTvToDatabase = (id, media, type) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchlist')
+            .doc(JSON.stringify(id))
+            .set({
+                id: media.id,
+                posterPath: media.posterPath,
+                poster: media.poster,
+                title: media.title,
+                rating: media.rating,
+                releaseDate: media.releaseDate,
+                genres: media.genres,
+                type: type,
+                originCountry: media.originCountry,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+    }
+
+    // gets media ids
+    const getWatchlistMediaIdsFromDatabase = (currentUser, setWatchlistMedia) => {
+        db.collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchlist')
+            .onSnapshot(snapshot => {
+                setWatchlistMedia(
+                    snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                    }))
+                )
+            })
+    }
+
+    // gets full media object
+    const getWatchlistMediaFromDatabase = (currentUser, setWatchlist) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchlist')
+            .orderBy('createdAt', 'desc')
+            .onSnapshot(snapshot => (
+                setWatchlist(snapshot.docs.map(doc => ({
+                    // id: doc.id,
+                    id: doc.data().id,
+                    posterPath: doc.data().posterPath,
+                    poster: doc.data().poster,
+                    title: doc.data().title,
+                    rating: doc.data().rating,
+                    releaseDate: doc.data().releaseDate,
+                    genres: doc.data().genres,
+                    type: doc.data().type,
+                    originCountry: doc.data().originCountry
+                })))
+            ))
+    }
+
+
+    const removeFromWatchlist = (id) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchlist')
+            .doc(JSON.stringify(id))
+            .delete()
     }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
-            console.log('User: ', user)
+            // console.log('User: ', user)
             setCurrentUser(user)
             setLoading(false)
         })
@@ -56,7 +147,13 @@ export function AuthProvider({children}) {
         logout,
         resetPassword,
         updateEmail,
-        updatePassword
+        updatePassword,
+
+        setWatchlistMovieToDatabase,
+        setWatchlistTvToDatabase,
+        getWatchlistMediaIdsFromDatabase,
+        getWatchlistMediaFromDatabase,
+        removeFromWatchlist,
     }
 
     return (

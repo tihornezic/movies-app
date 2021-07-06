@@ -11,8 +11,10 @@ const Signup = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
     const usernameRef = useRef()
+
     const {signup, currentUser} = useAuth()
     const [error, setError] = useState('')
+    
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
@@ -27,7 +29,7 @@ const Signup = () => {
 
             const result = await createUser
 
-            const database = db.collection('users').doc(result.user.uid)
+            const database = db.collection('users').doc(result.user.uid).collection('userInfo').doc(result.user.uid)
 
             await database.set({
                 firstName: firstNameRef.current.value,

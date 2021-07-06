@@ -1,5 +1,5 @@
-import {useRef, useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
+import {useRef, useState, useEffect} from 'react'
+import {Link, useHistory, useLocation} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import Alert from '@material-ui/lab/Alert'
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
@@ -8,10 +8,22 @@ import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
 const Login = () => {
     const emailRef = useRef()
     const passwordRef = useRef()
+
     const {login, currentUser} = useAuth()
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+
     const history = useHistory()
+    const location = useLocation()
+
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        // console.log(location.pathname)
+        // console.log(location.state.message)
+        setMessage(location.state?.message)
+    }, [location])
+
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -34,6 +46,12 @@ const Login = () => {
                 <MovieCreationOutlinedIcon className='icon' />
                 <h1>MoviesApp</h1>
             </Link>
+
+            {message ?
+                <p className='message'>{message}</p>
+                :
+                null
+            }
 
             <div className='card'>
                 <h3>Log In</h3>
