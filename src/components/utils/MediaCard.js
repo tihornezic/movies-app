@@ -7,6 +7,7 @@ import Tooltip from '@material-ui/core/Tooltip'
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
 import CloseIcon from '@material-ui/icons/Close'
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import {useAuth} from '../../context/AuthContext'
 import {toast, toastify} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -14,40 +15,129 @@ import 'react-toastify/dist/ReactToastify.css'
 toast.configure()
 
 const MediaCard = ({media, type, page, topRated, index, listType}) => {
-    const {currentUser, setWatchlistMovieToDatabase, setWatchlistTvToDatabase, getWatchlistMediaIdsFromDatabase, removeFromWatchlist} = useAuth()
+    const {currentUser, setWatchlistMovieToDatabase, setWatchlistTvToDatabase, getWatchlistMediaIdsFromDatabase,
+        removeFromWatchlist, setWatchedlistMovieToDatabase, setWatchedlistTvToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
+        = useAuth()
+
     const [watchlistMedia, setWatchlistMedia] = useState([])
+    const [watchedlistMedia, setWatchedlistMedia] = useState([])
+
+    const [isOnWatchlist, setIsOnWatchlist] = useState(false)
+    const [isOnWatchedlist, setIsOnWatchedlist] = useState(false)
+
     const history = useHistory()
 
-    // first get all media ids in the watchlist to check whether movie/tv is already there when adding  
+    // first get all media ids in the watchlist/watchedlist to check whether movie/tv is already there when adding  
     useEffect(() => {
-        getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+        if (currentUser) {
+            getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+            getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
+        }
     }, [])
 
-
+    // watchlist
     const handleAddToWatchlist = (id) => {
         let watchlistMediaArray = watchlistMedia.map((movie) => {
             return movie.id
         })
 
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
         // check if media (movie or tv) is already added in the watchlist
         if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
-            notifyError()
-        } else {
+            notifyError('watchlist')
+
+            // check if media (movie or tv) is already added in the watchedlist;
+            // if true, move from watchedlist to watchlist!
+        } else if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchedlist(id)
+            setWatchlistMovieToDatabase(id, media, type)
+            notifyMoved('watchlist')
+        }
+        else {
             if (type === 'movie') {
                 setWatchlistMovieToDatabase(id, media, type)
             } else {
                 setWatchlistTvToDatabase(id, media, type)
             }
 
-            notifyAdded()
+            notifyAdded('watchlist')
         }
     }
 
     const handleRemoveFromWatchlist = (id) => {
         removeFromWatchlist(id)
-        notifyRemoved()
+        notifyRemoved('watchlist')
     }
 
+
+    // watchedlist
+    const handleAddToWatchedlist = (id) => {
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchedlist
+        if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError('watchedlist')
+
+            // check if media (movie or tv) is already added in the watchlist;
+            // if true, move from watchlist to watchedlist!
+        } else if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchlist(id)
+            setWatchedlistMovieToDatabase(id, media, type)
+            notifyMoved('watchedlist')
+
+        } else {
+            if (type === 'movie') {
+                setWatchedlistMovieToDatabase(id, media, type)
+            } else {
+                setWatchedlistTvToDatabase(id, media, type)
+            }
+
+            notifyAdded('watchedlist')
+        }
+    }
+
+    const handleRemoveFromWatchedlist = (id) => {
+        removeFromWatchedlist(id)
+        notifyRemoved('watchedlist')
+    }
+
+
+    // to check to see if a movie is already on the watchlist and watchedlist
+    useEffect(() => {
+        // watchlist
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchlistMediaArray.indexOf(JSON.stringify(media.id)) !== -1) {
+            setIsOnWatchlist(true)
+        } else {
+            setIsOnWatchlist(false)
+        }
+
+        // watchedlist
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchedlistMediaArray.indexOf(JSON.stringify(media.id)) !== -1) {
+            setIsOnWatchedlist(true)
+        } else {
+            setIsOnWatchedlist(false)
+        }
+    })
+
+
+    // redirect
     const redirectToLogin = () => {
         history.push({
             pathname: '/login',
@@ -55,23 +145,56 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
         })
     }
 
-    const notifyAdded = () => {
-        toast(`${media.title} added to the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+    // toast notifications
+    const notifyAdded = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${media.title} has been added to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${media.title} has been added to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
 
-    const notifyError = () => {
-        toast.error(`${media.title} is already on the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+    const notifyMoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${media.title} has been moved from Watchedlist to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${media.title} has been moved from Watchlist to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
 
-    const notifyRemoved = () => {
-        toast.error(`${media.title} removed from the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+    const notifyError = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${media.title} is already on the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${media.title} is already on the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
+
+    const notifyRemoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${media.title} has been removed from the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${media.title} has been removed from the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
+
+
 
     return (
         <div className='mediaCard'>
@@ -93,24 +216,33 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
                 <div className='controls'>
                     {listType === 'watchlist' ?
                         <>
-                            <Tooltip title='Add to watchedlist' arrow>
-                                <VisibilityIcon />
+                            <Tooltip title='Move to watchedlist' arrow>
+                                <VisibilityIcon onClick={() => handleAddToWatchedlist(media.id)} />
                             </Tooltip>
                             <Tooltip title='Remove from watchlist' arrow>
                                 <CloseIcon onClick={() => handleRemoveFromWatchlist(media.id)} />
                             </Tooltip>
                         </>
-                        : listType === 'watchedList' ?
-                            <Tooltip title='Add to watchedlist' arrow>
-                                <VisibilityIcon />
-                            </Tooltip>
+                        : listType === 'watchedlist' ?
+                            <>
+                                <Tooltip title='Move to watchlist' arrow>
+                                    <VisibilityOffIcon onClick={() => handleAddToWatchlist(media.id)} />
+                                </Tooltip>
+                                <Tooltip title='Remove from watchedlist' arrow>
+                                    <CloseIcon onClick={() => handleRemoveFromWatchedlist(media.id)} />
+                                </Tooltip>
+                            </>
                             :
                             <>
                                 <Tooltip title='Add to watchlist' arrow>
-                                    <PlaylistAddIcon onClick={currentUser ? () => handleAddToWatchlist(media.id) : () => redirectToLogin()} />
+                                    <PlaylistAddIcon
+                                        className={isOnWatchlist ? 'added' : null}
+                                        onClick={currentUser ? () => handleAddToWatchlist(media.id) : () => redirectToLogin()} />
                                 </Tooltip>
                                 <Tooltip title='Add to watchedlist' arrow>
-                                    <VisibilityIcon />
+                                    <VisibilityIcon
+                                        className={isOnWatchedlist ? 'added' : null}
+                                        onClick={currentUser ? () => handleAddToWatchedlist(media.id) : () => redirectToLogin()} />
                                 </Tooltip>
                             </>
                     }

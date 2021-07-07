@@ -39,6 +39,7 @@ export function AuthProvider({children}) {
 
     // 
     // database functions
+    // watchlist functions
     const setWatchlistMovieToDatabase = (id, media, type) => {
         db
             .collection('users')
@@ -126,6 +127,93 @@ export function AuthProvider({children}) {
             .delete()
     }
 
+    // 
+    // watchedlist functions
+    const setWatchedlistMovieToDatabase = (id, media, type) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchedlist')
+            .doc(JSON.stringify(id))
+            .set({
+                id: media.id,
+                posterPath: media.posterPath,
+                poster: media.poster,
+                title: media.title,
+                rating: media.rating,
+                releaseDate: media.releaseDate,
+                genres: media.genres,
+                type: type,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+    }
+
+    const setWatchedlistTvToDatabase = (id, media, type) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchedlist')
+            .doc(JSON.stringify(id))
+            .set({
+                id: media.id,
+                posterPath: media.posterPath,
+                poster: media.poster,
+                title: media.title,
+                rating: media.rating,
+                releaseDate: media.releaseDate,
+                genres: media.genres,
+                type: type,
+                originCountry: media.originCountry,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            })
+    }
+
+    // gets media ids
+    const getWatchedlistMediaIdsFromDatabase = (currentUser, setWatchedlistMedia) => {
+        db.collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchedlist')
+            .onSnapshot(snapshot => {
+                setWatchedlistMedia(
+                    snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                    }))
+                )
+            })
+    }
+
+    // gets full media object
+    const getWatchedlistMediaFromDatabase = (currentUser, setWatchedlist) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchedlist')
+            .orderBy('createdAt', 'desc')
+            .onSnapshot(snapshot => (
+                setWatchedlist(snapshot.docs.map(doc => ({
+                    // id: doc.id,
+                    id: doc.data().id,
+                    posterPath: doc.data().posterPath,
+                    poster: doc.data().poster,
+                    title: doc.data().title,
+                    rating: doc.data().rating,
+                    releaseDate: doc.data().releaseDate,
+                    genres: doc.data().genres,
+                    type: doc.data().type,
+                    originCountry: doc.data().originCountry
+                })))
+            ))
+    }
+
+    const removeFromWatchedlist = (id) => {
+        db
+            .collection('users')
+            .doc(currentUser?.uid)
+            .collection('watchedlist')
+            .doc(JSON.stringify(id))
+            .delete()
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
             // console.log('User: ', user)
@@ -154,6 +242,12 @@ export function AuthProvider({children}) {
         getWatchlistMediaIdsFromDatabase,
         getWatchlistMediaFromDatabase,
         removeFromWatchlist,
+
+        setWatchedlistMovieToDatabase,
+        setWatchedlistTvToDatabase,
+        getWatchedlistMediaIdsFromDatabase,
+        getWatchedlistMediaFromDatabase,
+        removeFromWatchedlist
     }
 
     return (

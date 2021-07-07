@@ -44,7 +44,7 @@ const NowPlayingMovies = ({page}) => {
         return parseInt(currentPage) * 3
     }
 
-    console.log(totalPagesNumber)
+    // console.log(nowPlayingMovies)
 
     return (
         <div className='nowPlayingMovies'>

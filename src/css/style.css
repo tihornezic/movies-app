@@ -49,7 +49,15 @@ body {
   cursor: pointer;
 }
 .button:hover {
-  background-color: #c97cbd;
+  background-color: #35465e;
+}
+
+.secondaryButton {
+  background-color: #b1acac;
+  color: #2e3d52;
+}
+.secondaryButton:hover {
+  background-color: #cec6c6;
 }
 
 .mediaNotFound {
@@ -367,6 +375,9 @@ body {
   color: #b460a8;
   cursor: pointer;
 }
+.mediaCard .image .controls svg.added {
+  color: #b460a8;
+}
 .mediaCard .image:hover {
   box-shadow: 0 5px 25px black;
   transform: scale(1.05);
@@ -563,6 +574,17 @@ body {
   grid-gap: 50px;
 }
 
+.watchedlist h3 {
+  margin-bottom: 60px;
+  margin-top: 50px;
+  font-size: 1.25rem;
+}
+.watchedlist .grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+
 .movie .verticalLine {
   padding: 0 12px;
   font-weight: 600;
@@ -605,6 +627,10 @@ body {
   font-size: 2.3rem;
   color: #fff;
   letter-spacing: 2px;
+}
+.movie .main .headingRow .smallHeadingTitle {
+  font-size: 2.25rem;
+  color: #fff;
 }
 .movie .main .headingRow .adjustedMargins {
   margin-right: 20px;

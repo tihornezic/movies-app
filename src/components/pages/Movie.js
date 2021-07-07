@@ -38,6 +38,8 @@ const Movie = () => {
 
     const {currentUser, setWatchlistMovieToDatabase, getWatchlistMediaIdsFromDatabase, removeFromWatchlist} = useAuth()
     const [watchlistMedia, setWatchlistMedia] = useState([])
+    
+    const [isOnWatchlist, setIsOnWatchlist] = useState(false)
     const history = useHistory()
 
     useEffect(() => {
@@ -54,9 +56,12 @@ const Movie = () => {
         window.scrollTo(0, 0)
     }, [])
 
+    // 
     // get all media ids in the watchlist to check whether movie/tv is already there when adding  
     useEffect(() => {
-        getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+        if (currentUser) {
+            getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+        }
     }, [])
 
     useEffect(() => {
@@ -84,17 +89,39 @@ const Movie = () => {
             notifyError()
         } else {
             setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
+            setIsOnWatchlist(true)
             notifyAdded()
         }
     }
 
-    // const handleRemoveFromWatchlist = (id) => {
-    //     removeFromWatchlist(id)
-    //     notifyRemoved()
-    // }
+    // to check to see if a movie is already on the watchlist
+    useEffect(() => {
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchlistMediaArray.indexOf(JSON.stringify(movie.id)) !== -1) {
+            setIsOnWatchlist(true)
+        } else {
+            setIsOnWatchlist(false)
+        }
+    })
+
+
+    const handleRemoveFromWatchlist = (id) => {
+        removeFromWatchlist(id)
+        notifyRemoved()
+    }
+
+    const redirectToLogin = () => {
+        history.push({
+            pathname: '/login',
+            state: {message: 'Login to be able to add your Movies and Tv Series to watchlist/watchedlist.'}
+        })
+    }
 
     const notifyAdded = () => {
-        toast(`${movie.title} added to the Watchlist!`, {
+        toast(`${movie.title} has been added to the Watchlist!`, {
             position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
         })
     }
@@ -106,12 +133,12 @@ const Movie = () => {
     }
 
     const notifyRemoved = () => {
-        toast.error(`${movie.title} removed from the Watchlist!`, {
+        toast.error(`${movie.title} has been removed from the Watchlist!`, {
             position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
         })
     }
 
-    // console.log(adjustedMovie)
+    // console.log(isOnWatchlist)
     // console.log(youtubeVideo)
     // console.log(crews)
     // console.log(similarMovies)
@@ -143,7 +170,7 @@ const Movie = () => {
         }
     })
 
-
+    // console.log(movie.title?.length)
 
     return (
 
@@ -160,9 +187,27 @@ const Movie = () => {
 
                     <div className='main'>
                         <div className='headingRow'>
-                            <h1 className='headingTitle'>{movie.title}</h1>
+                            <h1 className={movie.title?.length > 46 ? 'smallHeadingTitle' : 'headingTitle'}>{movie.title}</h1>
                             <span className='verticalLine'>|</span>
-                            <button className='button adjustedMargins' onClick={() => handleAddToWatchlist(movie.id)}>Add to Watchlist</button>
+                            <button
+                                className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                // onClick={currentUser ? () => handleAddToWatchlist(movie.id) : () => redirectToLogin()}
+                                // onClick={isOnWatchlist ? () => handleRemoveFromWatchlist(movie.id) : null}
+
+                                onClick={() => {
+                                    if (currentUser) {
+                                        if (isOnWatchlist) {
+                                            handleRemoveFromWatchlist(movie.id)
+                                            setIsOnWatchlist(prev => !prev)
+                                        } else {
+                                            handleAddToWatchlist(movie.id)
+                                        }
+                                    } else {
+                                        redirectToLogin()
+                                    }
+                                }}
+                            >
+                                {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}</button>
                             <button className='button'>Add to Watchedlist</button>
                         </div>
 

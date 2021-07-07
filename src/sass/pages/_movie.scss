@@ -48,10 +48,19 @@
                 color: $white;
                 letter-spacing: 2px;
             }
+            
+            .smallHeadingTitle {
+                font-size: 2.25rem;
+                color: $white;
+            }
 
             .adjustedMargins {
                 margin-right: 20px;
             }
+
+            // .isAddedWatchlist {
+            //     background-color: #e74c3c;
+            // }
 
             .verticalLine {
                 padding: 0 25px;

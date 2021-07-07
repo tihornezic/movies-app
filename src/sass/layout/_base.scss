@@ -51,7 +51,16 @@ body {
     cursor: pointer;
 
     &:hover {
-        background-color: #c97cbd;
+        background-color: #35465e;
+    }
+}
+
+.secondaryButton {
+    background-color: $mildGrey;
+    color: $grey;
+
+    &:hover {
+        background-color: #cec6c6;
     }
 }
 
