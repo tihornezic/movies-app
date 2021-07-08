@@ -6,7 +6,10 @@ import MediaCard from '../utils/MediaCard'
 import PersonCard from '../utils/PersonCard'
 import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {useState, useEffect} from 'react'
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, useHistory} from 'react-router-dom'
+import {useAuth} from '../../context/AuthContext'
+import {toast, toastify} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import {
     fetchTvDetail,
     fetchTvVideo,
@@ -16,8 +19,11 @@ import {
     fetchSimilarTvs,
 } from '../../service/tv'
 
+toast.configure()
+
 const Tv = () => {
     const [tv, setTv] = useState([])
+    const [adjustedTv, setAdjustedTv] = useState([])
     const [youtubeVideo, setYoutubeVideo] = useState([])
     const [crews, setCrews] = useState([])
     const [casts, setCasts] = useState([])
@@ -28,6 +34,18 @@ const Tv = () => {
     const [seeAll, setSeeAll] = useState(false)
 
     let {id} = useParams()
+
+    const {currentUser, setWatchlistTvToDatabase, getWatchlistMediaIdsFromDatabase,
+        removeFromWatchlist, setWatchedlistTvToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
+        = useAuth()
+
+    const [watchlistMedia, setWatchlistMedia] = useState([])
+    const [watchedlistMedia, setWatchedlistMedia] = useState([])
+
+    const [isOnWatchlist, setIsOnWatchlist] = useState(false)
+    const [isOnWatchedlist, setIsOnWatchedlist] = useState(false)
+
+    const history = useHistory()
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -42,6 +60,181 @@ const Tv = () => {
         fetchApi()
         window.scrollTo(0, 0)
     }, [])
+
+    useEffect(() => {
+        if (currentUser) {
+            getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+            getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
+        }
+    }, [])
+
+    useEffect(() => {
+        setAdjustedTv({
+            id: tv.id,
+            posterPath: tv.posterPath,
+            poster: tv.poster,
+            title: tv.title,
+            rating: tv.rating,
+            releaseDate: tv.firstAirDate,
+            genres: tv.genres,
+            originCountry: tv.originCountry,
+            genres: tv.genres?.map((genre) => (
+                genre.id
+            ))
+        })
+    }, [tv])
+
+
+    // watchlist
+    const handleAddToWatchlist = (id) => {
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchlist
+        if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError()
+            // check if media (movie or tv) is already added in the watchedlist;
+            // if true, move from watchedlist to watchlist!
+        } else if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchedlist(id)
+            setWatchlistTvToDatabase(id, adjustedTv, 'tv')
+            notifyMoved('watchlist')
+        }
+        else {
+            setWatchlistTvToDatabase(id, adjustedTv, 'tv')
+            setIsOnWatchlist(true)
+            notifyAdded('watchlist')
+        }
+    }
+
+    const handleRemoveFromWatchlist = (id) => {
+        removeFromWatchlist(id)
+        notifyRemoved('watchlist')
+    }
+
+
+    // watchedlist
+    const handleAddToWatchedlist = (id) => {
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchedlist
+        if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError('watchedlist')
+
+            // check if media (movie or tv) is already added in the watchlist;
+            // if true, move from watchlist to watchedlist!
+        } else if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchlist(id)
+            setWatchedlistTvToDatabase(id, adjustedTv, 'tv')
+            notifyMoved('watchedlist')
+
+        } else {
+            setWatchedlistTvToDatabase(id, adjustedTv, 'tv')
+            setIsOnWatchedlist(true)
+            notifyAdded('watchedlist')
+        }
+    }
+
+    const handleRemoveFromWatchedlist = (id) => {
+        removeFromWatchedlist(id)
+        notifyRemoved('watchedlist')
+    }
+
+
+    // to check to see if a movie is already on the watchlist
+    useEffect(() => {
+        // watchlist
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchlistMediaArray.indexOf(JSON.stringify(tv.id)) !== -1) {
+            setIsOnWatchlist(true)
+        } else {
+            setIsOnWatchlist(false)
+        }
+
+        // watchedlist
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchedlistMediaArray.indexOf(JSON.stringify(tv.id)) !== -1) {
+            setIsOnWatchedlist(true)
+        } else {
+            setIsOnWatchedlist(false)
+        }
+    })
+
+
+    // redirect
+    const redirectToLogin = () => {
+        history.push({
+            pathname: '/login',
+            state: {message: 'Login to be able to add your Movies and Tv Series to watchlist/watchedlist.'}
+        })
+    }
+
+
+    // toastify notifications
+    const notifyAdded = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${tv.title} has been added to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${tv.title} has been added to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
+
+    const notifyMoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${tv.title} has been moved from Watchedlist to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${tv.title} has been moved from Watchlist to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
+
+    const notifyError = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${tv.title} is already on the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${tv.title} is already on the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
+
+    const notifyRemoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${tv.title} has been removed from the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${tv.title} has been removed from the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
 
     // console.log(tv.createdBy)
     // console.log(youtubeVideo)
@@ -93,8 +286,40 @@ const Tv = () => {
                             </p>
                             <div className='controlsRow'>
                                 <span className='verticalLine'>|</span>
-                                <a className='button adjustedMargins' href='/'>Add to Watchlist</a>
-                                <a className='button' href='/'>Add to Watchedlist</a>
+                                <button
+                                    className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchlist) {
+                                                handleRemoveFromWatchlist(tv.id)
+                                            } else {
+                                                handleAddToWatchlist(tv.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                                </button>
+
+                                <button
+                                    className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchedlist) {
+                                                handleRemoveFromWatchedlist(tv.id)
+                                            } else {
+                                                handleAddToWatchedlist(tv.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
+                                </button>
+
                             </div>
                         </div>
 

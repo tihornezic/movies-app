@@ -19,6 +19,8 @@ import {
     fetchRecommendedMovies,
 } from '../../service/movies'
 
+toast.configure()
+
 const Movie = () => {
     const [movie, setMovie] = useState([])
     // adjustedMovie is here to get only id's from the movie variable because only id's
@@ -36,10 +38,16 @@ const Movie = () => {
 
     let {id} = useParams()
 
-    const {currentUser, setWatchlistMovieToDatabase, getWatchlistMediaIdsFromDatabase, removeFromWatchlist} = useAuth()
+    const {currentUser, setWatchlistMovieToDatabase, getWatchlistMediaIdsFromDatabase,
+        removeFromWatchlist, setWatchedlistMovieToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
+        = useAuth()
+
     const [watchlistMedia, setWatchlistMedia] = useState([])
-    
+    const [watchedlistMedia, setWatchedlistMedia] = useState([])
+
     const [isOnWatchlist, setIsOnWatchlist] = useState(false)
+    const [isOnWatchedlist, setIsOnWatchedlist] = useState(false)
+
     const history = useHistory()
 
     useEffect(() => {
@@ -61,6 +69,7 @@ const Movie = () => {
     useEffect(() => {
         if (currentUser) {
             getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
+            getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
         }
     }, [])
 
@@ -79,23 +88,75 @@ const Movie = () => {
         })
     }, [movie])
 
+    // watchlist
     const handleAddToWatchlist = (id) => {
         let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
             return movie.id
         })
 
         // check if media (movie or tv) is already added in the watchlist
         if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
             notifyError()
-        } else {
+            // check if media (movie or tv) is already added in the watchedlist;
+            // if true, move from watchedlist to watchlist!
+        } else if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchedlist(id)
+            setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
+            notifyMoved('watchlist')
+        }
+        else {
             setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
             setIsOnWatchlist(true)
-            notifyAdded()
+            notifyAdded('watchlist')
         }
     }
 
+    const handleRemoveFromWatchlist = (id) => {
+        removeFromWatchlist(id)
+        notifyRemoved('watchlist')
+    }
+
+    // watchedlist
+    const handleAddToWatchedlist = (id) => {
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        let watchlistMediaArray = watchlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        // check if media (movie or tv) is already added in the watchedlist
+        if (watchedlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            notifyError('watchedlist')
+
+            // check if media (movie or tv) is already added in the watchlist;
+            // if true, move from watchlist to watchedlist!
+        } else if (watchlistMediaArray.indexOf(JSON.stringify(id)) !== -1) {
+            removeFromWatchlist(id)
+            setWatchedlistMovieToDatabase(id, adjustedMovie, 'movie')
+            notifyMoved('watchedlist')
+
+        } else {
+            setWatchedlistMovieToDatabase(id, adjustedMovie, 'movie')
+            setIsOnWatchedlist(true)
+            notifyAdded('watchedlist')
+        }
+    }
+
+    const handleRemoveFromWatchedlist = (id) => {
+        removeFromWatchedlist(id)
+        notifyRemoved('watchedlist')
+    }
+
+
     // to check to see if a movie is already on the watchlist
     useEffect(() => {
+        // watchlist
         let watchlistMediaArray = watchlistMedia.map((movie) => {
             return movie.id
         })
@@ -105,14 +166,21 @@ const Movie = () => {
         } else {
             setIsOnWatchlist(false)
         }
+
+        // watchedlist
+        let watchedlistMediaArray = watchedlistMedia.map((movie) => {
+            return movie.id
+        })
+
+        if (watchedlistMediaArray.indexOf(JSON.stringify(movie.id)) !== -1) {
+            setIsOnWatchedlist(true)
+        } else {
+            setIsOnWatchedlist(false)
+        }
     })
 
 
-    const handleRemoveFromWatchlist = (id) => {
-        removeFromWatchlist(id)
-        notifyRemoved()
-    }
-
+    // redirect
     const redirectToLogin = () => {
         history.push({
             pathname: '/login',
@@ -120,22 +188,54 @@ const Movie = () => {
         })
     }
 
-    const notifyAdded = () => {
-        toast(`${movie.title} has been added to the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+
+    // toastify notifications
+    const notifyAdded = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${movie.title} has been added to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${movie.title} has been added to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
 
-    const notifyError = () => {
-        toast.error(`${movie.title} is already on the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+    const notifyMoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast(`${movie.title} has been moved from Watchedlist to the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast(`${movie.title} has been moved from Watchlist to the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
 
-    const notifyRemoved = () => {
-        toast.error(`${movie.title} has been removed from the Watchlist!`, {
-            position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
-        })
+    const notifyError = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${movie.title} is already on the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${movie.title} is already on the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
+    }
+
+    const notifyRemoved = (listType) => {
+        if (listType === 'watchlist') {
+            toast.error(`${movie.title} has been removed from the Watchlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        } else {
+            toast.error(`${movie.title} has been removed from the Watchedlist!`, {
+                position: toast.POSITION.BOTTOM_RIGHT, autoClose: 6000
+            })
+        }
     }
 
     // console.log(isOnWatchlist)
@@ -170,7 +270,6 @@ const Movie = () => {
         }
     })
 
-    // console.log(movie.title?.length)
 
     return (
 
@@ -191,14 +290,10 @@ const Movie = () => {
                             <span className='verticalLine'>|</span>
                             <button
                                 className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
-                                // onClick={currentUser ? () => handleAddToWatchlist(movie.id) : () => redirectToLogin()}
-                                // onClick={isOnWatchlist ? () => handleRemoveFromWatchlist(movie.id) : null}
-
                                 onClick={() => {
                                     if (currentUser) {
                                         if (isOnWatchlist) {
                                             handleRemoveFromWatchlist(movie.id)
-                                            setIsOnWatchlist(prev => !prev)
                                         } else {
                                             handleAddToWatchlist(movie.id)
                                         }
@@ -207,8 +302,26 @@ const Movie = () => {
                                     }
                                 }}
                             >
-                                {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}</button>
-                            <button className='button'>Add to Watchedlist</button>
+                                {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                            </button>
+
+                            <button
+                                className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                onClick={() => {
+                                    if (currentUser) {
+                                        if (isOnWatchedlist) {
+                                            handleRemoveFromWatchedlist(movie.id)
+                                        } else {
+                                            handleAddToWatchedlist(movie.id)
+                                        }
+                                    } else {
+                                        redirectToLogin()
+                                    }
+                                }}
+                            >
+                                {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
+                            </button>
+
                         </div>
 
                         <div className='details'>
