@@ -8,6 +8,7 @@ import ExpandAndShrink from '../utils/ExpandAndShrink'
 import {useState, useEffect} from 'react'
 import {useParams, Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
+import {useStateValue} from '../../context/StateProvider'
 import {toast, toastify} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
@@ -41,6 +42,8 @@ const Movie = () => {
     const {currentUser, setWatchlistMovieToDatabase, getWatchlistMediaIdsFromDatabase,
         removeFromWatchlist, setWatchedlistMovieToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
         = useAuth()
+
+    const [{ }, dispatch] = useStateValue()
 
     const [watchlistMedia, setWatchlistMedia] = useState([])
     const [watchedlistMedia, setWatchedlistMedia] = useState([])
@@ -107,17 +110,47 @@ const Movie = () => {
             removeFromWatchedlist(id)
             setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
             notifyMoved('watchlist')
+
+            dispatch({
+                type: 'REMOVE_WATCHEDLIST_MEDIA',
+                payload: {
+                    id: id
+                }
+            })
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: movie.title
+                }
+            })
         }
         else {
             setWatchlistMovieToDatabase(id, adjustedMovie, 'movie')
             setIsOnWatchlist(true)
             notifyAdded('watchlist')
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: movie.title
+                }
+            })
         }
     }
 
     const handleRemoveFromWatchlist = (id) => {
         removeFromWatchlist(id)
         notifyRemoved('watchlist')
+
+        dispatch({
+            type: 'REMOVE_WATCHLIST_MEDIA',
+            payload: {
+                id: id
+            }
+        })
     }
 
     // watchedlist
@@ -141,16 +174,46 @@ const Movie = () => {
             setWatchedlistMovieToDatabase(id, adjustedMovie, 'movie')
             notifyMoved('watchedlist')
 
+            dispatch({
+                type: 'REMOVE_WATCHLIST_MEDIA',
+                payload: {
+                    id: id
+                }
+            })
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHEDLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: movie.title
+                }
+            })
+
         } else {
             setWatchedlistMovieToDatabase(id, adjustedMovie, 'movie')
             setIsOnWatchedlist(true)
             notifyAdded('watchedlist')
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHEDLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: movie.title
+                }
+            })
         }
     }
 
     const handleRemoveFromWatchedlist = (id) => {
         removeFromWatchedlist(id)
         notifyRemoved('watchedlist')
+
+        dispatch({
+            type: 'REMOVE_WATCHEDLIST_MEDIA',
+            payload: {
+                id: id
+            }
+        })
     }
 
 

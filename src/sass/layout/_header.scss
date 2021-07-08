@@ -124,6 +124,31 @@
                         visibility: visible;
                     }
                 }
+
+                &.watchlist, &.watchedlist {
+                    position: relative;
+                    z-index: 10;
+
+                    .count {
+                        position: absolute;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        top: 12px;
+                        right: -12px;
+                        background-color: $pink;
+                        width: 17px;
+                        height: 17px;
+                        font-weight: 700;
+                        border-radius: 50%;
+                        z-index: 1;
+                        
+                        .value {
+                            color: $creamWhite;
+                            font-size: 0.7rem;
+                        }
+                    }
+                }
             }
 
             .search {

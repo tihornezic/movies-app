@@ -46,6 +46,7 @@ const Actor = () => {
         }
 
         fetchApi()
+        window.scrollTo(0, 0)
     }, [])
 
     // console.log(actor)

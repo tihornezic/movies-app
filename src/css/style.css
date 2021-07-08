@@ -178,6 +178,28 @@ body {
   opacity: 1;
   visibility: visible;
 }
+.header .headerContainer .links li.watchlist, .header .headerContainer .links li.watchedlist {
+  position: relative;
+  z-index: 10;
+}
+.header .headerContainer .links li.watchlist .count, .header .headerContainer .links li.watchedlist .count {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 12px;
+  right: -12px;
+  background-color: #b460a8;
+  width: 17px;
+  height: 17px;
+  font-weight: 700;
+  border-radius: 50%;
+  z-index: 1;
+}
+.header .headerContainer .links li.watchlist .count .value, .header .headerContainer .links li.watchedlist .count .value {
+  color: #e2e8f0;
+  font-size: 0.7rem;
+}
 .header .headerContainer .links .search {
   margin-left: 18px;
 }

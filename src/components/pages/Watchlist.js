@@ -1,17 +1,26 @@
 import {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
+import {useStateValue} from '../../context/StateProvider'
 import MediaCard from '../utils/MediaCard'
 import Heading from '../utils/Heading'
 
 const Watchlist = () => {
     const {currentUser, getWatchlistMediaFromDatabase} = useAuth()
+    const [{watchlistArray}, dispatch] = useStateValue()
     const [watchlist, setWatchlist] = useState([])
     const history = useHistory()
 
     useEffect(() => {
         if (currentUser) {
             getWatchlistMediaFromDatabase(currentUser, setWatchlist)
+
+            if (watchlistArray) {
+                dispatch({
+                    type: 'ANNUL_WATCHLIST_ARRAY',
+                })
+            } 
+
         } else {
             setWatchlist([])
             redirectToLogin()

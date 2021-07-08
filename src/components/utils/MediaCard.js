@@ -9,6 +9,7 @@ import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd'
 import CloseIcon from '@material-ui/icons/Close'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import {useAuth} from '../../context/AuthContext'
+import {useStateValue} from '../../context/StateProvider'
 import {toast, toastify} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -24,6 +25,8 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
 
     const [isOnWatchlist, setIsOnWatchlist] = useState(false)
     const [isOnWatchedlist, setIsOnWatchedlist] = useState(false)
+
+    const [{ }, dispatch] = useStateValue()
 
     const history = useHistory()
 
@@ -55,12 +58,44 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
             removeFromWatchedlist(id)
             setWatchlistMovieToDatabase(id, media, type)
             notifyMoved('watchlist')
+
+            dispatch({
+                type: 'REMOVE_WATCHEDLIST_MEDIA',
+                payload: {
+                    id: id
+                }
+            })
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: media.title
+                }
+            })
         }
         else {
             if (type === 'movie') {
                 setWatchlistMovieToDatabase(id, media, type)
+
+                dispatch({
+                    type: 'ADD_MEDIA_TO_WATCHLIST_ARRAY',
+                    payload: {
+                        id: id,
+                        title: media.title
+                    }
+                })
+
             } else {
                 setWatchlistTvToDatabase(id, media, type)
+
+                dispatch({
+                    type: 'ADD_MEDIA_TO_WATCHLIST_ARRAY',
+                    payload: {
+                        id: id,
+                        title: media.title
+                    }
+                })
             }
 
             notifyAdded('watchlist')
@@ -94,11 +129,42 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
             setWatchedlistMovieToDatabase(id, media, type)
             notifyMoved('watchedlist')
 
+            dispatch({
+                type: 'REMOVE_WATCHLIST_MEDIA',
+                payload: {
+                    id: id
+                }
+            })
+
+            dispatch({
+                type: 'ADD_MEDIA_TO_WATCHEDLIST_ARRAY',
+                payload: {
+                    id: id,
+                    title: media.title
+                }
+            })
+
         } else {
             if (type === 'movie') {
                 setWatchedlistMovieToDatabase(id, media, type)
+
+                dispatch({
+                    type: 'ADD_MEDIA_TO_WATCHEDLIST_ARRAY',
+                    payload: {
+                        id: id,
+                        title: media.title
+                    }
+                })
             } else {
                 setWatchedlistTvToDatabase(id, media, type)
+
+                dispatch({
+                    type: 'ADD_MEDIA_TO_WATCHEDLIST_ARRAY',
+                    payload: {
+                        id: id,
+                        title: media.title
+                    }
+                })
             }
 
             notifyAdded('watchedlist')

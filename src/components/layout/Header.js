@@ -4,6 +4,7 @@ import MovieCreationTwoToneIcon from '@material-ui/icons/MovieCreationTwoTone'
 import {Link, useHistory} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {useAuth} from '../../context/AuthContext'
+import {useStateValue} from '../../context/StateProvider'
 import {db} from '../../firebase'
 import PersonRoundedIcon from '@material-ui/icons/PersonRounded'
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded'
@@ -12,6 +13,7 @@ import {ClickAwayListener} from '@material-ui/core'
 const Header = () => {
     const [error, setError] = useState('')
     const {currentUser, logout} = useAuth()
+    const [{watchlistArray, watchedlistArray}, dispatch] = useStateValue()
     const [userInfo, setUserInfo] = useState([])
     const history = useHistory()
 
@@ -38,6 +40,7 @@ const Header = () => {
             getUserInfo()
         }
     }, [])
+
 
     return (
         <nav className='header'>
@@ -77,11 +80,21 @@ const Header = () => {
                             </div>
                         </div>
                     </li>
-                    <li>
+                    <li className='watchlist'>
                         <Link to='/watchlist'>My Watchlist</Link>
+                        {watchlistArray.length >= 1 &&
+                            <div className='count'>
+                                <span className='value'>{watchlistArray.length}</span>
+                            </div>
+                        }
                     </li>
-                    <li>
+                    <li className='watchedlist'>
                         <Link to='/watched'>My Watchedlist</Link>
+                        {watchedlistArray.length >= 1 &&
+                            <div className='count'>
+                                <span className='value'>{watchedlistArray.length}</span>
+                            </div>
+                        }
                     </li>
                 </ul>
 
