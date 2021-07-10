@@ -178,7 +178,7 @@ const Profile = () => {
                         <input type='password' ref={passwordRef} placeholder='Leave blank to keep the same' />
                     </div>
 
-                    <button disabled={loading} type='submit' className='button loginButton'>Update</button>
+                    <button disabled={loading} type='submit' className='button formButton'>Update</button>
 
                 </form>
             </div>

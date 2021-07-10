@@ -151,9 +151,9 @@ function App() {
           </Route>
 
           <Route path='/forgot-password'>
-            <Header />
+            {/* <Header /> */}
             <ForgotPassword />
-            <Footer />
+            {/* <Footer /> */}
           </Route>
 
           <Route path='*'>

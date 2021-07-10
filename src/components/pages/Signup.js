@@ -74,7 +74,7 @@ const Signup = () => {
                 <h3>Sign Up</h3>
 
                 {error &&
-                    <Alert variant='filled' severity='error' style={{margin: '25px 0', maxWidth: '346px'}} >
+                    <Alert variant='filled' severity='error' style={{margin: '25px 0', maxWidth: '346px', fontWeight: 600}} >
                         {error}
                     </Alert>
                 }
@@ -101,9 +101,9 @@ const Signup = () => {
                         <input type='password' ref={passwordRef} required />
                     </div>
 
-                    <button disabled={loading} type='submit' className='button loginButton'>Sign Up</button>
+                    <button disabled={loading} type='submit' className='button formButton'>Sign Up</button>
 
-                    <div className='forgotPassword'>
+                    <div className='forgotPasswordLink'>
                         <Link to='/forgot-password'>Forgot password?</Link>
                     </div>
                 </form>
