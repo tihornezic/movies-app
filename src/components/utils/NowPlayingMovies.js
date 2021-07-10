@@ -53,7 +53,7 @@ const NowPlayingMovies = ({page}) => {
                 <>
                     <div className='headingRow'>
                         <Heading text={'Playing In Theaters'} />
-                        <Link to='/movies/now_playing'>See All</Link>
+                        <Link to='/movies/now-playing'>See All</Link>
                     </div>
 
                     <div className='grid'>

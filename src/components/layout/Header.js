@@ -62,8 +62,8 @@ const Header = () => {
                             <p className='fakeLink'>Movies</p>
                             <div className='dropdown'>
                                 <Link to='/movies/discover'>Discover Movies</Link>
-                                <Link to='/movies/now_playing'>Now Playing</Link>
-                                <Link to='/movies/top_rated'>Top 100</Link>
+                                <Link to='/movies/now-playing'>Now Playing</Link>
+                                <Link to='/movies/top-rated'>Top 100</Link>
                             </div>
                         </div>
                     </li>
@@ -73,7 +73,7 @@ const Header = () => {
                             <div className='dropdown'>
                                 <Link to='/tvs/discover'>Discover TV Shows</Link>
                                 <Link to='/tvs/popular'>Popular</Link>
-                                <Link to='/tvs/top_rated'>Top 50</Link>
+                                <Link to='/tvs/top-rated'>Top 50</Link>
                             </div>
                         </div>
                     </li>

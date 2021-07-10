@@ -19,6 +19,7 @@ import FourOhFour from './components/pages/FourOhFour'
 import Login from './components/pages/Login'
 import Signup from './components/pages/Signup'
 import Profile from './components/pages/Profile'
+import ForgotPassword from './components/pages/ForgotPassword'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {AuthProvider} from './context/AuthContext'
 
@@ -81,13 +82,13 @@ function App() {
             <Footer />
           </Route>
 
-          <Route path='/movies/now_playing'>
+          <Route path='/movies/now-playing'>
             <Header />
             <NowPlayingMoviesPage />
             <Footer />
           </Route>
 
-          <Route path='/movies/top_rated'>
+          <Route path='/movies/top-rated'>
             <Header />
             <TopRatedMovies />
             <Footer />
@@ -117,7 +118,7 @@ function App() {
             <Footer />
           </Route>
 
-          <Route path='/tvs/top_rated'>
+          <Route path='/tvs/top-rated'>
             <Header />
             <TopRatedTvShows />
             <Footer />
@@ -146,6 +147,12 @@ function App() {
           <Route path='/profile'>
             <Header />
             <Profile />
+            <Footer />
+          </Route>
+
+          <Route path='/forgot-password'>
+            <Header />
+            <ForgotPassword />
             <Footer />
           </Route>
 

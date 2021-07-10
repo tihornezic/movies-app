@@ -75,7 +75,7 @@ const Login = () => {
                     <button disabled={loading} type='submit' className='button loginButton'>Log In</button>
 
                     <div className='forgotPassword'>
-                        <Link to='#'>Forgot password?</Link>
+                        <Link to='/forgot-password'>Forgot password?</Link>
                     </div>
                 </form>
             </div>
