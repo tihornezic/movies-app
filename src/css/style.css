@@ -69,10 +69,10 @@ body {
 }
 
 .mediaNotFound {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 100px 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   font-weight: 700;
   font-size: 1.3rem;
 }

@@ -41,7 +41,7 @@ function App() {
               <>
                 <Header />
                 <Movie key={props.location.key} />
-                <Footer />
+                {/* Footer is inside the component */}
               </>
             }
           />
@@ -52,7 +52,7 @@ function App() {
               <>
                 <Header />
                 <Tv key={props.location.key} />
-                <Footer />
+                {/* Footer is inside the component */}
               </>
             }
           />
@@ -63,7 +63,7 @@ function App() {
               <>
                 <Header />
                 <Actor key={props.location.key} />
-                <Footer />
+                {/* Footer is inside the component */}
               </>
             }
 
@@ -72,7 +72,7 @@ function App() {
           <Route path='/crew/:id'>
             <Header />
             <Crew />
-            <Footer />
+            {/* Footer is inside the component */}
           </Route>
 
           <Route path='/movies/discover'>
@@ -126,13 +126,13 @@ function App() {
           <Route path='/watchlist'>
             <Header />
             <Watchlist />
-            {/* <Footer /> */}
+            {/* Footer is inside the component */}
           </Route>
 
           <Route path='/watched'>
             <Header />
             <Watched />
-            {/* <Footer /> */}
+            {/* Footer is inside the component */}
           </Route>
 
           <Route path='/login'>

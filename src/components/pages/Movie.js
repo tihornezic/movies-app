@@ -11,6 +11,7 @@ import {useAuth} from '../../context/AuthContext'
 import {useStateValue} from '../../context/StateProvider'
 import {toast, toastify} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import Footer from '../layout/Footer'
 import {
     fetchMovieDetail,
     fetchMovieVideo,
@@ -336,136 +337,141 @@ const Movie = () => {
 
     return (
 
-        <div className='container movie'>
-            {movie === false ?
-                <p className='mediaNotFound'>Movie not found!</p>
-                :
-                <>
-                    <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} media={movie} youtubeVideo={youtubeVideo} />
-                    <div className='videoContainer'>
-                        <img src={movie.backdropPoster} alt={movie.title} />
-                        <PlayCircleFilledOutlinedIcon className='playButton' onClick={openModal} />
-                    </div>
-
-                    <div className='main'>
-                        <div className='headingRow'>
-                            <h1 className={movie.title?.length > 46 ? 'smallHeadingTitle' : 'headingTitle'}>{movie.title}</h1>
-                            <span className='verticalLine'>|</span>
-                            <button
-                                className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
-                                onClick={() => {
-                                    if (currentUser) {
-                                        if (isOnWatchlist) {
-                                            handleRemoveFromWatchlist(movie.id)
-                                        } else {
-                                            handleAddToWatchlist(movie.id)
-                                        }
-                                    } else {
-                                        redirectToLogin()
-                                    }
-                                }}
-                            >
-                                {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
-                            </button>
-
-                            <button
-                                className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
-                                onClick={() => {
-                                    if (currentUser) {
-                                        if (isOnWatchedlist) {
-                                            handleRemoveFromWatchedlist(movie.id)
-                                        } else {
-                                            handleAddToWatchedlist(movie.id)
-                                        }
-                                    } else {
-                                        redirectToLogin()
-                                    }
-                                }}
-                            >
-                                {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
-                            </button>
-
+        <div className='footerWrapper'>
+            <div className='container movie'>
+                {movie === false ?
+                    <p className='mediaNotFound'>Movie not found!</p>
+                    :
+                    <>
+                        <VideoPlayerModal showModal={showModal} setShowModal={setShowModal} media={movie} youtubeVideo={youtubeVideo} />
+                        <div className='videoContainer'>
+                            <img src={movie.backdropPoster} alt={movie.title} />
+                            <PlayCircleFilledOutlinedIcon className='playButton' onClick={openModal} />
                         </div>
 
-                        <div className='details'>
-                            <div className='detailRow'>
-                                <p className='rating'>{movie.rating}</p>
-                                {movie.rating && (
-                                    <ReactStars
-                                        size={18}
-                                        count={5}
-                                        value={movie.rating / 1.8}
-                                        edit={false}
-                                        isHalf={true}
-                                        activeColor="#b460a8"
-                                        color="#b1acac"
-                                    />
-                                )}
-                                <p>
-                                    <span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}
-                                </p>
-                                <span className='verticalLine'>|</span>
-                                {movie.genres?.map((genre, index) => (
-                                    <p key={index}>{(index ? ', ' : '') + genre.name}</p>
-                                ))}
-                                <span className='verticalLine'>|</span>
-                                <p>{movie.runtime}'</p>
-                                <span className='verticalLine'>|</span>
-                                <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
-                            </div>
-
-                            <div className='description'>
-                                {movie.overview}
-                            </div>
-                        </div>
-
-                        <div className='crew'>
-                            <h3>Crew</h3>
-                            <div className='crewRow'>
-                                {director}
-                                {screenplays}
-                            </div>
-                        </div>
-
-                        <div className='cast'>
+                        <div className='main'>
                             <div className='headingRow'>
-                                <h3>Cast</h3>
-                                <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
+                                <h1 className={movie.title?.length > 46 ? 'smallHeadingTitle' : 'headingTitle'}>{movie.title}</h1>
+                                <span className='verticalLine'>|</span>
+                                <button
+                                    className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchlist) {
+                                                handleRemoveFromWatchlist(movie.id)
+                                            } else {
+                                                handleAddToWatchlist(movie.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                                </button>
+
+                                <button
+                                    className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchedlist) {
+                                                handleRemoveFromWatchedlist(movie.id)
+                                            } else {
+                                                handleAddToWatchedlist(movie.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
+                                </button>
+
                             </div>
 
-                            <div className='grid'>
-                                {seeAll ?
-                                    casts.slice(0, 18).map((cast, index) => (
-                                        <PersonCard key={index} person={cast} type='movie' />
-                                    ))
-                                    :
-                                    casts.slice(0, 6).map((cast, index) => (
-                                        <PersonCard key={index} person={cast} type='movie' />
+                            <div className='details'>
+                                <div className='detailRow'>
+                                    <p className='rating'>{movie.rating}</p>
+                                    {movie.rating && (
+                                        <ReactStars
+                                            size={18}
+                                            count={5}
+                                            value={movie.rating / 1.8}
+                                            edit={false}
+                                            isHalf={true}
+                                            activeColor="#b460a8"
+                                            color="#b1acac"
+                                        />
+                                    )}
+                                    <p>
+                                        <span className='verticalLine'>|</span>{moment(movie.releaseDate).format("MMM Do, YYYY")}
+                                    </p>
+                                    <span className='verticalLine'>|</span>
+                                    {movie.genres?.map((genre, index) => (
+                                        <p key={index}>{(index ? ', ' : '') + genre.name}</p>
                                     ))}
-                            </div>
-                        </div>
+                                    <span className='verticalLine'>|</span>
+                                    <p>{movie.runtime}'</p>
+                                    <span className='verticalLine'>|</span>
+                                    <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
+                                </div>
 
-                        <div className='recommendedMovies'>
-                            <h3>Recommended Movies</h3>
-                            <div className='grid'>
-                                {recommendedMovies.slice(0, 6).map((movie) => (
-                                    <MediaCard key={movie.id} media={movie} type='movie' />
-                                ))}
+                                <div className='description'>
+                                    {movie.overview}
+                                </div>
                             </div>
-                        </div>
 
-                        <div className='similarMovies'>
-                            <h3>Similar Movies</h3>
-                            <div className='grid'>
-                                {similarMovies.slice(0, 6).map((movie) => (
-                                    <MediaCard key={movie.id} media={movie} type='movie' />
-                                ))}
+                            <div className='crew'>
+                                <h3>Crew</h3>
+                                <div className='crewRow'>
+                                    {director}
+                                    {screenplays}
+                                </div>
+                            </div>
+
+                            <div className='cast'>
+                                <div className='headingRow'>
+                                    <h3>Cast</h3>
+                                    <ExpandAndShrink seeAll={seeAll} setSeeAll={setSeeAll} />
+                                </div>
+
+                                <div className='grid'>
+                                    {seeAll ?
+                                        casts.slice(0, 18).map((cast, index) => (
+                                            <PersonCard key={index} person={cast} type='movie' />
+                                        ))
+                                        :
+                                        casts.slice(0, 6).map((cast, index) => (
+                                            <PersonCard key={index} person={cast} type='movie' />
+                                        ))}
+                                </div>
+                            </div>
+
+                            <div className='recommendedMovies'>
+                                <h3>Recommended Movies</h3>
+                                <div className='grid'>
+                                    {recommendedMovies.slice(0, 6).map((movie) => (
+                                        <MediaCard key={movie.id} media={movie} type='movie' />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className='similarMovies'>
+                                <h3>Similar Movies</h3>
+                                <div className='grid'>
+                                    {similarMovies.slice(0, 6).map((movie) => (
+                                        <MediaCard key={movie.id} media={movie} type='movie' />
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </>
-            }
+                    </>
+                }
+            </div>
+
+            <Footer />
         </div>
+
     )
 }
 
