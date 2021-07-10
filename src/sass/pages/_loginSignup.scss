@@ -134,6 +134,29 @@
                 color: $pink;
             }
         }
+
+        .email {
+            position: relative;
+            margin-bottom: 35px;
+        }
+
+        .emailError {
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            // color: #e74c3c;
+            color: #f16c5d;
+            font-size: 0.75rem;
+        }
+
+        .emailSuccess {
+            position: absolute;
+            bottom: -20px;
+            left: 5px;
+            // color: #e74c3c;
+            color: #4caf50;
+            font-size: 0.75rem;
+        }
     }
 
     .needAnAccount {

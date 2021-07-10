@@ -1453,6 +1453,24 @@ body {
 .loginSignup .card .forgotPassword a {
   color: #b460a8;
 }
+.loginSignup .card .email {
+  position: relative;
+  margin-bottom: 35px;
+}
+.loginSignup .card .emailError {
+  position: absolute;
+  bottom: -20px;
+  left: 5px;
+  color: #f16c5d;
+  font-size: 0.75rem;
+}
+.loginSignup .card .emailSuccess {
+  position: absolute;
+  bottom: -20px;
+  left: 5px;
+  color: #4caf50;
+  font-size: 0.75rem;
+}
 .loginSignup .needAnAccount {
   margin: 20px 0;
 }

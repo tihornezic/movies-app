@@ -3,7 +3,8 @@ import {Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import Alert from '@material-ui/lab/Alert'
 import {auth, db} from '../../firebase'
-import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined';
+import validator from 'validator'
+import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
 
 const Signup = () => {
     const firstNameRef = useRef()
@@ -14,7 +15,10 @@ const Signup = () => {
 
     const {signup, currentUser} = useAuth()
     const [error, setError] = useState('')
-    
+
+    const [emailErrorMessage, setEmailErrorMessage] = useState('')
+    const [emailHasError, setEmailHasError] = useState(false)
+
     const [loading, setLoading] = useState(false)
     const history = useHistory()
 
@@ -24,7 +28,7 @@ const Signup = () => {
         try {
             setError('')
             setLoading(true)
-            
+
             const createUser = await signup(emailRef.current.value, passwordRef.current.value)
 
             const result = await createUser
@@ -45,6 +49,18 @@ const Signup = () => {
         }
 
         setLoading(false)
+    }
+
+    const valitateEmail = (e) => {
+        const email = e.target.value
+
+        if (validator.isEmail(email)) {
+            setEmailErrorMessage('Email valid.')
+            setEmailHasError(false)
+        } else {
+            setEmailErrorMessage('Enter valid Email!')
+            setEmailHasError(true)
+        }
     }
 
     return (
@@ -75,9 +91,10 @@ const Signup = () => {
                         <label htmlFor='username'>Username</label>
                         <input type='text' ref={usernameRef} required />
                     </div>
-                    <div className='inputGroup'>
+                    <div className='inputGroup email'>
                         <label htmlFor='email'>Email</label>
-                        <input type='email' ref={emailRef} required />
+                        <input type='email' ref={emailRef} onChange={(e) => valitateEmail(e)} required />
+                        <p className={emailHasError ? 'emailError' : 'emailSuccess'}>{emailErrorMessage}</p>
                     </div>
                     <div className='inputGroup'>
                         <label htmlFor='password'>Password</label>
