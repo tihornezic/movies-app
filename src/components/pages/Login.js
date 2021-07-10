@@ -33,8 +33,9 @@ const Login = () => {
             setLoading(true)
             await login(emailRef.current.value, passwordRef.current.value)
             history.push('/')
-        } catch {
-            setError('Failed to log in.')
+        } catch(error) {
+            // setError('Failed to log in.')
+            setError(error.message)
         }
 
         setLoading(false)
@@ -57,7 +58,7 @@ const Login = () => {
                 <h3>Log In</h3>
 
                 {error &&
-                    <Alert variant='filled' severity='error' style={{margin: '25px 0'}} >
+                    <Alert variant='filled' severity='error' style={{margin: '25px 0', maxWidth: '346px'}} >
                         {error}
                     </Alert>
                 }

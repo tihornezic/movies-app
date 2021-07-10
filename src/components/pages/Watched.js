@@ -4,6 +4,7 @@ import {useAuth} from '../../context/AuthContext'
 import {useStateValue} from '../../context/StateProvider'
 import MediaCard from '../utils/MediaCard'
 import Heading from '../utils/Heading'
+import Footer from '../layout/Footer'
 
 const Watched = () => {
     const {currentUser, getWatchedlistMediaFromDatabase} = useAuth()
@@ -36,14 +37,25 @@ const Watched = () => {
     }
 
     return (
-        <div className='container watchedlist'>
-            <Heading text='My Watchedlist' />
+        <div className='footerWrapper'>
+            <div className='container watchedlist'>
+                <Heading text='My Watchedlist' />
 
-            <div className='grid'>
-                {watchedlist.map((media) => (
-                    <MediaCard key={media.id} media={media} type={media.type} listType={'watchedlist'} />
-                ))}
+                {watchedlist.length === 0 ?
+                    <div className='empty'>
+                        <p>Your watchedlist is empty!</p>
+                        <p>Start searching for Movies and Tv Series to add them to your Watchedlist!</p>
+                    </div>
+                    :
+                    <div className='grid'>
+                        {watchedlist.map((media) => (
+                            <MediaCard key={media.id} media={media} type={media.type} listType={'watchedlist'} />
+                        ))}
+                    </div>
+                }
             </div>
+
+            <Footer />
         </div>
     )
 }

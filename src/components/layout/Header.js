@@ -1,6 +1,5 @@
 import Search from '../utils/Search'
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
-import MovieCreationTwoToneIcon from '@material-ui/icons/MovieCreationTwoTone'
 import {Link, useHistory} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {useAuth} from '../../context/AuthContext'
@@ -38,8 +37,15 @@ const Header = () => {
             }
 
             getUserInfo()
+        } else {
+            setUserInfo([])
         }
     }, [])
+
+
+    const handleChangeProfileMenu = () => {
+        setProfileMenu(prev => !prev)
+    }
 
 
     return (
@@ -126,7 +132,7 @@ const Header = () => {
                                                 {userInfo.lastName}
                                                 </p>
                                                 <p className='smallFont'>
-                                                    {userInfo.email}
+                                                    {currentUser.email}
                                                 </p>
                                                 <p className='smallFont'>
                                                     {userInfo.username}
@@ -135,10 +141,12 @@ const Header = () => {
                                             </div>
                                         </div>
                                         <div className='options'>
-                                            <div className='option'>
-                                                <PersonRoundedIcon />
-                                                <p>Profile</p>
-                                            </div>
+                                            <Link to='/profile' onClick={handleChangeProfileMenu}>
+                                                <div className='option'>
+                                                    <PersonRoundedIcon />
+                                                    <p>Profile</p>
+                                                </div>
+                                            </Link>
                                             <div onClick={handleLogout} className='option'>
                                                 <ExitToAppRoundedIcon />
                                                 <p>Log out</p>

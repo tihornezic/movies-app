@@ -39,8 +39,9 @@ const Signup = () => {
             })
 
             history.push('/')
-        } catch {
-            setError('Failed to create an Account.')
+        } catch (error) {
+            // setError('Failed to create an Account.')
+            setError(error.message)
         }
 
         setLoading(false)
@@ -57,7 +58,7 @@ const Signup = () => {
                 <h3>Sign Up</h3>
 
                 {error &&
-                    <Alert variant='filled' severity='error' style={{margin: '25px 0'}} >
+                    <Alert variant='filled' severity='error' style={{margin: '25px 0', maxWidth: '346px'}} >
                         {error}
                     </Alert>
                 }

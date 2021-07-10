@@ -5,9 +5,26 @@
         font-size: 1.25rem;
     }
 
+    .empty {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        p {
+            font-weight: 600;
+        }
+
+        p:first-child {
+            padding: 10px 0;
+        }
+    }
+
     .grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 50px;
+        // height: 400px;
     }
 }

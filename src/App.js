@@ -18,6 +18,7 @@ import TopRatedTvShows from './components/pages/TopRatedTvShows'
 import FourOhFour from './components/pages/FourOhFour'
 import Login from './components/pages/Login'
 import Signup from './components/pages/Signup'
+import Profile from './components/pages/Profile'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {AuthProvider} from './context/AuthContext'
 
@@ -56,11 +57,17 @@ function App() {
             }
           />
 
-          <Route path='/actor/:id'>
-            <Header />
-            <Actor />
-            <Footer />
-          </Route>
+          <Route
+            path='/actor/:id'
+            render={(props) =>
+              <>
+                <Header />
+                <Actor key={props.location.key} />
+                <Footer />
+              </>
+            }
+
+          />
 
           <Route path='/crew/:id'>
             <Header />
@@ -119,13 +126,13 @@ function App() {
           <Route path='/watchlist'>
             <Header />
             <Watchlist />
-            <Footer />
+            {/* <Footer /> */}
           </Route>
 
           <Route path='/watched'>
             <Header />
             <Watched />
-            <Footer />
+            {/* <Footer /> */}
           </Route>
 
           <Route path='/login'>
@@ -134,6 +141,12 @@ function App() {
 
           <Route path='/signup'>
             <Signup />
+          </Route>
+
+          <Route path='/profile'>
+            <Header />
+            <Profile />
+            <Footer />
           </Route>
 
           <Route path='*'>
