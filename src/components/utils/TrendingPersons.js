@@ -28,7 +28,9 @@ const TrendingPersons = () => {
     const responsive = {
         0: {items: 1},
         568: {items: 2},
-        1024: {items: 6},
+        1024: {items: 5},
+        1333: {items: 6},
+        // 1920: {items: 6}
     };
 
     const trendingPersonsAlice = trendingPersons.sort(() => 0.5 - Math.random()).map((person, index) => (

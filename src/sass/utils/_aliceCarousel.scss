@@ -29,6 +29,10 @@
                 color: #dda6d5;
             }
         }
+
+        @media (max-width: 1550px) {
+            display: none;
+        }
     }
 
     .alice-carousel__next-btn {
@@ -47,5 +51,13 @@
         .alice-carousel__next-btn-item:hover {
             color: #dda6d5;
         }
+
+        @media (max-width: 1550px) {
+            display: none;
+        }
     }
+
+    // @media (max-width: 1550px) {
+    //     padding: 25px;
+    // }
 }

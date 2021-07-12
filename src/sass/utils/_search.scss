@@ -14,10 +14,10 @@
         font-family: $quicksand;
         transition: all 0.2s ease;
 
-        &[type=text] {
+        &[type="text"] {
             padding-left: 35px;
             color: $creamWhite;
-            font-size: .90rem;
+            font-size: 0.9rem;
         }
 
         &::placeholder {
@@ -26,7 +26,6 @@
 
         &:focus {
             box-shadow: 0 0 2px 2px rgb(180 96 168 / 70%);
-            
             svg {
                 color: $creamWhite;
             }
@@ -62,4 +61,22 @@
         z-index: 10;
         border-radius: 5px;
     }
+
+    // @media (max-width: 1333px) {
+    //     display: none;
+    // }
+
+    // .searchIcon {
+    //     // display: none;
+
+    //     svg {
+    //         display: block;
+    //         position: absolute;
+    //         top: 5px;
+    //         left: 8px;
+    //         color: $mildGrey;
+    //         font-size: 1.4rem;
+    //         transition: all 0.2s ease;
+    //     }
+    // }
 }

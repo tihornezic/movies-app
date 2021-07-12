@@ -13,18 +13,13 @@
         text-align: center;
 
         p {
+            display: block;
+            width: 100%;
             font-weight: 600;
         }
 
         p:first-child {
             padding: 10px 0;
         }
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-gap: 50px;
-        // height: 400px;
     }
 }

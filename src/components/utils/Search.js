@@ -37,6 +37,10 @@ const Search = () => {
                     ))}
                 </div>
             )}
+
+            {/* <div className='searchIcon'>
+                <SearchIcon />
+            </div> */}
         </div>
     )
 }

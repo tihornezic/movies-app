@@ -56,7 +56,7 @@ const DiscoverTvShows = () => {
 
     return (
         <div className='container discoverTvShows'>
-            <Heading text={'Discover Movies'} />
+            <Heading text={'Discover Tv Shows'} />
 
             <GenresList
                 allGenres={allGenres}

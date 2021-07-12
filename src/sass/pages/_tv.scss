@@ -64,16 +64,16 @@
                 .adjustedMargins {
                     margin-right: 20px;
                 }
-    
+
                 .verticalLine {
                     padding: 0 25px;
                 }
-    
+
                 a {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-    
+
                     svg {
                         margin-right: 5px;
                     }
@@ -182,10 +182,6 @@
             }
 
             .grid {
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                grid-gap: 50px;
-
                 .castItem {
                     .name {
                         margin-top: 13px;
@@ -208,12 +204,6 @@
                 margin-top: 35px;
                 margin-bottom: 25px;
             }
-
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                grid-gap: 50px;
-            }
         }
 
         .similarTvs {
@@ -224,12 +214,6 @@
             h3 {
                 margin-top: 35px;
                 margin-bottom: 25px;
-            }
-
-            .grid {
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                grid-gap: 50px;
             }
         }
     }

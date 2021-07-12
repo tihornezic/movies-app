@@ -40,8 +40,10 @@ const Watchlist = () => {
 
     return (
         <div className='footerWrapper'>
-            <div className='container watchlist'>
-                <Heading text='My Watchlist' />
+            <div className='watchlist'>
+                <div className='container'>
+                    <Heading text='My Watchlist' />
+                </div>
 
                 {watchlist.length === 0 ?
                     <div className='empty'>
@@ -49,7 +51,7 @@ const Watchlist = () => {
                         <p>Start searching for Movies and Tv Series and add them to your Watchlist!</p>
                     </div>
                     :
-                    <div className='grid'>
+                    <div className='container grid'>
                         {watchlist.map((media) => (
                             <MediaCard key={media.id} media={media} type={media.type} listType={'watchlist'} />
                         ))}

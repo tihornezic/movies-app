@@ -21,8 +21,18 @@ body {
 }
 
 .container {
-  width: 1360px;
+  max-width: 1360px;
   margin: 0 auto;
+}
+@media (max-width: 1550px) {
+  .container {
+    padding: 0px 75px;
+  }
+}
+@media (max-width: 1333px) {
+  .container {
+    padding: 0px 100px;
+  }
 }
 
 .footerWrapper {
@@ -30,6 +40,17 @@ body {
   min-height: calc(100vh - 170px);
   flex-direction: column;
   justify-content: space-between;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 50px;
+}
+@media (max-width: 1333px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .heading {
@@ -110,6 +131,11 @@ body {
 .header .headerContainer .brand h1 {
   margin-left: 5px;
   font-weight: 600;
+}
+@media (max-width: 1333px) {
+  .header .headerContainer .brand h1 {
+    display: none;
+  }
 }
 @keyframes easeInOut {
   0% {
@@ -327,6 +353,12 @@ body {
   z-index: 10;
   letter-spacing: 3px;
 }
+@media (max-width: 1333px) {
+  .carousel .title {
+    top: 75%;
+    width: 800px;
+  }
+}
 .carousel .control-arrow {
   padding: 30px !important;
   color: #b460a8 !important;
@@ -336,6 +368,11 @@ body {
 }
 .carousel .control-next.control-arrow:before {
   border-left: 8px solid #b460a8 !important;
+}
+@media (max-width: 1550px) {
+  .carousel {
+    height: 520px;
+  }
 }
 
 .nowPlayingMovies .headingRow {
@@ -348,11 +385,6 @@ body {
 .nowPlayingMovies .headingRow a {
   text-decoration: underline;
   color: #b460a8;
-}
-.nowPlayingMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 .nowPlayingMovies a {
   text-decoration: none;
@@ -370,6 +402,11 @@ body {
   display: block;
   border-radius: 5px;
   min-height: 278px;
+}
+@media (max-width: 1550px) {
+  .mediaCard .image img {
+    min-height: 220px;
+  }
 }
 .mediaCard .image .overlay {
   position: absolute;
@@ -518,6 +555,11 @@ body {
 .alice-carousel .alice-carousel__prev-btn .alice-carousel__prev-btn-wrapper .alice-carousel__prev-btn-item:hover {
   color: #dda6d5;
 }
+@media (max-width: 1550px) {
+  .alice-carousel .alice-carousel__prev-btn {
+    display: none;
+  }
+}
 .alice-carousel .alice-carousel__next-btn .alice-carousel__next-btn-wrapper {
   position: absolute;
   top: 27%;
@@ -531,15 +573,15 @@ body {
 .alice-carousel .alice-carousel__next-btn .alice-carousel__next-btn-item:hover {
   color: #dda6d5;
 }
+@media (max-width: 1550px) {
+  .alice-carousel .alice-carousel__next-btn {
+    display: none;
+  }
+}
 
 .topRatedMovies h3 {
   margin-top: -20px;
   margin-bottom: 30px;
-}
-.topRatedMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 
 .popularTvShows h3 {
@@ -556,11 +598,6 @@ body {
   text-decoration: underline;
   color: #b460a8;
   margin-top: -20px;
-}
-.popularTvShows .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 
 .tvCard {
@@ -611,11 +648,6 @@ body {
 .watchlist .empty p:first-child {
   padding: 10px 0;
 }
-.watchlist .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 
 .watchedlist h3 {
   margin-bottom: 60px;
@@ -630,15 +662,12 @@ body {
   text-align: center;
 }
 .watchedlist .empty p {
+  display: block;
+  width: 100%;
   font-weight: 600;
 }
 .watchedlist .empty p:first-child {
   padding: 10px 0;
-}
-.watchedlist .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 
 .movie .verticalLine {
@@ -741,11 +770,6 @@ body {
   margin-top: 40px;
   margin-bottom: 10px;
 }
-.movie .main .cast .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .movie .main .cast .grid .castItem .name {
   margin-top: 13px;
 }
@@ -762,11 +786,6 @@ body {
   margin-top: 35px;
   margin-bottom: 25px;
 }
-.movie .main .recommendedMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .movie .main .similarMovies {
   border: none;
   border-top: 1px solid #2e3d52;
@@ -775,11 +794,6 @@ body {
 .movie .main .similarMovies h3 {
   margin-top: 35px;
   margin-bottom: 25px;
-}
-.movie .main .similarMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 
 .tv .verticalLine {
@@ -922,11 +936,6 @@ body {
   margin-top: 40px;
   margin-bottom: 10px;
 }
-.tv .main .cast .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .tv .main .cast .grid .castItem .name {
   margin-top: 13px;
 }
@@ -943,11 +952,6 @@ body {
   margin-top: 35px;
   margin-bottom: 25px;
 }
-.tv .main .recommendedTvs .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .tv .main .similarTvs {
   border: none;
   border-top: 1px solid #2e3d52;
@@ -956,11 +960,6 @@ body {
 .tv .main .similarTvs h3 {
   margin-top: 35px;
   margin-bottom: 25px;
-}
-.tv .main .similarTvs .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
 }
 
 .personCard .image {
@@ -1071,11 +1070,6 @@ body {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-.actor .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .actor .adjustedMargins {
   margin-top: 60px;
 }
@@ -1164,11 +1158,6 @@ body {
   margin-top: 40px;
   margin-bottom: 20px;
 }
-.crew .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 .crew .adjustedMargins {
   margin-top: 60px;
 }
@@ -1255,33 +1244,17 @@ body {
   margin-top: 50px;
   font-size: 1.25rem;
 }
-.discoverMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 
 .nowPlayingMoviesPage h3 {
   margin-bottom: 60px;
   margin-top: 50px;
   font-size: 1.25rem;
 }
-.nowPlayingMoviesPage .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 
 .topRatedMovies h3 {
   margin-bottom: 60px;
   margin-top: 50px;
   font-size: 1.25rem;
-}
-.topRatedMovies .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-  text-align: start;
 }
 
 .directors h3 {
@@ -1290,9 +1263,6 @@ body {
   font-size: 1.25rem;
 }
 .directors .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
   text-align: start;
 }
 
@@ -1302,9 +1272,6 @@ body {
   font-size: 1.25rem;
 }
 .actors .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
   text-align: start;
 }
 
@@ -1313,33 +1280,17 @@ body {
   margin-top: 50px;
   font-size: 1.25rem;
 }
-.discoverTvShows .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 
 .popularTvShowsPage h3 {
   margin-bottom: 60px;
   margin-top: 50px;
   font-size: 1.25rem;
 }
-.popularTvShowsPage .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-}
 
 .topRatedTvShows h3 {
   margin-bottom: 60px;
   margin-top: 50px;
   font-size: 1.25rem;
-}
-.topRatedTvShows .grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 50px;
-  text-align: start;
 }
 
 .loginSignup {
@@ -1720,7 +1671,10 @@ footer {
   border-top: 1px solid #2e3d52;
   max-height: 147px;
 }
-footer a {
+footer p {
+  width: 100%;
+}
+footer p a {
   color: #b460a8;
 }
 

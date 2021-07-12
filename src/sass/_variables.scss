@@ -1,8 +1,8 @@
-$quicksand: 'Quicksand', sans-serif;
+$quicksand: "Quicksand", sans-serif;
 
 $background: #151c26;
-$primary-color: #2D3142;
-$secondary-color: #4F5D75;
+$primary-color: #2d3142;
+$secondary-color: #4f5d75;
 $white: #fff;
 
 $pink: #b460a8;
@@ -12,3 +12,9 @@ $grey: #2e3d52;
 $strongGrey: #1c212a;
 $backgroundGrey: #131922;
 $creamWhite: #e2e8f0;
+
+// Breakpoints
+$xl: 1199px;
+$lg: 991px;
+$md: 767px;
+$sm: 575px;

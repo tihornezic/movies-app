@@ -11,6 +11,10 @@
             display: block;
             border-radius: 5px;
             min-height: 278px;
+
+            @media(max-width: 1550px) {
+                min-height: 220px;
+            }
         }
 
         .overlay {

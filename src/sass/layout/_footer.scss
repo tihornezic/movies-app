@@ -5,7 +5,10 @@ footer {
     border-top: 1px solid $grey;
     max-height: 147px;
 
-    a {
-        color: $pink;
+    p {
+        width: 100%;
+        a {
+            color: $pink;
+        }
     }
 }

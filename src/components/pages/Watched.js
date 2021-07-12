@@ -38,8 +38,10 @@ const Watched = () => {
 
     return (
         <div className='footerWrapper'>
-            <div className='container watchedlist'>
-                <Heading text='My Watchedlist' />
+            <div className='watchedlist'>
+                <div className='container'>
+                    <Heading text='My Watchedlist' />
+                </div>
 
                 {watchedlist.length === 0 ?
                     <div className='empty'>
@@ -47,7 +49,7 @@ const Watched = () => {
                         <p>Start searching for Movies and Tv Series to add them to your Watchedlist!</p>
                     </div>
                     :
-                    <div className='grid'>
+                    <div className='container grid'>
                         {watchedlist.map((media) => (
                             <MediaCard key={media.id} media={media} type={media.type} listType={'watchedlist'} />
                         ))}
