@@ -27,6 +27,7 @@ const Watchlist = () => {
             redirectToLogin()
         }
 
+        document.body.classList.remove('overflow')
     }, [])
 
     // console.log(watchlist)

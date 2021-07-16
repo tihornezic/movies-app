@@ -1,13 +1,16 @@
 .search {
     position: relative;
 
+    &.search.active {
+        input {
+            background-color: $mediumGrey;
+        }
+    }
+
     input {
         width: 240px;
         padding: 7px;
         border-radius: 25px;
-        // background-color: #2e3d52;
-        // background-color: #36465c;
-        // background-color: #324157;
         background-color: #36455c;
         outline: none;
         border: none;

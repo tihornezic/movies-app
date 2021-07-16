@@ -42,6 +42,7 @@ const Directors = () => {
 
     useEffect(() => {
         fetchAllDirectorsFromAPI()
+        document.body.classList.remove('overflow')
     }, [])
 
 

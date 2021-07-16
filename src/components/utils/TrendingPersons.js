@@ -26,9 +26,11 @@ const TrendingPersons = () => {
     // })
 
     const responsive = {
-        0: {items: 1},
-        568: {items: 2},
-        1024: {items: 5},
+        0: {items: 2},
+        615: {items: 3},
+        1015: {items: 4},
+        1140: {items: 5},
+        // 1140: {items: 4},
         1333: {items: 6},
         // 1920: {items: 6}
     };

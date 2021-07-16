@@ -32,6 +32,8 @@ const Profile = () => {
             setUserInfo([])
             redirectToLogin()
         }
+
+        window.scrollTo({top: 0, behavior: 'smooth'})
     }, [])
 
     const redirectToLogin = () => {

@@ -5,7 +5,7 @@ import {
     fetchMultiSearch,
 } from '../../service/utils'
 
-const Search = () => {
+const Search = ({setSlideMenu, setOpenHamburger}) => {
     const [active, setActive] = useState(false)
     const [query, setQuery] = useState('')
     const [results, setResults] = useState([])
@@ -33,7 +33,7 @@ const Search = () => {
             {results?.length > 0 && (
                 <div className='results'>
                     {results.slice(0, 10).map(result => (
-                        <ResultCard result={result} setQuery={setQuery} setResults={setResults} />
+                        <ResultCard result={result} setQuery={setQuery} setResults={setResults} setSlideMenu={setSlideMenu} setOpenHamburger={setOpenHamburger} />
                     ))}
                 </div>
             )}

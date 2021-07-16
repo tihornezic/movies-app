@@ -26,7 +26,8 @@ const CustomPagination = ({totalPagesNumber = 10, setCurrentPage}) => {
 
     const changePage = (event, value) => {
         setCurrentPage(value)
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        // window.scrollTo(0, 0)
+        window.scrollTo({top: 0, behavior: 'smooth'})
     }
 
     return (

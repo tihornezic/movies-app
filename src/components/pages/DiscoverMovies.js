@@ -37,6 +37,7 @@ const DiscoverMovies = () => {
         }
 
         fetchApi()
+        document.body.classList.remove('overflow')
     }, [currentPage, selectedGenresApi])
 
     useEffect(() => {

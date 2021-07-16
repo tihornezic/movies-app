@@ -11,6 +11,10 @@
             text-decoration: underline;
             color: $pink;
         }
+
+        @media(max-width: 845px) {
+            margin-top: 50px;
+        }
     }
 
     a {

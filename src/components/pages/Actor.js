@@ -83,13 +83,15 @@ const Actor = () => {
     }
 
     return (
-
-        <div className='footerWrapper'>
-            <div className='container actor'>
-                {actor === false ?
+        <>
+            {actor === false ?
+                <div className='footerWrapper'>
                     <p className='mediaNotFound'>Actor not found!</p>
-                    :
-                    <>
+                    <Footer />
+                </div>
+                :
+                <>
+                    <div className='container actor'>
                         <div className='mainRow'>
                             <div className='imageAndSocials'>
                                 {actor.profilePath === '' || actor.profilePath === null ?
@@ -157,17 +159,17 @@ const Actor = () => {
                                         {actor.deathday ?
                                             <>
                                                 {moment(actor.birthday).format("MMMM Do, YYYY")}
-                                    &nbsp;in {actor.placeOfBirth}
-                                    &nbsp;-&nbsp;
-                                    {moment(actor.deathday).format("MMMM Do, YYYY")}
-                                    &nbsp;at
-                                    &nbsp;({moment(actor.deathday).diff(actor.birthday, 'years')} years old)
-                                </>
+                                                            &nbsp;in {actor.placeOfBirth}
+                                                            &nbsp;-&nbsp;
+                                                            {moment(actor.deathday).format("MMMM Do, YYYY")}
+                                                            &nbsp;at
+                                                            &nbsp;({moment(actor.deathday).diff(actor.birthday, 'years')} years old)
+                                                        </>
                                             :
                                             <>
                                                 {moment(actor.birthday).format("MMMM Do, YYYY")}
-                                    &nbsp;({moment().diff(actor.birthday, 'years')} years old)
-                                    in {actor.placeOfBirth}
+                                                            &nbsp;({moment().diff(actor.birthday, 'years')} years old)
+                                                            in {actor.placeOfBirth}
                                             </>
                                         }
                                     </p>
@@ -195,8 +197,6 @@ const Actor = () => {
                             }
                         </div>
 
-
-
                         <div className='knownForRow adjustedMargins'>
                             <h3>Known For (Tv Series/Sitcoms)</h3>
                             <ExpandAndShrink seeAll={seeAllTvs} setSeeAll={setSeeAllTvs} />
@@ -213,13 +213,12 @@ const Actor = () => {
                                 ))
                             }
                         </div>
-                    </>
-                }
-            </div>
+                    </div>
 
-            <Footer />
-        </div>
-
+                    <Footer />
+                </>
+            }
+        </>
     )
 }
 

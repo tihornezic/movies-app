@@ -84,13 +84,15 @@ const Crew = () => {
 
 
     return (
-
-        <div className='footerWrapper'>
-            <div className='container crew'>
-                {crew === false ?
-                    <p className='mediaNotFound'>Director not found!</p>
-                    :
-                    <>
+        <>
+            {crew === false ?
+                <div className='footerWrapper'>
+                    <p className='mediaNotFound'>Crew not found!</p>
+                    <Footer />
+                </div>
+                :
+                <>
+                    <div className='container crew'>
                         <div className='mainRow'>
                             <div className='imageAndSocials'>
                                 {crew.profilePath === '' || crew.profilePath === null ?
@@ -213,13 +215,13 @@ const Crew = () => {
                                 ))
                             }
                         </div>
-                    </>
-                }
-            </div>
 
-            <Footer />
-        </div>
+                    </div>
 
+                    <Footer />
+                </>
+            }
+        </>
     )
 }
 

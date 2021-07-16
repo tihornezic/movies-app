@@ -52,6 +52,7 @@ const DiscoverTvShows = () => {
         }
 
         fetchApi()
+        document.body.classList.remove('overflow')
     }, [])
 
     return (

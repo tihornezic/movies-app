@@ -40,6 +40,7 @@ const TopRatedMovies = () => {
 
     useEffect(() => {
         fetchAllMoviesFromAPI()
+        document.body.classList.remove('overflow')
     }, [])
 
     return (

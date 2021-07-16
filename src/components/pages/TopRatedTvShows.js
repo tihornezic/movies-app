@@ -39,6 +39,7 @@ const TopRatedTvShows = () => {
 
     useEffect(() => {
         fetchAllTvShowsFromAPI()
+        document.body.classList.remove('overflow')
     }, [])
 
     return (

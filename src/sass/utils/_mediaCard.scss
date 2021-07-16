@@ -15,6 +15,22 @@
             @media(max-width: 1550px) {
                 min-height: 220px;
             }
+
+            @media (max-width: 615px) {
+                // height: 80px;
+                // object-fit: fill;
+            }
+
+            @media (max-width: 386px) {
+                text-align: center;
+                width: unset;
+                height: 80px;
+            }
+
+            @media (max-width: 386px) {
+                width: 200px;
+                height: 300px;
+            }
         }
 
         .overlay {
@@ -112,5 +128,13 @@
                 font-size: 0.95rem;
             }
         }
+
+        @media (max-width: 386px) {
+            max-width: 150px;
+        }
+    }
+
+    @media (max-width: 386px) {
+        width: unset;
     }
 }

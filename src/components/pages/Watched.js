@@ -27,6 +27,7 @@ const Watched = () => {
             redirectToLogin()
         }
 
+        document.body.classList.remove('overflow')
     }, [])
 
     const redirectToLogin = () => {
