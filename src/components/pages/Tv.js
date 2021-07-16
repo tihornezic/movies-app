@@ -309,7 +309,7 @@ const Tv = () => {
         setShowModal(prev => !prev)
     }
 
-    const executiveProducer = crews?.map((crew, index) => {
+    const executiveProducer = crews?.slice(0, 3).map((crew, index) => {
         if (crew.job === 'Executive Producer') {
             return (
                 <div key={index} className='crewRowItem'>
@@ -348,8 +348,8 @@ const Tv = () => {
                                 <p className='tvSeries'>
                                     TV Series ({moment(tv.firstAirDate).format("YYYY")} -&nbsp;
                                     {tv.status === 'Returning Series' ? null : moment(tv.lastAirDate).format("YYYY")}
-                                )
-                            </p>
+                                    )
+                                </p>
                                 <div className='controlsRow'>
                                     <span className='verticalLine'>|</span>
                                     <button
@@ -389,6 +389,51 @@ const Tv = () => {
                                 </div>
                             </div>
 
+                            <div className='headingColumn'>
+                                <h1 className='headingTitle'>{tv.title}</h1>
+                                <p className='tvSeries'>
+                                    TV Series ({moment(tv.firstAirDate).format("YYYY")} -&nbsp;
+                                    {tv.status === 'Returning Series' ? null : moment(tv.lastAirDate).format("YYYY")}
+                                    )
+                                </p>
+
+                                <button
+                                    style={{display: 'block', marginBottom: '10px', width: '100%'}}
+                                    className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchlist) {
+                                                handleRemoveFromWatchlist(tv.id)
+                                            } else {
+                                                handleAddToWatchlist(tv.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                                </button>
+
+                                <button
+                                    style={{display: 'block', marginBottom: '10px', width: '100%'}}
+                                    className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchedlist) {
+                                                handleRemoveFromWatchedlist(tv.id)
+                                            } else {
+                                                handleAddToWatchedlist(tv.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
+                                </button>
+                            </div>
+
                             <div className='details'>
                                 <div className='detailRow'>
                                     <p className='rating'>{tv.rating}</p>
@@ -419,7 +464,7 @@ const Tv = () => {
                                     <span className='verticalLine'>|</span>
                                     <p>
                                         <span className='whiteLabel'>Episode runtime: </span>{tv.episodeRunTime}'
-                        </p>
+                                    </p>
                                     <span className='verticalLine'>|</span>
                                     <p>
                                         <span className='whiteLabel'>Seasons: </span><span className='boldSpan'>{tv.numberOfSeasons}</span>
@@ -432,6 +477,28 @@ const Tv = () => {
                                     <p>
                                         <span className='whiteLabel'>Last Airdate: </span>{moment(tv.lastAirDate).format("MMM Do, YYYY")}
                                     </p>
+                                </div>
+
+                                <div className='detailColumn'>
+                                    <div style={{display: 'flex'}}>
+                                        <p style={{marginRight: '5px'}} className='rating'>{tv.rating}</p>
+                                        {tv.rating && (
+                                            <ReactStars
+                                                size={18}
+                                                count={5}
+                                                value={tv.rating / 1.8}
+                                                edit={false}
+                                                isHalf={true}
+                                                activeColor="#b460a8"
+                                                color="#b1acac"
+                                            />
+                                        )}
+                                    </div>
+
+                                    {tv.genres?.map((genre, index) => (
+                                        <p key={index}>{genre.name}</p>
+                                    ))}
+                                    <a className='homepage' href={tv.homepage} target='_blank' rel="noreferrer">TV Show Homepage</a>
                                 </div>
 
                                 <div className='description'>
