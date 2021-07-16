@@ -249,6 +249,14 @@
                         color: $mildGrey;
                         font-size: 0.9rem;
                     }
+
+                    @media (max-width: 520px) {
+                        margin: 5px 0;
+                    }
+                }
+
+                @media (max-width: 520px) {
+                    flex-direction: column;
                 }
             }
         }

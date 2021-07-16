@@ -1565,6 +1565,16 @@ body.overflow {
   color: #b1acac;
   font-size: 0.9rem;
 }
+@media (max-width: 520px) {
+  .movie .main .crew .crewRow .crewRowItem {
+    margin: 5px 0;
+  }
+}
+@media (max-width: 520px) {
+  .movie .main .crew .crewRow {
+    flex-direction: column;
+  }
+}
 .movie .main .cast .headingRow {
   display: flex;
   align-items: center;
@@ -1814,6 +1824,16 @@ body.overflow {
 .tv .main .crew .crewRow .crewRowItem .job {
   color: #b1acac;
   font-size: 0.9rem;
+}
+@media (max-width: 520px) {
+  .tv .main .crew .crewRow .crewRowItem {
+    margin: 5px 0;
+  }
+}
+@media (max-width: 520px) {
+  .tv .main .crew .crewRow {
+    flex-direction: column;
+  }
 }
 .tv .main .cast .headingRow {
   display: flex;

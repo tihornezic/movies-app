@@ -29,12 +29,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
 
-            @media(max-width: 382px) {
+            @media (max-width: 382px) {
                 font-size: 5rem;
                 top: 45%;
             }
 
-            @media(max-width: 326px) {
+            @media (max-width: 326px) {
                 font-size: 5rem;
                 top: 40%;
             }
@@ -206,6 +206,14 @@
                         color: $mildGrey;
                         font-size: 0.9rem;
                     }
+
+                    @media (max-width: 520px) {
+                        margin: 5px 0;
+                    }
+                }
+
+                @media (max-width: 520px) {
+                    flex-direction: column;
                 }
             }
         }
