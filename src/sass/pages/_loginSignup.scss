@@ -157,6 +157,19 @@
             color: #4caf50;
             font-size: 0.75rem;
         }
+
+        @media (max-width: 566px) {
+            min-width: 350px;
+        }
+
+        @media (max-width: 460px) {
+            min-width: 300px;
+            padding: 20px;
+        }
+
+        @media (max-width: 375px) {
+            min-width: 250px;
+        }
     }
 
     .needAnAccount {

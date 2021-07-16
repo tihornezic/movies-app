@@ -2370,6 +2370,22 @@ body.overflow {
   color: #4caf50;
   font-size: 0.75rem;
 }
+@media (max-width: 566px) {
+  .loginSignup .card {
+    min-width: 350px;
+  }
+}
+@media (max-width: 460px) {
+  .loginSignup .card {
+    min-width: 300px;
+    padding: 20px;
+  }
+}
+@media (max-width: 375px) {
+  .loginSignup .card {
+    min-width: 250px;
+  }
+}
 .loginSignup .needAnAccount {
   margin: 20px 0;
 }
@@ -2470,6 +2486,22 @@ body.overflow {
 }
 .profile .card .forgotPassword a {
   color: #b460a8;
+}
+@media (max-width: 566px) {
+  .profile .card {
+    min-width: 350px;
+  }
+}
+@media (max-width: 460px) {
+  .profile .card {
+    min-width: 300px;
+    padding: 20px;
+  }
+}
+@media (max-width: 375px) {
+  .profile .card {
+    min-width: 250px;
+  }
 }
 .profile .needAnAccount {
   margin: 20px 0;
