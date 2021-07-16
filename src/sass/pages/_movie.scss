@@ -28,6 +28,16 @@
             filter: blur(0.9px);
             cursor: pointer;
             transition: all 0.3s ease;
+
+            @media(max-width: 382px) {
+                font-size: 5rem;
+                top: 45%;
+            }
+
+            @media(max-width: 326px) {
+                font-size: 5rem;
+                top: 40%;
+            }
         }
 
         .playButton:hover {
@@ -37,6 +47,26 @@
 
         @media (max-width: 1550px) {
             height: 520px;
+        }
+
+        @media (max-width: 1550px) {
+            height: 520px;
+        }
+
+        @media (max-width: 1273px) {
+            height: 480px;
+        }
+
+        @media (max-width: 1140px) {
+            height: 400px;
+        }
+
+        @media (max-width: 910px) {
+            height: 300px;
+        }
+
+        @media (max-width: 624px) {
+            height: 200px;
         }
     }
 
@@ -79,6 +109,25 @@
                     margin-right: 5px;
                 }
             }
+
+            @media (max-width: 960px) {
+                display: none;
+            }
+        }
+
+        .headingColumn {
+            display: none;
+
+            h1 {
+                width: 100%;
+                margin-top: 5px;
+                margin-bottom: 20px;
+            }
+
+            @media (max-width: 960px) {
+                display: block;
+                margin-top: 15px;
+            }
         }
 
         .details {
@@ -95,6 +144,38 @@
 
                 a {
                     color: $pink;
+                }
+
+                @media (max-width: 960px) {
+                    display: none;
+                }
+
+                .homepage {
+                    display: block;
+                    color: $pink;
+                    margin: 7px 0;
+
+                    // @media (max-width: 815px) {
+                    //     // margin: 60px 0;
+                    // }
+                }
+            }
+
+            .detailColumn {
+                display: none;
+
+                .homepage {
+                    display: block;
+                    color: $pink;
+                }
+
+                @media (max-width: 960px) {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    margin-top: 25px;
+                    color: $mildGrey;
+                    font-size: 1.2rem;
                 }
             }
 

@@ -40,6 +40,32 @@ h1 {
     font-size: 1.3rem;
     letter-spacing: 1px;
 }
+
+@media(max-width: 1028px) {
+    width: 760px;
+}
+
+@media(max-width: 830px) {
+    width: 530px;
+}
+
+@media(max-width: 590px) {
+    width: 330px;
+    height: 75%;
+}
+
+@media(max-width: 399px) {
+    width: 230px;
+    height: 25%;
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    .videoPlayer {
+        height: 280px !important;
+    }
+}
 `
 
 const CloseModalButton = styled.div`
@@ -94,6 +120,7 @@ const VideoPlayerModal = ({showModal, setShowModal, media, youtubeVideo}) => {
                                     // url={youtubeUrl + video.key}
                                     url={youtubeUrl + youtubeVideo.key}
                                     playing
+                                    className='videoPlayer'
                                     width="100%"
                                     height='420px'
                                 ></ReactPlayer>

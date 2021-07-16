@@ -32,9 +32,10 @@ body {
         // width: 1125px;
         padding: 0px 75px;
     }
-
+    
     @media (max-width: 1353px) {
         padding: 0px 100px;
+        margin: unset;
     }
 
     // @media (max-width: 1140px) {

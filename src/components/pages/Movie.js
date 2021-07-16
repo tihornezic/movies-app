@@ -66,6 +66,7 @@ const Movie = () => {
 
         fetchApi()
         window.scrollTo(0, 0)
+        document.body.classList.remove('overflow')
     }, [])
 
     // 
@@ -389,6 +390,46 @@ const Movie = () => {
 
                             </div>
 
+                            <div className='headingColumn'>
+                                <h1 className={movie.title?.length > 46 ? 'smallHeadingTitle' : 'headingTitle'}>{movie.title}</h1>
+
+                                <button
+                                    style={{display: 'block', marginBottom: '10px', width: '100%'}}
+                                    className={isOnWatchlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchlist) {
+                                                handleRemoveFromWatchlist(movie.id)
+                                            } else {
+                                                handleAddToWatchlist(movie.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchlist ? 'Remove from Watchlist' : 'Add to Watchlist'}
+                                </button>
+
+                                <button
+                                    style={{width: '100%'}}
+                                    className={isOnWatchedlist ? 'button adjustedMargins secondaryButton' : 'button adjustedMargins'}
+                                    onClick={() => {
+                                        if (currentUser) {
+                                            if (isOnWatchedlist) {
+                                                handleRemoveFromWatchedlist(movie.id)
+                                            } else {
+                                                handleAddToWatchedlist(movie.id)
+                                            }
+                                        } else {
+                                            redirectToLogin()
+                                        }
+                                    }}
+                                >
+                                    {isOnWatchedlist ? 'Remove from Watchedlist' : 'Add to Watchedlist'}
+                                </button>
+                            </div>
+
                             <div className='details'>
                                 <div className='detailRow'>
                                     <p className='rating'>{movie.rating}</p>
@@ -413,7 +454,34 @@ const Movie = () => {
                                     <span className='verticalLine'>|</span>
                                     <p>{movie.runtime}'</p>
                                     <span className='verticalLine'>|</span>
-                                    <a href={movie.homepage} target='_blank' rel="noreferrer">{movie.homepage}</a>
+
+                                    <a href={movie.homepage} className='homepage' target='_blank' rel="noreferrer">Movie Homepage</a>
+                                </div>
+
+                                <div className='detailColumn'>
+                                    <div style={{display: 'flex'}}>
+                                        <p style={{marginRight: '5px'}} className='rating'>{movie.rating}</p>
+                                        {movie.rating && (
+                                            <ReactStars
+                                                size={18}
+                                                count={5}
+                                                value={movie.rating / 1.8}
+                                                edit={false}
+                                                isHalf={true}
+                                                activeColor="#b460a8"
+                                                color="#b1acac"
+                                            />
+                                        )}
+                                    </div>
+                                    <p>
+                                        {moment(movie.releaseDate).format("MMM Do, YYYY")}
+                                    </p>
+                                    {movie.genres?.map((genre, index) => (
+                                        <p key={index}>{genre.name}</p>
+                                    ))}
+                                    <p>{movie.runtime}'</p>
+
+                                    <a href={movie.homepage} className='homepage' target='_blank' rel="noreferrer">Movie Homepage</a>
                                 </div>
 
                                 <div className='description'>

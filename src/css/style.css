@@ -35,6 +35,7 @@ body.overflow {
 @media (max-width: 1353px) {
   .container {
     padding: 0px 100px;
+    margin: unset;
   }
 }
 @media (max-width: 1015px) {
@@ -1411,6 +1412,18 @@ body.overflow {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+@media (max-width: 382px) {
+  .movie .videoContainer .playButton {
+    font-size: 5rem;
+    top: 45%;
+  }
+}
+@media (max-width: 326px) {
+  .movie .videoContainer .playButton {
+    font-size: 5rem;
+    top: 40%;
+  }
+}
 .movie .videoContainer .playButton:hover {
   opacity: 0.9;
   filter: blur(0.65px);
@@ -1418,6 +1431,31 @@ body.overflow {
 @media (max-width: 1550px) {
   .movie .videoContainer {
     height: 520px;
+  }
+}
+@media (max-width: 1550px) {
+  .movie .videoContainer {
+    height: 520px;
+  }
+}
+@media (max-width: 1273px) {
+  .movie .videoContainer {
+    height: 480px;
+  }
+}
+@media (max-width: 1140px) {
+  .movie .videoContainer {
+    height: 400px;
+  }
+}
+@media (max-width: 910px) {
+  .movie .videoContainer {
+    height: 300px;
+  }
+}
+@media (max-width: 624px) {
+  .movie .videoContainer {
+    height: 200px;
   }
 }
 .movie .main .headingRow {
@@ -1449,6 +1487,25 @@ body.overflow {
 .movie .main .headingRow a svg {
   margin-right: 5px;
 }
+@media (max-width: 960px) {
+  .movie .main .headingRow {
+    display: none;
+  }
+}
+.movie .main .headingColumn {
+  display: none;
+}
+.movie .main .headingColumn h1 {
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+@media (max-width: 960px) {
+  .movie .main .headingColumn {
+    display: block;
+    margin-top: 15px;
+  }
+}
 .movie .main .details .detailRow {
   display: flex;
   align-items: center;
@@ -1460,6 +1517,33 @@ body.overflow {
 }
 .movie .main .details .detailRow a {
   color: #b460a8;
+}
+@media (max-width: 960px) {
+  .movie .main .details .detailRow {
+    display: none;
+  }
+}
+.movie .main .details .detailRow .homepage {
+  display: block;
+  color: #b460a8;
+  margin: 7px 0;
+}
+.movie .main .details .detailColumn {
+  display: none;
+}
+.movie .main .details .detailColumn .homepage {
+  display: block;
+  color: #b460a8;
+}
+@media (max-width: 960px) {
+  .movie .main .details .detailColumn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 25px;
+    color: #b1acac;
+    font-size: 1.2rem;
+  }
 }
 .movie .main .details .description {
   margin: 60px 0;
