@@ -12,7 +12,7 @@ import {ClickAwayListener} from '@material-ui/core'
 const Header = () => {
     const [error, setError] = useState('')
     const {currentUser, logout} = useAuth()
-    const [{watchlistArray, watchedlistArray}, dispatch] = useStateValue()
+    const [{watchlistArray, watchedlistArray}] = useStateValue()
     const [userInfo, setUserInfo] = useState([])
     const history = useHistory()
 
@@ -30,6 +30,7 @@ const Header = () => {
             history.push('/login')
         } catch {
             setError('Failed to log out.')
+            alert(error)
         }
     }
 
@@ -44,7 +45,7 @@ const Header = () => {
         } else {
             setUserInfo([])
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleHeaderActive = () => {
         if (window.scrollY > 0) {
@@ -67,8 +68,6 @@ const Header = () => {
     const toggleBodyOverflowHidden = () => {
         document.body.classList.toggle('overflow')
     }
-
-    console.log(slideMenu)
 
     return (
         <nav className={navbarActive ? 'header active' : 'header'} >

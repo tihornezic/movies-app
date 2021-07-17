@@ -1,13 +1,10 @@
 import Heading from '../utils//Heading'
 import AliceCarousel from 'react-alice-carousel'
-import "react-alice-carousel/lib/scss/alice-carousel.scss"
-import unknown from '../../img/unknown3.png'
+import 'react-alice-carousel/lib/scss/alice-carousel.scss'
 import PersonCard from '../utils/PersonCard'
-import {Link} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import {
     fetchTrendingPerson,
-    fetchPopularPerson
 } from '../../service/people'
 
 const TrendingPersons = () => {

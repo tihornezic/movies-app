@@ -48,7 +48,7 @@ const Actor = () => {
 
         fetchApi()
         window.scrollTo(0, 0)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // console.log(actor)
     // console.log(movieCreditsCast)
@@ -103,28 +103,28 @@ const Actor = () => {
                                     {actor.homepage === '' || actor.homepage === null ?
                                         <PublicIcon className='disabled' />
                                         :
-                                        <a href={actor.homepage} target='_blank'>
+                                        <a href={actor.homepage} target='_blank' rel="noreferrer">
                                             <PublicIcon />
                                         </a>
                                     }
                                     {externalIds.facebookId === '' || externalIds.facebookId === null ?
                                         <FacebookIcon className='disabled' />
                                         :
-                                        <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank'>
+                                        <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank' rel="noreferrer">
                                             <FacebookIcon />
                                         </a>
                                     }
                                     {externalIds.instagramId === '' || externalIds.instagramId === null ?
                                         <InstagramIcon className='disabled' />
                                         :
-                                        <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank'>
+                                        <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank' rel="noreferrer">
                                             <InstagramIcon />
                                         </a>
                                     }
                                     {externalIds.twitterId === '' || externalIds.twitterId === null ?
                                         <TwitterIcon className='disabled' />
                                         :
-                                        <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank'>
+                                        <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank' rel="noreferrer">
                                             <TwitterIcon />
                                         </a>
                                     }

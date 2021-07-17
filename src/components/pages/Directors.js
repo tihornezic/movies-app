@@ -52,6 +52,8 @@ const Directors = () => {
                 <PersonCard key={index} person={crew} knownFor='Directing' page='directors' />
             )
         }
+
+        return false
     })
 
 

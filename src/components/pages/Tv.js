@@ -9,7 +9,7 @@ import {useState, useEffect} from 'react'
 import {useParams, Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import {useStateValue} from '../../context/StateProvider'
-import {toast, toastify} from 'react-toastify'
+import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from '../layout/Footer'
 import {
@@ -41,7 +41,7 @@ const Tv = () => {
         removeFromWatchlist, setWatchedlistTvToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
         = useAuth()
 
-    const [{ }, dispatch] = useStateValue()
+    const [{ }, dispatch] = useStateValue() // eslint-disable-line no-empty-pattern
 
     const [watchlistMedia, setWatchlistMedia] = useState([])
     const [watchedlistMedia, setWatchedlistMedia] = useState([])
@@ -63,14 +63,14 @@ const Tv = () => {
 
         fetchApi()
         window.scrollTo(0, 0)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         if (currentUser) {
             getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
             getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         setAdjustedTv({
@@ -80,7 +80,7 @@ const Tv = () => {
             title: tv.title,
             rating: tv.rating,
             releaseDate: tv.firstAirDate,
-            genres: tv.genres,
+            // genres: tv.genres,
             originCountry: tv.originCountry,
             genres: tv.genres?.map((genre) => (
                 genre.id
@@ -239,7 +239,7 @@ const Tv = () => {
         } else {
             setIsOnWatchedlist(false)
         }
-    })
+    }, [watchlistMedia, tv.id, watchedlistMedia])
 
 
     // redirect
@@ -318,6 +318,8 @@ const Tv = () => {
                 </div>
             )
         }
+
+        return false
     })
 
     const creators = tv.createdBy?.map((creator, index) => {

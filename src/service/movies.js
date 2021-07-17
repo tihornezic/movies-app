@@ -34,7 +34,6 @@ export const fetchNowPlayingMovies = async (page) => {
             genres: movie.genre_ids,
         }))
 
-        console.log(modifiedData)
         return modifiedData
 
     } catch (e) { }
@@ -116,8 +115,6 @@ export const fetchTopRatedMovies = async () => {
                 page: 1
             }
         })
-
-        console.log(data.results)
 
         const modifiedData = data.results.map((movie) => ({
             id: movie.id,
@@ -208,7 +205,6 @@ export const fetchSimilarMovies = async (id) => {
             genres: movie.genre_ids,
         }))
 
-        console.log(modifiedData)
         return modifiedData
 
     } catch (e) { }
@@ -237,7 +233,6 @@ export const fetchRecommendedMovies = async (id) => {
             genres: movie.genre_ids,
         }))
 
-        console.log(modifiedData)
         return modifiedData
 
     } catch (e) { }

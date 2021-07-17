@@ -5,7 +5,7 @@ const personUrl = `${url}/person`
 const trendingPerson = `${url}/trending/person`
 const popularPerson = `${url}/person/popular`
 
-const backdropUrl = 'https://image.tmdb.org/t/p/original/'
+// const backdropUrl = 'https://image.tmdb.org/t/p/original/'
 const posterUrl = 'https://image.tmdb.org/t/p/w200'
 const profileImage = 'https://image.tmdb.org/t/p/w300'
 
@@ -16,8 +16,6 @@ export const fetchTrendingPerson = async () => {
                 api_key: process.env.REACT_APP_API_KEY,
             }
         })
-
-        console.log(data.results)
 
         const modifiedData = data.results.map((person) => ({
             id: person.id,

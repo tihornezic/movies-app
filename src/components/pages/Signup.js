@@ -2,7 +2,7 @@ import {useRef, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import Alert from '@material-ui/lab/Alert'
-import {auth, db} from '../../firebase'
+import {db} from '../../firebase'
 import validator from 'validator'
 import MovieCreationOutlinedIcon from '@material-ui/icons/MovieCreationOutlined'
 
@@ -13,7 +13,7 @@ const Signup = () => {
     const passwordRef = useRef()
     const usernameRef = useRef()
 
-    const {signup, currentUser} = useAuth()
+    const {signup} = useAuth()
     const [error, setError] = useState('')
 
     const [emailErrorMessage, setEmailErrorMessage] = useState('')

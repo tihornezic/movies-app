@@ -1,6 +1,6 @@
 import SearchIcon from '@material-ui/icons/Search';
 import ResultCard from './ResultCard'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {
     fetchMultiSearch,
 } from '../../service/utils'
@@ -33,7 +33,7 @@ const Search = ({setSlideMenu, setOpenHamburger}) => {
             {results?.length > 0 && (
                 <div className='results'>
                     {results.slice(0, 10).map(result => (
-                        <ResultCard result={result} setQuery={setQuery} setResults={setResults} setSlideMenu={setSlideMenu} setOpenHamburger={setOpenHamburger} />
+                        <ResultCard key={result.id} result={result} setQuery={setQuery} setResults={setResults} setSlideMenu={setSlideMenu} setOpenHamburger={setOpenHamburger} />
                     ))}
                 </div>
             )}

@@ -2,7 +2,7 @@ import {useRef, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import Alert from '@material-ui/lab/Alert'
-import {auth, db} from '../../firebase'
+import {db} from '../../firebase'
 
 const Profile = () => {
     const firstNameRef = useRef()
@@ -34,7 +34,7 @@ const Profile = () => {
         }
 
         window.scrollTo({top: 0, behavior: 'smooth'})
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const redirectToLogin = () => {
         history.push({

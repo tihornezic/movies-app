@@ -49,7 +49,7 @@ const Actors = () => {
             document.body.classList.remove('overflow')
         }, 500);
 
-    }, [currentPage])
+    }, [currentPage]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const Actors = () => {
             })
         }, 500)
 
-    }, [thirdTwentyActors])
+    }, [thirdTwentyActors]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return (

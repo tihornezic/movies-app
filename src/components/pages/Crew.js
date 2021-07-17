@@ -2,7 +2,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
-import {useParams, Link} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import CakeIcon from '@material-ui/icons/Cake';
 import moment from 'moment'
@@ -46,7 +46,7 @@ const Crew = () => {
 
         fetchApi()
         window.scrollTo(0, 0)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // console.log(crew)
     // console.log(tvCreditsCrew)
@@ -104,28 +104,28 @@ const Crew = () => {
                                     {crew.homepage === '' || crew.homepage === null ?
                                         <PublicIcon className='disabled' />
                                         :
-                                        <a href={crew.homepage} target='_blank'>
+                                        <a href={crew.homepage} target='_blank' rel="noreferrer">
                                             <PublicIcon />
                                         </a>
                                     }
                                     {externalIds.facebookId === '' || externalIds.facebookId === null ?
                                         <FacebookIcon className='disabled' />
                                         :
-                                        <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank'>
+                                        <a href={`${facebookUrl}/${externalIds.facebookId}`} target='_blank' rel="noreferrer">
                                             <FacebookIcon />
                                         </a>
                                     }
                                     {externalIds.instagramId === '' || externalIds.instagramId === null ?
                                         <InstagramIcon className='disabled' />
                                         :
-                                        <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank'>
+                                        <a href={`${instagramUrl}/${externalIds.instagramId}`} target='_blank' rel="noreferrer">
                                             <InstagramIcon />
                                         </a>
                                     }
                                     {externalIds.twitterId === '' || externalIds.twitterId === null ?
                                         <TwitterIcon className='disabled' />
                                         :
-                                        <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank'>
+                                        <a href={`${twitterUrl}/${externalIds.twitterId}`} target='_blank' rel="noreferrer">
                                             <TwitterIcon />
                                         </a>
                                     }

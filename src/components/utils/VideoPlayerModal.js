@@ -1,7 +1,7 @@
 import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 import {Animated} from 'react-animated-css'
 import styled from 'styled-components'
-import {useRef, useEffect, useCallback} from 'react'
+import {useRef} from 'react'
 import ReactPlayer from 'react-player'
 
 const Background = styled.div`

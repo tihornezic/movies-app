@@ -28,7 +28,7 @@ const Watched = () => {
         }
 
         document.body.classList.remove('overflow')
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const redirectToLogin = () => {
         history.push({

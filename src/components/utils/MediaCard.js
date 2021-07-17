@@ -10,7 +10,7 @@ import CloseIcon from '@material-ui/icons/Close'
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff'
 import {useAuth} from '../../context/AuthContext'
 import {useStateValue} from '../../context/StateProvider'
-import {toast, toastify} from 'react-toastify'
+import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure()
@@ -26,7 +26,7 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
     const [isOnWatchlist, setIsOnWatchlist] = useState(false)
     const [isOnWatchedlist, setIsOnWatchedlist] = useState(false)
 
-    const [{ }, dispatch] = useStateValue()
+    const [{ }, dispatch] = useStateValue() // eslint-disable-line no-empty-pattern
 
     const history = useHistory()
 
@@ -36,7 +36,7 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
             getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
             getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // watchlist
     const handleAddToWatchlist = (id) => {
@@ -200,7 +200,7 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
         } else {
             setIsOnWatchedlist(false)
         }
-    })
+    }, [watchlistMedia, media.id, watchedlistMedia])
 
 
     // redirect
@@ -429,6 +429,8 @@ const MediaCard = ({media, type, page, topRated, index, listType}) => {
                                 return <small key={item}>{(index ? ', ' : '') + 'War & Politics'}</small>
                             case 37:
                                 return <small key={item}>{(index ? ', ' : '') + 'Western'}</small>
+                            default:
+                                return <small key={item}></small>
                         }
                     }
                 })}

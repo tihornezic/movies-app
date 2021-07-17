@@ -9,7 +9,7 @@ import {useState, useEffect} from 'react'
 import {useParams, Link, useHistory} from 'react-router-dom'
 import {useAuth} from '../../context/AuthContext'
 import {useStateValue} from '../../context/StateProvider'
-import {toast, toastify} from 'react-toastify'
+import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Footer from '../layout/Footer'
 import {
@@ -44,7 +44,7 @@ const Movie = () => {
         removeFromWatchlist, setWatchedlistMovieToDatabase, getWatchedlistMediaIdsFromDatabase, removeFromWatchedlist}
         = useAuth()
 
-    const [{ }, dispatch] = useStateValue()
+    const [{ }, dispatch] = useStateValue() // eslint-disable-line no-empty-pattern
 
     const [watchlistMedia, setWatchlistMedia] = useState([])
     const [watchedlistMedia, setWatchedlistMedia] = useState([])
@@ -67,7 +67,7 @@ const Movie = () => {
         fetchApi()
         window.scrollTo(0, 0)
         document.body.classList.remove('overflow')
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // 
     // get all media ids in the watchlist to check whether movie/tv is already there when adding  
@@ -76,7 +76,7 @@ const Movie = () => {
             getWatchlistMediaIdsFromDatabase(currentUser, setWatchlistMedia)
             getWatchedlistMediaIdsFromDatabase(currentUser, setWatchedlistMedia)
         }
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         setAdjustedMovie({
@@ -242,7 +242,7 @@ const Movie = () => {
         } else {
             setIsOnWatchedlist(false)
         }
-    })
+    }, [watchlistMedia, movie.id, watchedlistMedia]) 
 
 
     // redirect
@@ -322,6 +322,8 @@ const Movie = () => {
                 </div>
             )
         }
+
+        return false
     })
 
     const screenplays = crews?.map((crew, index) => {
@@ -333,6 +335,8 @@ const Movie = () => {
                 </div>
             )
         }
+
+        return false
     })
 
 
