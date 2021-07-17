@@ -52,6 +52,19 @@
         width: 420px;
         text-align: center;
         font-weight: 500;
+
+        @media (max-width: 566px) {
+            width: 350px;
+        }
+
+        @media (max-width: 460px) {
+            width: 300px;
+            padding: 20px;
+        }
+
+        @media (max-width: 375px) {
+            width: 250px;
+        }
     }
 
     .card {

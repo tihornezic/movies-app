@@ -2285,6 +2285,22 @@ body.overflow {
   text-align: center;
   font-weight: 500;
 }
+@media (max-width: 566px) {
+  .loginSignup .message {
+    width: 350px;
+  }
+}
+@media (max-width: 460px) {
+  .loginSignup .message {
+    width: 300px;
+    padding: 20px;
+  }
+}
+@media (max-width: 375px) {
+  .loginSignup .message {
+    width: 250px;
+  }
+}
 .loginSignup .card {
   border: 2px solid #2e3d52;
   min-width: 420px;
