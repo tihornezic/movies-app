@@ -357,7 +357,7 @@ body {
   position: absolute;
   top: 55px;
   right: 2px;
-  width: 240px;
+  width: 260px;
   color: #e2e8f0;
   background-color: #131922;
   z-index: 10;
@@ -395,6 +395,7 @@ body {
 }
 .header .headerContainer .bigHeader .links .account .profileMenu .infoRow .info .smallFont {
   font-size: 0.75rem;
+  max-width: 150px;
 }
 .header .headerContainer .bigHeader .links .account .profileMenu .options .option {
   padding: 10px 15px;
