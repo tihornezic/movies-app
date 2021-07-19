@@ -3,10 +3,6 @@ import NowPlayingMovies from '../utils/NowPlayingMovies'
 
 const NowPlayingMoviesPage = () => {
 
-    useEffect(() => {
-        document.body.classList.remove('overflow')
-    }, [])
-
     return (
         <div className='container nowPlayingMoviesPage'>
             <NowPlayingMovies page={'nowPlayingMoviesPage'} />

@@ -65,9 +65,9 @@ const Header = () => {
         setProfileMenuSmall(prev => !prev)
     }
 
-    const toggleBodyOverflowHidden = () => {
-        document.body.classList.toggle('overflow')
-    }
+    // const toggleBodyOverflowHidden = () => {
+    //     document.body.classList.toggle('overflow')
+    // }
 
     return (
         <nav className={navbarActive ? 'header active' : 'header'} >
@@ -188,7 +188,7 @@ const Header = () => {
                 </div>
 
                 <div className='smallHeader'>
-                    <div className='hamburger' onClick={() => {setOpenHamburger(prev => !prev); setSlideMenu(prev => !prev); toggleBodyOverflowHidden()}}>
+                    <div className='hamburger' onClick={() => {setOpenHamburger(prev => !prev); setSlideMenu(prev => !prev);}}>
                         <div className={openHamburger ? 'open' : 'close'}></div>
                         <div className={openHamburger ? 'open' : 'close'}></div>
                         <div className={openHamburger ? 'open' : 'close'}></div>

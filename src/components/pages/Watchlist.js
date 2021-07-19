@@ -27,7 +27,6 @@ const Watchlist = () => {
             redirectToLogin()
         }
 
-        document.body.classList.remove('overflow')
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // console.log(watchlist)

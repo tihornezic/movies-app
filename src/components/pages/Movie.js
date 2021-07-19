@@ -66,7 +66,6 @@ const Movie = () => {
 
         fetchApi()
         window.scrollTo(0, 0)
-        document.body.classList.remove('overflow')
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     // 

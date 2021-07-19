@@ -19,9 +19,6 @@ body {
   background: linear-gradient(180deg, #2e3d52 0%, #1c212a 50%, #131922 100%);
   overflow-y: scroll;
 }
-body.overflow {
-  overflow: hidden;
-}
 
 .container {
   max-width: 1360px;

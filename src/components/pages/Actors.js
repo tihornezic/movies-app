@@ -46,7 +46,6 @@ const Actors = () => {
                 setThirdTwentyActors(await fetchPopularPerson(currentPage + 2))
             }
             fetchApi()
-            document.body.classList.remove('overflow')
         }, 500);
 
     }, [currentPage]) // eslint-disable-line react-hooks/exhaustive-deps

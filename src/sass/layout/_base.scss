@@ -18,9 +18,9 @@ body {
     background: linear-gradient(180deg, $grey 0%, $strongGrey 50%, $backgroundGrey 100%);
     overflow-y: scroll;
 
-    &.overflow {
-        overflow: hidden;
-    }
+    // &.overflow {
+    //     overflow: hidden;
+    // }
 }
 
 .container {
