@@ -17,11 +17,19 @@
         .icon {
             font-size: 3rem;
             color: $pink;
+
+            @media(max-width: 386px) {
+                font-size: 2.6rem;
+            }
         }
 
         h1 {
             margin-left: 5px;
             font-weight: 600;
+
+            @media(max-width: 386px) {
+                font-size: 1.45rem;
+            }
         }
 
         @mixin animationLogin($from, $to, $name) {
@@ -64,6 +72,7 @@
 
         @media (max-width: 375px) {
             width: 250px;
+            margin-bottom: 15px;
         }
     }
 
@@ -136,6 +145,10 @@
             &:hover {
                 background-color: #c97cbd;
             }
+
+            @media (max-width: 375px) {
+                margin-top: 25px;
+            }
         }
 
         .forgotPasswordLink {
@@ -182,6 +195,8 @@
 
         @media (max-width: 375px) {
             min-width: 250px;
+            border: none;
+            padding: 0;
         }
     }
 

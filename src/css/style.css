@@ -683,6 +683,7 @@ body {
   z-index: 2;
   transform: translateX(-100%);
   transition: transform 0.55s ease-in-out;
+  overflow-y: scroll;
 }
 .header .slideMenu .slideMenuHeaderContainer {
   padding: 50px 0;
@@ -2258,9 +2259,19 @@ body {
   font-size: 3rem;
   color: #b460a8;
 }
+@media (max-width: 386px) {
+  .loginSignup .brand .icon {
+    font-size: 2.6rem;
+  }
+}
 .loginSignup .brand h1 {
   margin-left: 5px;
   font-weight: 600;
+}
+@media (max-width: 386px) {
+  .loginSignup .brand h1 {
+    font-size: 1.45rem;
+  }
 }
 @keyframes easeInOut {
   0% {
@@ -2296,6 +2307,7 @@ body {
 @media (max-width: 375px) {
   .loginSignup .message {
     width: 250px;
+    margin-bottom: 15px;
   }
 }
 .loginSignup .card {
@@ -2357,6 +2369,11 @@ body {
 .loginSignup .card .formButton:hover {
   background-color: #c97cbd;
 }
+@media (max-width: 375px) {
+  .loginSignup .card .formButton {
+    margin-top: 25px;
+  }
+}
 .loginSignup .card .forgotPasswordLink {
   text-align: center;
   margin-top: 20px;
@@ -2397,6 +2414,8 @@ body {
 @media (max-width: 375px) {
   .loginSignup .card {
     min-width: 250px;
+    border: none;
+    padding: 0;
   }
 }
 .loginSignup .needAnAccount {
