@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# MoviesApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## A web app for searching and displaying info about movies and TV shows with functionalities of adding/removing movies/TV Shows to watchlist and watchedlist. Built with React.js.
+<!-- ## Click [here](https://pokemon-battle-game.netlify.app/) -->
+### Click <a href="https://movies-app-56a22.web.app/" target="_blank">here</a> for live demo.
 
-## Available Scripts
+### About the project: -
 
-In the project directory, you can run:
+![moviesapp](https://user-images.githubusercontent.com/66523518/131981098-f5d2e286-935c-49a6-b755-364cddf6a381.png)
 
-### `npm start`
+<a href="https://movies-app-56a22.web.app/" target="_blank">MoviesApp</a> is a web app for searching and displaying info about movies and TV shows. Find out more about your favorite movies, TV shows, actors, and directors. Sign up and add movies and/or TV shows to watchlist and watchedlist.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**The common functionalities are**: -
+- Fetching data (Axios)
+- Displaying detailed info about every media
+- User authentication
+- Saving media data into live Firebase database (Firestore)
+- All related info about a media displayed such as: Trailer, description, media homepage, crew, cast, recommended, similar.
+- Searching between movies, Tv Shows, actors, directors, producers.
+- Pagination
+- Filtering
+- Infinite scrolling
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**The user can**: -
+- Register & login
+- Add a media to watchlist/watchedlist
+- Remove a media from watchlist/watchedlist
+- Move a media from watchlist to watchedlist and viceversa
+- Search for a movie, Tv show, actor, producer, or director
+- Filter through media to narrow down genre choices
+- See top rated movies
+- See top rated TV shows
+- See top rated directors
+- See now playing movies
+- See now popular TV shows
+- See actors
+- Use this app for personal use; to keep track of watched movies/TV shows, as well as to add movies/TV shows to watchlist, as a reminder of what to watch.
 
-### `npm test`
+Used api is <a href="https://www.themoviedb.org/documentation/api" target="_blank">TMDB API</a>.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Built with: -
+- React.js
+- Sass
+- React context api
+- Firebase
+- Material-UI
